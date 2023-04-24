@@ -28,5 +28,45 @@ namespace Web.Datos
             connection.Close();
             return bandera;
         }
+
+        public Boolean registrarPersona(PersonaModel persona)
+        {
+            connection.Open();
+            string sql = "insert into persona (PER_NombreUno, PER_ApellidoUno, PER_NumeroDocumento, PER_DireccionVivienda, " +
+                "PER_Correo, PER_Contrasenia, FKROL_ID, FKTIPDOC_ID, FKBAR_ID)" +
+                " values ('" + 
+                persona.PER_NombreUno + "', '" +
+                persona.PER_ApellidoUno + "', '" +
+                persona.PER_NumeroDocumento + "', '" + 
+                persona.PER_DireccionVinda + "', '" +
+                persona.PER_Correo + "', '" +
+                persona.PER_Contrasenia + "', '" +
+                persona.FKROL_ID + "', '" +
+                persona.FKTIPODOC_ID + "', '" +
+                persona.FKBAR_ID + "')";
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+            return true;
+        }
+
+        public List<TipoDocumentoModel> enlistarDocumento()
+        {
+            connection.Open();
+            string sql = "select TIPDOC_ID, TIPDOC_Nombre from tipodocumento";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoDocumentoModel> documentos = new List<TipoDocumentoModel>();
+            while (reader.Read())
+            {
+                TipoDocumentoModel tipoDocumento = new TipoDocumentoModel();
+                tipoDocumento.TIPDOC_ID = reader.GetInt32(0);
+                tipoDocumento.TIPDOC_Nombre = reader.GetString(1);
+                documentos.Add(tipoDocumento);
+            }
+            connection.Close();
+            return documentos;
+        }
     }
 }

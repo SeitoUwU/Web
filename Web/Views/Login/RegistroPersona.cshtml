@@ -1,0 +1,53 @@
+﻿@model PersonaModel
+@{
+}
+<section class="py-4 py-xl-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2>Register</h2>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 col-xl-4" style="backdrop-filter: opacity(1);-webkit-backdrop-filter: opacity(1);">
+                <div class="card mb-5"
+                     style="border-radius: 50px;box-shadow: 0px 0px 20px;opacity: 1;filter: grayscale(0%) hue-rotate(0deg) invert(0%);backdrop-filter: opacity(1);-webkit-backdrop-filter: opacity(1);background: rgba(255,255,255,0.52);">
+                    <div class="card-body d-flex flex-column align-items-center"
+                         style="box-shadow: 0px 0px 0px 0px;backdrop-filter: opacity(0);-webkit-backdrop-filter: opacity(0);">
+                        <form class="text-center" method="post" asp-controller="Login" asp-action="CrearPersona" style="backdrop-filter: opacity(1);-webkit-backdrop-filter: opacity(1);">
+                            <div>
+                                <input class="form-control" type="text" style="margin-bottom: 15px;" placeholder="Primer nombre" asp-for="PER_NombreUno">
+                            </div>
+                            <div>
+                                <input class="form-control" type="text" placeholder="Primer apellido" style="margin-bottom: 15px;" asp-for="PER_ApellidoUno">
+                            </div>
+                            <div>
+                                <select class="form-select" style="margin-bottom: 15px;" asp-for="FKTIPODOC_ID" asp-items="ViewBag.TipoDocumento">
+                                    <option value="" selected="">Tipo documento</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input class="form-control" type="number" placeholder="Numero documento" style="margin-bottom: 15px;" asp-for="PER_NumeroDocumento">
+                            </div>
+                            <div>
+                                <input class="form-control" type="text" asp-for="PER_DireccionVinda" placeholder="Direccion vivienda" style="margin-bottom: 15px;">
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="email" placeholder="Email" asp-for="PER_Correo">
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="password" placeholder="Password" asp-for="PER_Contrasenia">
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary d-block w-100" type="submit" asp-action="RegistroPersona">
+                                    Register
+                                </button>
+                            </div>
+                            <p class="text-muted"><a href="/Login/Login">Iniciar sesion</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MySql.Data.MySqlClient;
 using Web.Datos;
 using Web.Models;
@@ -20,6 +21,30 @@ namespace Web.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult RecuperacionContrasenia()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult RegistroPersona()
+        {
+            LoginDatos login = new LoginDatos(connection);
+            List<TipoDocumentoModel> tipoDocumento = login.enlistarDocumento();
+            ViewBag.TipoDocumento = new SelectList(tipoDocumento, "TIPDOC_ID", "TIPDOC_Nombre");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegistroPersona(PersonaModel persona)
+        {
+            LoginDatos login = new LoginDatos(connection);
+            login.registrarPersona(persona);
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Log(PersonaModel persona)
@@ -28,6 +53,7 @@ namespace Web.Controllers
             Boolean bandera = log.buscarUsuario(persona);
             if (bandera)
             {
+                RedirectToAction("", "");
             }
             return View();
         }
