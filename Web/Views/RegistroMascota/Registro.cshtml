@@ -1,0 +1,67 @@
+﻿@model MascotaModel
+@{
+    Layout = "_LayoutRegistroMascota";
+}
+<form method="post" asp-controller="RegistroMascota" asp-action="Create">
+    <section class="text-center">
+        <div>
+            <div class="card"
+                 style="margin-right: 100px;margin-left: 100px;margin-top: 20px;border-radius: 25px;margin-bottom: 20px;">
+                <div class="card-body">
+                    <h4 class="card-title">Registro mascota</h4>
+                    <section class="text-start">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" colspan="2">Datos de mascota</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" placeholder="Nombre mascota" asp-for="MASC_Nombre"></td>
+                                        <td><input type="text" placeholder="Edad mascota" asp-for="MASC_Edad"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select asp-for="FKGENMASC_ID" asp-items="ViewBag.GeneroMascotas">
+                                                <option value="" selected="">Sexo mascota</option>
+                                            </select>
+                                        <td>
+                                            <select asp-items="ViewBag.TipoMascota">
+                                                <option value="" selected="">Tipo mascota</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select asp-for="FKTIPRAZA_ID" asp-items="ViewBag.TipoRazas">
+                                                <option value="undefined" selected="">Tipo raza</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <textarea placeholder="Haga una breve descripción" asp-for="MASC_Descripcion"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <select asp-for="FKCARAC_ID" asp-items="ViewBag.CaracteristicasMascota">
+                                                <option value="" selected="">Seleccione caracteristicas</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="file"></td>
+                                        <td><img style="width: 100%;height: 100%;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <div class="text-end"><button class="btn btn-primary" type="submit" asp-action="Create">Registrar</button></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</form>

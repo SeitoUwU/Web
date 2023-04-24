@@ -1,0 +1,45 @@
+﻿@model PersonaModel
+@{
+}
+<body>
+    <section class="py-4 py-xl-5">
+        <div class="container" style="filter: blur(0px);">
+            <div class="row mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 style="color: var(--bs-white);">❤️ Bienvenido a patitas felices ❤️</h2>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6 col-xl-4">
+                    <div class="card mb-5"
+                         style="border-radius: 50px;background: rgba(255,255,255,0.52);box-shadow: 0px 0px 20px;">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                     class="bi bi-person-circle">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                                    <path fill-rule="evenodd"
+                                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <form class="text-center" method="post" asp-controller="Login" asp-action="Log">
+                                <div class="mb-3">
+                                    <input class="form-control" type="email" name="email" placeholder="Email" asp-for="PER_Correo">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="password" name="password" placeholder="Password" style="filter: blur(0px);" asp-for="PER_Contrasenia">
+                                </div>
+                                <div class="mb-3">
+                                    <button class="btn btn-primary d-block w-100" type="submit">Login</button>
+                                </div>
+                                <p class="text-muted">Forgot your password?</p>
+                                <p class="text-muted">Register</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
