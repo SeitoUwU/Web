@@ -26,6 +26,9 @@ namespace Web.Controllers
         {
             LoginDatos log = new LoginDatos(connection);
             Boolean bandera = log.buscarUsuario(persona);
+            if (bandera)
+            {
+            }
             return View();
         }
 

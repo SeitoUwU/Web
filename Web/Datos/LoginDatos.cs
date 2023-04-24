@@ -6,7 +6,7 @@ namespace Web.Datos
     public class LoginDatos
     {
         private readonly MySqlConnection connection;
-
+        private Boolean bandera = false;
         public LoginDatos(MySqlConnection connection)
         {
             this.connection = connection;
@@ -14,8 +14,6 @@ namespace Web.Datos
 
         public Boolean buscarUsuario(PersonaModel person)
         {
-            Boolean bandera = false;
-            PersonaModel persona = new PersonaModel();
             connection.Open();
             string sql = "Select PER_Correo, " +
                 "PER_Contrasenia from persona where PER_Correo = @correo and PER_Contrasenia = @contrasenia";
