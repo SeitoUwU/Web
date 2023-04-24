@@ -5,7 +5,7 @@
     <div class="container" style="filter: blur(0px);">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2 style="color: var(--bs-white);">❤️ Bienvenido a patitas felices ❤️</h2>
+                <h2 style="color: var(--bs-white);"> Bienvenido a patitas felices </h2>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
@@ -22,7 +22,7 @@
                                 </path>
                             </svg>
                         </div>
-                        <form class="text-center" method="post" asp-controller="Login" asp-action="Log">
+                        <form class="text-center" method="post" asp-controller="Logon" asp-action="Log">
                             <div class="mb-3">
                                 <input class="form-control" type="email" name="email" placeholder="Email" asp-for="PER_Correo">
                             </div>
@@ -30,7 +30,7 @@
                                 <input class="form-control" type="password" name="password" placeholder="Password" style="filter: blur(0px);" asp-for="PER_Contrasenia">
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-block w-100" type="submit">Login</button>
+                                <button class="btn btn-primary d-block w-100" type="submit" asp-action="Log">Login</button>
                             </div>
                             <p class="text-muted">Forgot your password?</p>
                             <p class="text-muted">Register</p>
