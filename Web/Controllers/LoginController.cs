@@ -9,12 +9,11 @@ namespace Web.Controllers
     public class LoginController : Controller
     {
         private readonly MySqlConnection connection;
-        private Views_RegistroMascota_Registro reguistro;
         public LoginController(MySqlConnection mySql)
         {
             connection = mySql;
         }
-        public IActionResult Login()
+        public IActionResult IniciarSesion()
         {
             return View();
         }
@@ -27,7 +26,7 @@ namespace Web.Controllers
             Boolean bandera = log.buscarUsuario(persona);
             if (bandera)
             {
-                return View(reguistro);
+                return View();
             }
             else
             {
