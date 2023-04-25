@@ -52,7 +52,7 @@
                                     </tr>
                                     <tr>
                                         <td><input type="file"></td>
-                                        <td><img style="width: 100%;height: 100%;"></td>
+                                        <td><img style="object-fit: cover; width: 100%;height: 100%;"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -65,3 +65,15 @@
 
     </section>
 </form>
+<script>
+    var input = document.querySelector('input[type=file]');
+    var preview = document.querySelector('img');
+    input.addEventListener('change', function (event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            preview.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+</script>

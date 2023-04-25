@@ -11,4 +11,25 @@
     <PackageReference Include="MySql.Data" Version="8.0.33" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Img\AdopcionDos.jpg" />
+    <None Include="wwwroot\Img\AdopcionTres.jpg" />
+    <None Include="wwwroot\Img\AdopcionUno.jpg" />
+    <None Include="wwwroot\Img\andrew.jpg" />
+    <None Include="wwwroot\Img\FondoInicio.jpg" />
+    <None Include="wwwroot\Img\FondoInicioDos.jpg" />
+    <None Include="wwwroot\Img\fondo_opcional.jpg" />
+    <None Include="wwwroot\Img\fondo_raza.jpg" />
+    <None Include="wwwroot\Img\fondo_roles.jpg" />
+    <None Include="wwwroot\Img\fondo_tratamiento2.jpg" />
+    <None Include="wwwroot\Img\Gatitos.jpg" />
+    <None Include="wwwroot\Img\gatos.jpg" />
+    <None Include="wwwroot\Img\Login.jpg" />
+    <None Include="wwwroot\Img\Register.jpg" />
+  </ItemGroup>
+
 </Project>
