@@ -47,13 +47,19 @@ namespace Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Log(PersonaModel persona)
+        public IActionResult Login(PersonaModel persona)
         {
             LoginDatos log = new LoginDatos(connection);
-            Boolean bandera = log.buscarUsuario(persona);
-            if (bandera)
+            if (log.buscarUsuario(persona))
             {
-                RedirectToAction("", "");
+                string rol = log.tomarRol(persona);
+                if (rol == "Administrador")
+                {
+                    return RedirectToAction("AdminHome", "Administrador");
+                } else if (rol == "Usuario")
+                {
+                    return RedirectToAction("InicioUsuario", "Usuario");
+                }
             }
             return View();
         }

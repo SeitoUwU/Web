@@ -24,9 +24,28 @@ namespace Web.Datos
             while (reader.Read())
             {
                 bandera = true;
+                tomarRol(person);
             }
             connection.Close();
             return bandera;
+        }
+
+        public string tomarRol (PersonaModel person)
+        {
+            string rol = "";
+            using (MySqlConnection connection = new MySqlConnection(connectionString: "Server=localhost;port=3306;database=adopcionmascotas;Uid=Usuarios;password=root;"))
+            {
+                connection.Open();
+                string sql = "Select ROL_Nombre from rol inner join persona on FKROL_ID = ROL_ID and PER_Correo = @correo";
+                MySqlCommand command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@correo", person.PER_Correo);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    rol = reader.GetString("ROL_Nombre");
+                }
+            }
+            return rol;
         }
 
         public Boolean registrarPersona(PersonaModel persona)
