@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="~/Web.styles.css" asp-append-version="true" />
 </head>
 <body>
-    @RenderSection("stiloLogin", required: false);
-    @RenderSection("stiloRegistroPersona", required: false);
+    @RenderSection("stiloLogin", required: false)
+    @RenderSection("stiloRegistroPersona", required: false)
+    @RenderSection("stiloAdminHome", required: false)
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

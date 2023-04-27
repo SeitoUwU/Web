@@ -2,5 +2,510 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "_LayoutAdministracion";
 }
-<h1>Ventana Admin</h1>
+@section stiloAdminHome{
+    <style>
+        body{
+            background-image: url("/Img/Gatitos.jpg");
+        }
+    </style>
+}
+<div class="card" 
+     style="margin-top: 10px;margin-right: 10px;margin-bottom: 10px;margin-left: 10px;border-radius: 20px;box-shadow: 0px 0px 20px;background: rgba(255,255,255,0.52);">
+    <div class="card-body">
+        <h4 class="card-title text-center">ADMINISTRADOR</h4>
+        <div>
+            <div class="container">
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 10px;">
+                            <div class="card-body" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Reportes Publicaciones</h4>
+                                <div class="text-end">
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Ver Reportes</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 20px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Países</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="submit"
+                                            style="border-radius: 20px;" asp-action="AdminAgregaPais">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-end" style="border-radius: 20px;">
+                            <div class="card-body" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Departamentos</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 10px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Municipios</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 20px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Barrios</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-end" style="border-radius: 20px;">
+                            <div class="card-body" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Roles</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 10px;"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 20px;"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-end" style="border-radius: 20px;"></div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 10px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Motivo reporte</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 20px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo publicación</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-end" style="border-radius: 20px;">
+                            <div class="card-body" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo elemento</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 10px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo cirugía</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 20px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo raza</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-end" style="border-radius: 20px;">
+                            <div class="card-body" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Características&nbsp;</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 10px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo grupo</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 20px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo documentos</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-end" style="border-radius: 20px;">
+                            <div class="card-body" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo vivienda</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 10px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo tratamiento mascota</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 20px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo alergia mascota</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-end" style="border-radius: 20px;">
+                            <div class="card-body" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo mascota</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-4">
+                        <div class="card" style="border-radius: 10px;">
+                            <div class="card-body text-end" style="border-style: solid;border-radius: 20px;">
+                                <h4 class="card-title text-center">Tipo vacuna mascota</h4>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-success" type="button"
+                                            style="border-radius: 20px;">
+                                        Agregar
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <button class="btn btn-danger" type="button"
+                                            style="border-radius: 20px;">
+                                        Eliminar
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-warning" type="button"
+                                            style="border-radius: 20px;">
+                                        <strong>Actualizar</strong>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

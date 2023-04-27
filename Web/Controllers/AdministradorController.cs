@@ -12,7 +12,7 @@ namespace Web.Controllers
         }
 
         // GET: AdministradorController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult AdminAgregaPais()
         {
             return View();
         }

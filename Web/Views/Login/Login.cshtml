@@ -2,13 +2,16 @@
 @{
     Layout = "_LayoutVacio";
 }
-@section stiloLogin{
-    <style>
+@{
+    string fondo = @"
         body{
-            background-image: url("/Img/Login.jpg");
+            background-image: url(""/Img/Login.jpg"");
             background-size: 100%;
         }
-    </style>
+    ";
+}
+@section stiloLogin{
+    <style>@Html.Raw(fondo)</style>
 }
 <section class="py-4 py-xl-5">
     <div class="container" style="filter: blur(0px);">
