@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Web.Datos;
 using Web.Models;
@@ -54,6 +53,21 @@ namespace Web.Controllers
             AdministradorDatos admin = new AdministradorDatos(connection);
             admin.ActualizarPais(pais);
             return RedirectToAction("AdminActualizaPais");
+        }
+
+        public ActionResult AdminEliminaPais()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listaPaises());
+        }
+
+        public ActionResult deletePais(int idPais)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            PaisModel pais = new PaisModel();
+            pais.PAIS_ID = idPais;
+            admin.EliminarPais(pais);
+            return RedirectToAction("AdminEliminaPais");
         }
         
     }

@@ -50,5 +50,15 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public Boolean EliminarPais(PaisModel pais)
+        {
+            _connection.Open();
+            string sql = "delete from pais where PAIS_ID = '" + pais.PAIS_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
