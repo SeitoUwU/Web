@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<PaisModel>
+@{
     Layout = "_LayoutVacio";
 }
 @section stiloAdminHome{
@@ -22,19 +23,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">Cell 1</td>
-                        <td class="text-center">Cell 2</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">Cell 3</td>
-                        <td class="text-center" style="margin: 10px;border-radius: 10px;">Cell 4</td>
-                    </tr>
+                    @foreach (var pais in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@pais.PAIS_ID</td>
+                            <td class="text-center">@pais.PAIS_Nombre</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
         <div style="text-align: right;padding-right: 10px;border-radius: 20px;">
-            <button class="btn btn-primary"
+            <button id="botonAgregaPais" 
+                    class="btn btn-primary"
                     type="button" style="text-align: center;background: var(--bs-indigo);border-radius: 20px;"
                     onClick="mostrarFormularioPais()">
                 Agregar país
@@ -90,3 +91,9 @@
         </button>
     </div>
 </div>
+<script>
+    document.getElementById("botonAgregaPais")
+    function mostrarFormularioPais(){
+        document.querySelector('#FormularioPais').classList.remove("d-none");
+    }
+</script>

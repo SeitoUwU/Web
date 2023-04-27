@@ -1,10 +1,21 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
+using Web.Datos;
+using Web.Models;
 
 namespace Web.Controllers
 {
     public class AdministradorController : Controller
     {
+        private readonly MySqlConnection connection;
+
+        public AdministradorController(MySqlConnection connection)
+        {
+            this.connection = connection;
+        }
+
+
         // GET: AdministradorController
         public ActionResult AdminHome()
         {
@@ -14,70 +25,8 @@ namespace Web.Controllers
         // GET: AdministradorController/Details/5
         public ActionResult AdminAgregaPais()
         {
-            return View();
-        }
-
-        // GET: AdministradorController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AdministradorController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AdministradorController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AdministradorController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AdministradorController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AdministradorController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listaPaises());
         }
     }
 }
