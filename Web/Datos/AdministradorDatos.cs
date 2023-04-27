@@ -39,5 +39,16 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public Boolean ActualizarPais(PaisModel pais)
+        {
+            _connection.Open();
+            string sql =  "update pais set PAIS_Nombre = '" + pais.PAIS_Nombre + "' " +
+                "where PAIS_ID = '" + pais.PAIS_ID +"'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }

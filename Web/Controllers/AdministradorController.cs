@@ -39,6 +39,22 @@ namespace Web.Controllers
             admin.insertarPais(pais);
             return RedirectToAction("AdminAgregaPais");
         }
+
+        public ActionResult AdminActualizaPais()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listaPaises());
+        }
+
+        public ActionResult ActualizarPais(int idPais, string nombrePais)
+        {
+            PaisModel pais = new PaisModel();
+            pais.PAIS_ID = idPais;
+            pais.PAIS_Nombre = nombrePais;
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            admin.ActualizarPais(pais);
+            return RedirectToAction("AdminActualizaPais");
+        }
         
     }
 }
