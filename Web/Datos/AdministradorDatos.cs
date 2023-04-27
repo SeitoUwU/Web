@@ -29,5 +29,15 @@ namespace Web.Datos
             _connection.Close();
             return paises;
         }
+
+        public Boolean insertarPais(PaisModel pais)
+        {
+            _connection.Open();
+            string sql = "insert into pais(PAIS_ID, PAIS_Nombre) " + "values ('" + pais.PAIS_ID + "', '" + pais.PAIS_Nombre + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
