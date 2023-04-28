@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using Web.Models;
 
 namespace Web.Datos
@@ -68,15 +69,46 @@ namespace Web.Datos
             MySqlCommand command = new MySqlCommand( sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<DepartamentoModel> departamentos = new List<DepartamentoModel>();
+            DepartamentoModel dep = new DepartamentoModel();
             while (reader.Read())
             {
-                DepartamentoModel dep = new DepartamentoModel();
                 dep.DEP_ID = reader.GetInt32(0);
                 dep.DEP_Nombre = reader.GetString(1);
                 departamentos.Add(dep);
             }
             _connection.Close();
             return departamentos;
+        }
+
+        public ActionResult insertarDepartamentos(int idDepartamento, string nombreDepartamento, int fkpais)
+        {
+            _connection.Open();
+            DepartamentoModel departamento = new DepartamentoModel();
+            departamento.DEP_ID = idDepartamento;
+            departamento.DEP_Nombre = nombreDepartamento;
+            departamento.FKPAIS_ID = fkpais;
+            string sql = "insert into departamento(DEP_ID, DEP_Nombre, FKPAIS_ID)" +
+                " values ('" +
+                departamento.DEP_ID + "', ";
+            return null;
+        }
+
+        public List<MunicipioModel> listarmunicipios()
+        {
+            _connection.Open();
+            string sql = "select MUN_ID, MUN_Nombre from municipio";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<MunicipioModel> municipios = new List<MunicipioModel>();
+            while (reader.Read())
+            {
+                MunicipioModel mun = new MunicipioModel();
+                mun.MUN_ID = reader.GetInt32(0);
+                mun.MUN_Nombre = reader.GetString(1);
+                municipios.Add(mun);
+            }
+            _connection.Close();
+            return municipios;
         }
     }
 }

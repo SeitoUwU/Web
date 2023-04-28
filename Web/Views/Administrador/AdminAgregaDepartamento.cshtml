@@ -1,9 +1,10 @@
-﻿@{
+﻿@model DepMunModel
+@{
     Layout = "_LayoutAdministracion";
 }
 @section stiloAdminHome{
     <style>
-        body{
+        body {
             background-image: url("/Img/gatos.jpg");
         }
     </style>
@@ -22,22 +23,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">Cell 1</td>
-                        <td class="text-center">Cell 2</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">Cell 3</td>
-                        <td class="text-center" style="margin: 10px;border-radius: 10px;">Cell 4</td>
-                    </tr>
+                    @foreach (var dep in Model.departamentos)
+                    {
+                        <tr>
+                            <td class="text-center">@dep.DEP_ID</td>
+                            <td class="text-center">@dep.DEP_Nombre</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
         <div style="text-align: right;padding-right: 10px;border-radius: 20px;">
-            <button class="btn btn-primary"
+            <button id="botonAgregarBoton" class="btn btn-primary"
                     type="button" style="text-align: center;background: var(--bs-indigo);border-radius: 20px;"
                     onClick="mostrarFormularioDepartamento()">
-                Actualizar departamentos
+                Agregar departamentos
             </button>
         </div>
     </div>
@@ -54,34 +54,21 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th colspan="2">Municipios</th>
+                                <th colspan="2">Paises</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               id="formCheck-1"><label class="form-check-label" for="formCheck-1">
-                                            Municipio
-                                            1
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               id="formCheck-2"><label class="form-check-label" for="formCheck-2">
-                                            Municipio
-                                            2
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cell 3</td>
-                                <td>Cell 4</td>
-                            </tr>
+                            @foreach (var mun in Model.paises)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="paisSeleccionado" id="@mun.PAIS_Nombre" value="@mun.PAIS_ID">
+                                            <label class="form-check-label" for="@mun.PAIS_Nombre">@mun.PAIS_Nombre</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -96,3 +83,17 @@
         </div>
     </div>
 </form>
+<script>
+    document.getElementById("botonAgregarBoton")
+    function mostrarFormularioDepartamento() {
+        document.querySelector('#formularioDepartamento').classList.remove("d-none");
+    }
+
+    document.getElementById("botonCancelarDepartamento")
+    function ocultarFormularioDepartamento() {
+        document.querySelector('#formularioDepartamento').classList.add("d-none")
+    }
+    $('input[name="paisSeleccionado"]').on('change', function () {
+        $('input[name="paisSeleccionado"]').not(this).prop('checked', false);
+    });
+</script>
