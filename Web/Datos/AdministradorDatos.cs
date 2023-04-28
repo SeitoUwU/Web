@@ -60,5 +60,23 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public List<DepartamentoModel> listarDepartamentos()
+        {
+            _connection.Open();
+            string sql = "select DEP_ID, DEP_Nombre from departamento";
+            MySqlCommand command = new MySqlCommand( sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<DepartamentoModel> departamentos = new List<DepartamentoModel>();
+            while (reader.Read())
+            {
+                DepartamentoModel dep = new DepartamentoModel();
+                dep.DEP_ID = reader.GetInt32(0);
+                dep.DEP_Nombre = reader.GetString(1);
+                departamentos.Add(dep);
+            }
+            _connection.Close();
+            return departamentos;
+        }
     }
 }

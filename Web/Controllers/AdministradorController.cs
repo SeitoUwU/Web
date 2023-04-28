@@ -69,6 +69,12 @@ namespace Web.Controllers
             admin.EliminarPais(pais);
             return RedirectToAction("AdminEliminaPais");
         }
+
+        public ActionResult AdminAgregaDepartamento()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View();
+        }
         
     }
 }
