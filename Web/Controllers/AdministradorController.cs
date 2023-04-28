@@ -73,7 +73,10 @@ namespace Web.Controllers
         public ActionResult AdminAgregaDepartamento()
         {
             AdministradorDatos admin = new AdministradorDatos(connection);
-            return View();
+            var modelo = new DepMunModel();
+            modelo.departamentos = admin.listarDepartamentos();
+            modelo.paises = admin.listaPaises();
+            return View(modelo);
         }
         
     }
