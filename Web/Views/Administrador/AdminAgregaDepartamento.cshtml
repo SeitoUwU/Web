@@ -1,5 +1,4 @@
-﻿@model List<DepartamentoModel>
-@{
+﻿@{
     Layout = "_LayoutAdministracion";
 }
 @section stiloAdminHome{
@@ -23,13 +22,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var dep in Model)
-                    {
-                        <tr>
-                            <td class="text-center">@dep.DEP_ID</td>
-                            <td class="text-center">@dep.DEP_Nombre</td>
-                        </tr>
-                    }
+                    <tr>
+                        <td class="text-center">Cell 1</td>
+                        <td class="text-center">Cell 2</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Cell 3</td>
+                        <td class="text-center" style="margin: 10px;border-radius: 10px;">Cell 4</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
