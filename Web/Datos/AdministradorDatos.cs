@@ -156,5 +156,16 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public Boolean ActualizarMunicipio (MunicipioModel municipio)
+        {
+            _connection.Open();
+            string sql = "update municipio set MUN_Nombre = '" + municipio.MUN_Nombre +
+                "', FKDEP_ID = '" + municipio.FKDEP_ID + "' where MUN_ID = '" + municipio.MUN_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
