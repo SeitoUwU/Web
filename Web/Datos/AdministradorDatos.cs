@@ -94,6 +94,18 @@ namespace Web.Datos
             return true;
         }
 
+        public Boolean ActualizarDepartamento(DepartamentoModel departamento)
+        {
+            _connection.Open();
+            string sql = "update departamento set DEP_Nombre = '" + departamento.DEP_Nombre + "', " 
+                + " FKPAIS_ID = '" + departamento.FKPAIS_ID + "' " +
+                "where DEP_ID = '" + departamento.DEP_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
         public List<MunicipioModel> listarmunicipios()
         {
             _connection.Open();

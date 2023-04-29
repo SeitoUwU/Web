@@ -90,6 +90,32 @@ namespace Web.Controllers
             return RedirectToAction("AdminAgregaDepartamento");
 
         }
+
+        public ActionResult AdminActualizaDepartamento()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            var modelo = new DepMunModel();
+            modelo.departamentos = admin.listarDepartamentos();
+            modelo.paises = admin.listaPaises();
+            return View(modelo);
+        }
+
+        public ActionResult updateDepartamento(int paisSeleccionado, int idDepartamento, string nombreDepartamento)
+        {
+            DepartamentoModel dep = new DepartamentoModel();
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            dep.DEP_ID = idDepartamento;
+            dep.DEP_Nombre = nombreDepartamento;
+            dep.FKPAIS_ID = paisSeleccionado;
+            admin.ActualizarDepartamento(dep);
+            return RedirectToAction("AdminActualizaDepartamento");
+        }
+
+        public ActionResult AdminEliminaDepartamento()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarDepartamentos());
+        }
         
     }
 }
