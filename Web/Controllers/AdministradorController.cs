@@ -149,10 +149,16 @@ namespace Web.Controllers
         public ActionResult AdminEliminaMunicipio()
         {
             AdministradorDatos admin = new AdministradorDatos(connection);
-            var modelo = new ContenidoModel();
-            modelo.municipios = admin.listarmunicipios();
-            modelo.departamentos = admin.listarDepartamentos();
-            return View(modelo);
+            return View(admin.listarmunicipios());
+        }
+
+        public ActionResult deleteMunicipio(int idMunicipio)
+        {
+            MunicipioModel municipio = new MunicipioModel();
+            municipio.MUN_ID = idMunicipio;
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            admin.EliminarMunicipio(municipio);
+            return RedirectToAction("AdminEliminaMunicipio");
         }
         
     }

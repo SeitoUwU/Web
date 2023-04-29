@@ -146,5 +146,15 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public Boolean EliminarMunicipio(MunicipioModel municipio)
+        {
+            _connection.Open();
+            string sql = "delete from municipio where MUN_ID = '" + municipio.MUN_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
