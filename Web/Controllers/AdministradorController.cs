@@ -116,6 +116,15 @@ namespace Web.Controllers
             AdministradorDatos admin = new AdministradorDatos(connection);
             return View(admin.listarDepartamentos());
         }
+
+        public ActionResult deleteDepartamento(int idDepartamento)
+        { 
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            DepartamentoModel departamento = new DepartamentoModel();
+            departamento.DEP_ID = idDepartamento;
+            admin.EliminarDepartamento(departamento);
+            return RedirectToAction("AdminEliminaDepartamento");
+        }
         
     }
 }

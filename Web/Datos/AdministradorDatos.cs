@@ -44,8 +44,8 @@ namespace Web.Datos
         public Boolean ActualizarPais(PaisModel pais)
         {
             _connection.Open();
-            string sql =  "update pais set PAIS_Nombre = '" + pais.PAIS_Nombre + "' " +
-                "where PAIS_ID = '" + pais.PAIS_ID +"'";
+            string sql = "update pais set PAIS_Nombre = '" + pais.PAIS_Nombre + "' " +
+                "where PAIS_ID = '" + pais.PAIS_ID + "'";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -66,7 +66,7 @@ namespace Web.Datos
         {
             _connection.Open();
             string sql = "select DEP_ID, DEP_Nombre from departamento";
-            MySqlCommand command = new MySqlCommand( sql, _connection);
+            MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<DepartamentoModel> departamentos = new List<DepartamentoModel>();
             while (reader.Read())
@@ -97,9 +97,19 @@ namespace Web.Datos
         public Boolean ActualizarDepartamento(DepartamentoModel departamento)
         {
             _connection.Open();
-            string sql = "update departamento set DEP_Nombre = '" + departamento.DEP_Nombre + "', " 
+            string sql = "update departamento set DEP_Nombre = '" + departamento.DEP_Nombre + "', "
                 + " FKPAIS_ID = '" + departamento.FKPAIS_ID + "' " +
                 "where DEP_ID = '" + departamento.DEP_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        } 
+
+        public Boolean EliminarDepartamento(DepartamentoModel departamento)
+        {
+            _connection.Open();
+            string sql = "delete from departamento where DEP_ID = '" + departamento.DEP_ID + "'";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
