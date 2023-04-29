@@ -73,7 +73,7 @@ namespace Web.Controllers
         public ActionResult AdminAgregaDepartamento()
         {
             AdministradorDatos admin = new AdministradorDatos(connection);
-            var modelo = new DepMunModel();
+            var modelo = new ContenidoModel();
             modelo.departamentos = admin.listarDepartamentos();
             modelo.paises = admin.listaPaises();
             return View(modelo);
@@ -94,7 +94,7 @@ namespace Web.Controllers
         public ActionResult AdminActualizaDepartamento()
         {
             AdministradorDatos admin = new AdministradorDatos(connection);
-            var modelo = new DepMunModel();
+            var modelo = new ContenidoModel();
             modelo.departamentos = admin.listarDepartamentos();
             modelo.paises = admin.listaPaises();
             return View(modelo);
@@ -124,6 +124,35 @@ namespace Web.Controllers
             departamento.DEP_ID = idDepartamento;
             admin.EliminarDepartamento(departamento);
             return RedirectToAction("AdminEliminaDepartamento");
+        }
+
+        public ActionResult AdminAgregaMunicipio()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            var modelo = new ContenidoModel();
+            modelo.municipios = admin.listarmunicipios();
+            modelo.departamentos = admin.listarDepartamentos();
+            return View(modelo);
+        }
+
+        public ActionResult createMunicipio(int idMunicipio, string nombreMunicipio, int idDepartamento)
+        {
+            MunicipioModel municipio = new MunicipioModel();
+            municipio.MUN_ID = idMunicipio;
+            municipio.MUN_Nombre = nombreMunicipio;
+            municipio.FKDEP_ID = idDepartamento;
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            admin.InsertarMunicipio(municipio);
+            return RedirectToAction("AdminAgregaMunicipio");
+        }
+
+        public ActionResult AdminEliminaMunicipio()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            var modelo = new ContenidoModel();
+            modelo.municipios = admin.listarmunicipios();
+            modelo.departamentos = admin.listarDepartamentos();
+            return View(modelo);
         }
         
     }

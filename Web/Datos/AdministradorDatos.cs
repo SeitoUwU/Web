@@ -133,5 +133,18 @@ namespace Web.Datos
             _connection.Close();
             return municipios;
         }
+
+        public Boolean InsertarMunicipio(MunicipioModel municipio)
+        {
+            _connection.Open();
+            string sql = "insert into municipio (MUN_ID, MUN_Nombre, FKDEP_ID) values ('" +
+                municipio.MUN_ID + "', '" +
+                municipio.MUN_Nombre + "', '" +
+                municipio.FKDEP_ID + "')";
+            MySqlCommand command = new MySqlCommand( sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
