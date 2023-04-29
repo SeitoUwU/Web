@@ -78,6 +78,18 @@ namespace Web.Controllers
             modelo.paises = admin.listaPaises();
             return View(modelo);
         }
+
+        public ActionResult InsertarDepartamento(int idDepartamento, string nombreDepartamento, int paisSeleccionado)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            DepartamentoModel departamento = new DepartamentoModel();
+            departamento.DEP_ID = idDepartamento;
+            departamento.DEP_Nombre = nombreDepartamento;
+            departamento.FKPAIS_ID = paisSeleccionado;
+            admin.insertarDepartamentos(departamento);
+            return RedirectToAction("AdminAgregaDepartamento");
+
+        }
         
     }
 }

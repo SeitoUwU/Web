@@ -69,9 +69,9 @@ namespace Web.Datos
             MySqlCommand command = new MySqlCommand( sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<DepartamentoModel> departamentos = new List<DepartamentoModel>();
-            DepartamentoModel dep = new DepartamentoModel();
             while (reader.Read())
             {
+                DepartamentoModel dep = new DepartamentoModel();
                 dep.DEP_ID = reader.GetInt32(0);
                 dep.DEP_Nombre = reader.GetString(1);
                 departamentos.Add(dep);
@@ -80,17 +80,18 @@ namespace Web.Datos
             return departamentos;
         }
 
-        public ActionResult insertarDepartamentos(int idDepartamento, string nombreDepartamento, int fkpais)
+        public Boolean insertarDepartamentos(DepartamentoModel departamento)
         {
             _connection.Open();
-            DepartamentoModel departamento = new DepartamentoModel();
-            departamento.DEP_ID = idDepartamento;
-            departamento.DEP_Nombre = nombreDepartamento;
-            departamento.FKPAIS_ID = fkpais;
             string sql = "insert into departamento(DEP_ID, DEP_Nombre, FKPAIS_ID)" +
                 " values ('" +
-                departamento.DEP_ID + "', ";
-            return null;
+                departamento.DEP_ID + "', '" +
+                departamento.DEP_Nombre + "', '" +
+                departamento.FKPAIS_ID + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
         }
 
         public List<MunicipioModel> listarmunicipios()
