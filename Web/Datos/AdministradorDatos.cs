@@ -584,6 +584,57 @@ namespace Web.Datos
             return true;
         }
 
+        public List<TipoGrupoModel> listarTipoGrupo()
+        {
+            _connection.Open();
+            string sql = "select TIPGRUP_ID, TIPGRUP_Nombre from tipogrupo";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoGrupoModel> tipos = new List<TipoGrupoModel>();
+            while (reader.Read())
+            {
+                TipoGrupoModel tipo = new TipoGrupoModel();
+                tipo.TIPGRUP_ID = reader.GetInt32(0);
+                tipo.TIPGRUP_Nombre = reader.GetString(1);
+                tipos.Add(tipo);
+            }
+            _connection.Close();
+            return tipos;
+        }
+
+        public Boolean insertarTipoGrupo(TipoGrupoModel model)
+        {
+            _connection.Open();
+            string sql = "insert into tipogrupo(TIPGRUP_ID, TIPGRUP_Nombre) " +
+                "values('" + model.TIPGRUP_ID + "', '" +
+                model.TIPGRUP_Nombre + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarTipoGrupo(TipoGrupoModel model)
+        {
+            _connection.Open();
+            string sql = "delete from tipogrupo where TIPGRUP_ID = '" + model.TIPGRUP_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarTipoGrupo(TipoGrupoModel tipo)
+        {
+            _connection.Open();
+            string sql = "update tipogrupo set TIPGRUP_Nombre = '" + tipo.TIPGRUP_Nombre + "' " +
+                " where TIPGRUP_ID = '" + tipo.TIPGRUP_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
         public List<TipoMascotaModel> listarTipoMascota()
         {
             _connection.Open();
