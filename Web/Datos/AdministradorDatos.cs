@@ -635,6 +635,57 @@ namespace Web.Datos
             return true;
         }
 
+        public List<TipoDocumentoModel> listarTipoDocumento ()
+        {
+            _connection.Open();
+            string sql = "select TIPDOC_ID, TIPDOC_Nombre from tipodocumento";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoDocumentoModel> tipos = new List<TipoDocumentoModel>();
+            while (reader.Read())
+            {
+                TipoDocumentoModel tipo = new TipoDocumentoModel();
+                tipo.TIPDOC_ID = reader.GetInt32(0);
+                tipo.TIPDOC_Nombre = reader.GetString(1);
+                tipos.Add(tipo);
+            }
+            _connection.Close();
+            return tipos;
+        }
+
+        public Boolean insertarTipoDocumento(TipoDocumentoModel model)
+        {
+            _connection.Open();
+            string sql = "insert into tipodocumento(TIPDOC_ID, TIPDOC_Nombre) " +
+                "values('" + model.TIPDOC_ID + "', '" +
+                model.TIPDOC_Nombre + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarTipoDocumento(TipoDocumentoModel model)
+        {
+            _connection.Open();
+            string sql = "delete from tipodocumento where TIPDOC_ID = '" + model.TIPDOC_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarTipoDocumento(TipoDocumentoModel tipo)
+        {
+            _connection.Open();
+            string sql = "update tipodocumento set TIPDOC_Nombre = '" + tipo.TIPDOC_Nombre + "' " +
+                " where TIPDOC_ID = '" + tipo.TIPDOC_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
         public List<TipoMascotaModel> listarTipoMascota()
         {
             _connection.Open();
