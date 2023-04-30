@@ -270,5 +270,56 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public List<MotivoReporteModel> listarMotivoReporte()
+        {
+            _connection.Open();
+            string sql = "select MOT_ID, MOT_MotivoReporte from motivoreporte";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<MotivoReporteModel> motivos = new List<MotivoReporteModel>();
+            while (reader.Read())
+            {
+                MotivoReporteModel motivo = new MotivoReporteModel();
+                motivo.MOT_ID = reader.GetInt32(0);
+                motivo.MOT_MotivoReporte = reader.GetString(1);
+                motivos.Add(motivo);
+            }
+            _connection.Close();
+            return motivos;
+        }
+
+        public Boolean insertarMotivo(MotivoReporteModel model)
+        {
+            _connection.Open();
+            string sql = "insert into motivoreporte(MOT_ID, MOT_MotivoReporte) " +
+                "values('" + model.MOT_ID + "', '" +
+                model.MOT_MotivoReporte + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarMotivo(MotivoReporteModel model)
+        {
+            _connection.Open();
+            string sql = "delete from motivoreporte where MOT_ID = '" + model.MOT_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarMotivo(MotivoReporteModel motivo)
+        {
+            _connection.Open();
+            string sql = "update motivoreporte set MOT_MotivoReporte = '" + motivo.MOT_MotivoReporte +"' " +
+                "where MOT_ID = '" + motivo.MOT_ID + "'";
+            MySqlCommand command = new MySqlCommand( sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
