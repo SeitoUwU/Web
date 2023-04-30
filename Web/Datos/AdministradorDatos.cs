@@ -474,5 +474,75 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public List<TipoRazaModel> listarTipoRaza()
+        {
+            _connection.Open();
+            string sql = "select TIPRAZA_ID, TIPRAZA_Nombre from tiporaza";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoRazaModel> tipos = new List<TipoRazaModel>();
+            while (reader.Read())
+            {
+                TipoRazaModel tipo = new TipoRazaModel();
+                tipo.TIPRAZA_ID = reader.GetInt32(0);
+                tipo.TIPRAZA_Nombre = reader.GetString(1);
+                tipos.Add(tipo);
+            }
+            _connection.Close();
+            return tipos;
+        }
+
+        public Boolean insertarTipoRaza(TipoRazaModel model)
+        {
+            _connection.Open();
+            string sql = "insert into tiporaza(TIPRAZA_ID, TIPRAZA_Nombre, FKTIPMASC_ID) " +
+                "values('" + model.TIPRAZA_ID + "', '" +
+                model.TIPRAZA_Nombre + "', '" +
+                model.FKTIPMASC_ID + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarTipoRaza(TipoRazaModel model)
+        {
+            _connection.Open();
+            string sql = "delete from tiporaza where TIPRAZA_ID = '" + model.TIPRAZA_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarTipoRaza(TipoRazaModel tipo)
+        {
+            _connection.Open();
+            string sql = "update tiporaza set TIPRAZA_Nombre = '" + tipo.TIPRAZA_Nombre + "', " +
+                " FKTIPMASC_ID = '" + tipo.FKTIPMASC_ID + "' where TIPRAZA_ID = '" + tipo.TIPRAZA_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public List<TipoMascotaModel> listarTipoMascota()
+        {
+            _connection.Open();
+            string sql = "select TIPMASC_ID, TIPMAC_Nombre from tipomascota";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoMascotaModel> tipos = new List<TipoMascotaModel>();
+            while (reader.Read())
+            {
+                TipoMascotaModel tipo = new TipoMascotaModel();
+                tipo.TIPMASC_ID = reader.GetInt32(0);
+                tipo.TIPMASC_Nombre = reader.GetString(1);
+                tipos.Add(tipo);
+            }
+            _connection.Close();
+            return tipos;
+        }
     }
 }
