@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     Layout = "_LayoutAdministracion";
 }
 @section stiloAdminHome{
@@ -139,19 +136,19 @@
                                 <div class="card-body" style="border-style: solid;border-radius: 20px;">
                                     <h4 class="card-title text-center">Roles</h4>
                                     <div style="margin-bottom: 5px;">
-                                        <button class="btn btn-success" type="button"
+                                        <button asp-action="AdminAgregaRol" class="btn btn-success" type="submit"
                                                 style="border-radius: 20px;">
                                             Agregar
                                         </button>
                                     </div>
                                     <div style="margin-bottom: 5px;">
-                                        <button class="btn btn-danger" type="button"
+                                        <button asp-action="AdminEliminaRol" class="btn btn-danger" type="submit"
                                                 style="border-radius: 20px;">
                                             Eliminar
                                         </button>
                                     </div>
                                     <div>
-                                        <button class="btn btn-warning" type="button"
+                                        <button asp-action="AdminActualizaRol" class="btn btn-warning" type="submit"
                                                 style="border-radius: 20px;">
                                             <strong>Actualizar</strong>
                                         </button>

@@ -219,5 +219,56 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public List<RolModel> listarRoles()
+        {
+            _connection.Open();
+            string sql = "select ROL_ID, ROL_Nombre from rol";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<RolModel> roles = new List<RolModel>();
+            while (reader.Read())
+            {
+                RolModel rol = new RolModel();
+                rol.ROL_ID = reader.GetInt32(0);
+                rol.ROL_Nombre = reader.GetString(1);
+                roles.Add(rol);
+            }
+            _connection.Close();
+            return roles;
+        }
+
+        public Boolean insertarRol(RolModel rol)
+        {
+            _connection.Open();
+            string sql = "insert into rol(ROL_ID, ROL_Nombre) " +
+                "values(' " + rol.ROL_ID + "', '" +
+                rol.ROL_Nombre + "')";
+            MySqlCommand command = new MySqlCommand( sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarRol(RolModel rol)
+        {
+            _connection.Open();
+            string sql = "delete from rol where ROL_ID = '" + rol.ROL_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarRol(RolModel rol)
+        {
+            _connection.Open();
+            string sql = "update rol set ROL_Nombre = '" + rol.ROL_Nombre +"' " +
+                "where ROL_ID = '" + rol.ROL_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
