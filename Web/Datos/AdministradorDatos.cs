@@ -527,6 +527,63 @@ namespace Web.Datos
             return true;
         }
 
+        public List<CaracteristicasModel> listarCaracteristicas()
+        {
+            _connection.Open();
+            string sql = "select CARAC_ID, CARAC_Peso, CARAC_Comportamiento, CARAC_Alimentacion from caracteristicas";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<CaracteristicasModel> caracteristicas = new List<CaracteristicasModel>();
+            while (reader.Read())
+            {
+                CaracteristicasModel caracteristica = new CaracteristicasModel();
+                caracteristica.CARAC_ID = reader.GetInt32(0);
+                caracteristica.CARAC_Peso = reader.GetString(1);
+                caracteristica.CARAC_Comportamiento = reader.GetString(2);
+                caracteristica.CARAC_Alimentacion = reader.GetString(3);
+                caracteristicas.Add(caracteristica);
+            }
+            _connection.Close();
+            return caracteristicas;
+        }
+
+        public Boolean insertarCaracteristica(CaracteristicasModel model)
+        {
+            _connection.Open();
+            string sql = "insert into caracteristicas(CARAC_ID, CARAC_Peso, CARAC_Comportamiento, CARAC_Alimentacion) " +
+                "values('" + model.CARAC_ID + "', '" +
+                model.CARAC_Peso + "', '" +
+                model.CARAC_Comportamiento + "', '" +
+                model.CARAC_Alimentacion + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarCaracteristica(CaracteristicasModel model)
+        {
+            _connection.Open();
+            string sql = "delete from caracteristicas where CARAC_ID = '" + model.CARAC_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarCaracteristica(CaracteristicasModel caracteristica)
+        {
+            _connection.Open();
+            string sql = "update caracteristicas set CARAC_Peso = '" + caracteristica.CARAC_Peso + "', " +
+                " CARAC_Comportamiento = '" + caracteristica.CARAC_Comportamiento + "', " +
+                " CARAC_Alimentacion = '" + caracteristica.CARAC_Alimentacion + "' " +
+                " where CARAC_ID = '" + caracteristica.CARAC_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
         public List<TipoMascotaModel> listarTipoMascota()
         {
             _connection.Open();
