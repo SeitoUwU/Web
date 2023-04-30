@@ -167,5 +167,57 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public List<BarrioModel> listarBarrios()
+        {
+            _connection.Open();
+            string sql = "select BAR_ID, BAR_Nombre from barrio";
+            MySqlCommand command = new MySqlCommand( sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<BarrioModel> barrios = new List<BarrioModel>();
+            while (reader.Read())
+            {
+                BarrioModel barrio = new BarrioModel();
+                barrio.BAR_ID = reader.GetInt32(0);
+                barrio.BAR_Nombre = reader.GetString(1);
+                barrios.Add(barrio);
+            }
+            _connection.Close();
+            return barrios;
+        }
+
+        public Boolean insertarBarrio(BarrioModel barrio)
+        {
+            _connection.Open();
+            string sql = "insert into barrio (BAR_ID, BAR_Nombre, FKMUN_ID) values ('"+
+                barrio.BAR_ID + "', '" +
+                barrio.BAR_Nombre + "','" +
+                barrio.FKMUN_ID + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarBarrio(BarrioModel barrio)
+        {
+            _connection.Open();
+            string sql = "delete from barrio where BAR_ID = '" + barrio.BAR_ID + "'";
+            MySqlCommand command = new MySqlCommand( sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean ActualizarBarrio(BarrioModel barrio)
+        {
+            _connection.Open();
+            string sql = "update barrio set BAR_Nombre = '" + barrio.BAR_Nombre + "', " +
+                "FKMUN_ID = '" + barrio.FKMUN_ID + "' where BAR_ID = '" + barrio.BAR_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
