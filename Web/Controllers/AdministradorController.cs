@@ -330,5 +330,52 @@ namespace Web.Controllers
             admin.actualizarMotivo(motivo);
             return RedirectToAction("AdminActualizaMotivo");
         }
+
+        public ActionResult AdminAgregaTipoPublibacion()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoPublicacion());
+        }
+
+        public ActionResult createTipoPublicacion(int idTipoPublicacion, string nombreTipoPublicacion)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoPublicacionModel tipoPublicacionModel = new TipoPublicacionModel();
+            tipoPublicacionModel.TIPUBLI_ID = idTipoPublicacion;
+            tipoPublicacionModel.TIPUBLI_Tipo = nombreTipoPublicacion;
+            admin.insertarTipoPublicacion(tipoPublicacionModel);
+            return RedirectToAction("AdminAgregaTipoPublibacion");
+        }
+
+        public ActionResult AdminEliminaTipoPublicacion()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoPublicacion());
+        }
+
+        public ActionResult deleteTipoPublicacion(int idTipoPublicacion)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoPublicacionModel tipoPublicacionModel = new TipoPublicacionModel();
+            tipoPublicacionModel.TIPUBLI_ID = idTipoPublicacion;
+            admin.eliminarTipoPublicacion(tipoPublicacionModel);
+            return RedirectToAction("AdminEliminaTipoPublicacion");
+        }
+
+        public ActionResult AdminActualizaTipoPublicacion()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoPublicacion());
+        }
+
+        public ActionResult updateTipoPublicacion(int idTipoPublicacion, string nombrePublicacion)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoPublicacionModel tipoPublicacionModel = new TipoPublicacionModel();
+            tipoPublicacionModel.TIPUBLI_ID = idTipoPublicacion;
+            tipoPublicacionModel.TIPUBLI_Tipo = nombrePublicacion;
+            admin.actualizarTipoPublicacion(tipoPublicacionModel);
+            return RedirectToAction("AdminActualizaTipoPublicacion");
+        }
     }
 }

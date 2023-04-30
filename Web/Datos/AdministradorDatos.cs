@@ -321,5 +321,56 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public List<TipoPublicacionModel> listarTipoPublicacion()
+        {
+            _connection.Open();
+            string sql = "select TIPUBLI_ID, TIPUBLI_Tipo from tipopublicacion";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoPublicacionModel> tipos = new List<TipoPublicacionModel>();
+            while (reader.Read())
+            {
+                TipoPublicacionModel tipo = new TipoPublicacionModel();
+                tipo.TIPUBLI_ID = reader.GetInt32(0);
+                tipo.TIPUBLI_Tipo = reader.GetString(1);
+                tipos.Add(tipo);
+            }
+            _connection.Close();
+            return tipos;
+        }
+
+        public Boolean insertarTipoPublicacion(TipoPublicacionModel model)
+        {
+            _connection.Open();
+            string sql = "insert into tipopublicacion(TIPUBLI_ID, TIPUBLI_Tipo) " +
+                "values('" + model.TIPUBLI_ID + "', '" +
+                model.TIPUBLI_Tipo + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarTipoPublicacion(TipoPublicacionModel model)
+        {
+            _connection.Open();
+            string sql = "delete from tipopublicacion where TIPUBLI_ID = '" + model.TIPUBLI_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarTipoPublicacion(TipoPublicacionModel tipo)
+        {
+            _connection.Open();
+            string sql = "update tipopublicacion set TIPUBLI_Tipo = '" + tipo.TIPUBLI_Tipo + "' " +
+                "where TIPUBLI_ID = '" + tipo.TIPUBLI_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
