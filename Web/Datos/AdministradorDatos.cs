@@ -372,5 +372,107 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public List<TipoElementoModel> listarTipoElemento()
+        {
+            _connection.Open();
+            string sql = "select TIPELEM_ID, TIPELEM_Nombre from tipoelemento";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoElementoModel> tipos = new List<TipoElementoModel>();
+            while (reader.Read())
+            {
+                TipoElementoModel tipo = new TipoElementoModel();
+                tipo.TIPELEM_ID = reader.GetInt32(0);
+                tipo.TIPELEM_Nombre = reader.GetString(1);
+                tipos.Add(tipo);
+            }
+            _connection.Close();
+            return tipos;
+        }
+
+        public Boolean insertarTipoElemento(TipoElementoModel model)
+        {
+            _connection.Open();
+            string sql = "insert into tipoelemento(TIPELEM_ID, TIPELEM_Nombre) " +
+                "values('" + model.TIPELEM_ID + "', '" +
+                model.TIPELEM_Nombre + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarTipoElemento(TipoElementoModel model)
+        {
+            _connection.Open();
+            string sql = "delete from tipoelemento where TIPELEM_ID = '" + model.TIPELEM_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarTipoElemento(TipoElementoModel tipo)
+        {
+            _connection.Open();
+            string sql = "update tipoelemento set TIPELEM_Nombre = '" + tipo.TIPELEM_Nombre + "' " +
+                "where TIPELEM_ID = '" + tipo.TIPELEM_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public List<TipoCirugiaModel> listarTipoCirugia()
+        {
+            _connection.Open();
+            string sql = "select TIPCIRU_ID, TIPCIRU_Nombre from tipocirugia";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoCirugiaModel> tipos = new List<TipoCirugiaModel>();
+            while (reader.Read())
+            {
+                TipoCirugiaModel tipo = new TipoCirugiaModel();
+                tipo.TIPCIRU_ID = reader.GetInt32(0);
+                tipo.TIPCIRU_Nombre = reader.GetString(1);
+                tipos.Add(tipo);
+            }
+            _connection.Close();
+            return tipos;
+        }
+
+        public Boolean insertarTipoCirugia(TipoCirugiaModel model)
+        {
+            _connection.Open();
+            string sql = "insert into tipocirugia(TIPCIRU_ID, TIPCIRU_Nombre) " +
+                "values('" + model.TIPCIRU_ID + "', '" +
+                model.TIPCIRU_Nombre + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarTipoCirugia(TipoCirugiaModel model)
+        {
+            _connection.Open();
+            string sql = "delete from tipocirugia where TIPCIRU_ID = '" + model.TIPCIRU_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarTipoCirugia(TipoCirugiaModel tipo)
+        {
+            _connection.Open();
+            string sql = "update tipocirugia set TIPCIRU_Nombre = '" + tipo.TIPCIRU_Nombre + "' " +
+                "where TIPCIRU_ID = '" + tipo.TIPCIRU_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
     }
 }
