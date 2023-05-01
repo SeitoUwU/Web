@@ -686,6 +686,57 @@ namespace Web.Datos
             return true;
         }
 
+        public List<TipoViviendaModel> listarTipoVivienda()
+        {
+            _connection.Open();
+            string sql = "select TIPVIVI_ID, TIPVIVI_Vivienda from tipovivienda";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoViviendaModel> tipos = new List<TipoViviendaModel>();
+            while (reader.Read())
+            {
+                TipoViviendaModel tipo = new TipoViviendaModel();
+                tipo.TIPVIVI_ID = reader.GetInt32(0);
+                tipo.TIPVIVI_Vivienda = reader.GetString(1);
+                tipos.Add(tipo);
+            }
+            _connection.Close();
+            return tipos;
+        }
+
+        public Boolean insertarTipoVivienda(TipoViviendaModel model)
+        {
+            _connection.Open();
+            string sql = "insert into tipovivienda(TIPVIVI_ID, TIPVIVI_Vivienda) " +
+                "values('" + model.TIPVIVI_ID + "', '" +
+                model.TIPVIVI_Vivienda + "')";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean eliminarTipoVivienda(TipoViviendaModel model)
+        {
+            _connection.Open();
+            string sql = "delete from tipovivienda where TIPVIVI_ID = '" + model.TIPVIVI_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
+        public Boolean actualizarTipoVivienda(TipoViviendaModel tipo)
+        {
+            _connection.Open();
+            string sql = "update tipovivienda set TIPVIVI_Vivienda = '" + tipo.TIPVIVI_Vivienda + "' " +
+                " where TIPVIVI_ID = '" + tipo.TIPVIVI_ID + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
         public List<TipoMascotaModel> listarTipoMascota()
         {
             _connection.Open();
