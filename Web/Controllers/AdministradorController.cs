@@ -719,5 +719,193 @@ namespace Web.Controllers
             admin.actualizarTipoVivienda(tipoViviendaModel);
             return RedirectToAction("AdminActualizaTipoVivienda");
         }
+
+        public ActionResult AdminAgregaTipoTratamiento()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoTratamiento());
+        }
+
+        public ActionResult createTipoTratamiento(int idTipoTratamiento, string nombreTipoTratamiento)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoTratamientoModel tipoTratamientoModel = new TipoTratamientoModel();
+            tipoTratamientoModel.TIPTRAT_ID = idTipoTratamiento;
+            tipoTratamientoModel.TIPTRAT_Nombre = nombreTipoTratamiento;
+            admin.insertarTipoTratamiento(tipoTratamientoModel);
+            return RedirectToAction("AdminAgregaTipoTratamiento");
+        }
+
+        public ActionResult AdminEliminaTipoTratamiento()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoTratamiento());
+        }
+
+        public ActionResult deleteTipoTratamiento(int idTipoTratamiento)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoTratamientoModel tipoTratamientoModel = new TipoTratamientoModel();
+            tipoTratamientoModel.TIPTRAT_ID = idTipoTratamiento;
+            admin.eliminarTipoTratamiento(tipoTratamientoModel);
+            return RedirectToAction("AdminEliminaTipoTratamiento");
+        }
+
+        public ActionResult AdminActualizaTipoTratamiento()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoTratamiento());
+        }
+
+        public ActionResult updateTipoTratamiento(int idTipoTratamiento, string nombreTipoTratamiento)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoTratamientoModel tipoTratamientoModel = new TipoTratamientoModel();
+            tipoTratamientoModel.TIPTRAT_ID = idTipoTratamiento;
+            tipoTratamientoModel.TIPTRAT_Nombre = nombreTipoTratamiento;
+            admin.actualizarTipoTratamiento(tipoTratamientoModel);
+            return RedirectToAction("AdminActualizaTipoTratamiento");
+        }
+
+        public ActionResult AdminAgregaTipoAlergia()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoAlergia());
+        }
+
+        public ActionResult createTipoAlergia(int idTipoAlergia, string nombreTipoAlergia)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoAlergiaModel tipoAlergiaModel = new TipoAlergiaModel();
+            tipoAlergiaModel.TIPALER_ID = idTipoAlergia;
+            tipoAlergiaModel.TIPALER_Nombre = nombreTipoAlergia;
+            admin.insertarTipoAlergia(tipoAlergiaModel);
+            return RedirectToAction("AdminAgregaTipoAlergia");
+        }
+
+        public ActionResult AdminEliminaTipoAlergia()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoAlergia());
+        }
+
+        public ActionResult deleteTipoAlergia(int idTipoAlergia)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoAlergiaModel tipoAlergiaModel = new TipoAlergiaModel();
+            tipoAlergiaModel.TIPALER_ID = idTipoAlergia;
+            admin.eliminarTipoAlergia(tipoAlergiaModel);
+            return RedirectToAction("AdminEliminaTipoAlergia");
+        }
+
+        public ActionResult AdminActualizaTipoAlergia()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoAlergia());
+        }
+
+        public ActionResult updateTipoAlergia(int idTipoAlergia, string nombreTipoAlergia)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoAlergiaModel tipoAlergiaModel = new TipoAlergiaModel();
+            tipoAlergiaModel.TIPALER_ID = idTipoAlergia;
+            tipoAlergiaModel.TIPALER_Nombre = nombreTipoAlergia;
+            admin.actualizarTipoAlergia(tipoAlergiaModel);
+            return RedirectToAction("AdminActualizaTipoAlergia");
+        }
+
+        public ActionResult AdminAgregaTipoMascota()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoMascota());
+        }
+
+        public ActionResult createTipoMascota(int idTipoMascota, string nombreTipoMascota)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoMascotaModel tipoMascotaModel = new TipoMascotaModel();
+            tipoMascotaModel.TIPMASC_ID = idTipoMascota;
+            tipoMascotaModel.TIPMASC_Nombre = nombreTipoMascota;
+            admin.insertarTipoMascota(tipoMascotaModel);
+            return RedirectToAction("AdminAgregaTipoMascota");
+        }
+
+        public ActionResult AdminEliminaTipoMascota()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoMascota());
+        }
+
+        public ActionResult deleteTipoMascota(int idTipoMascota)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoMascotaModel tipoMascotaModel = new TipoMascotaModel();
+            tipoMascotaModel.TIPMASC_ID = idTipoMascota;
+            admin.eliminarTipoMascota(tipoMascotaModel);
+            return RedirectToAction("AdminEliminaTipoMascota");
+        }
+
+        public ActionResult AdminActualizaTipoMascota()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoMascota());
+        }
+
+        public ActionResult updateTipoMascota(int idTipoMascota, string nombreTipoMascota)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoMascotaModel tipoMascotaModel = new TipoMascotaModel();
+            tipoMascotaModel.TIPMASC_ID = idTipoMascota;
+            tipoMascotaModel.TIPMASC_Nombre = nombreTipoMascota;
+            admin.actualizarTipoMascota(tipoMascotaModel);
+            return RedirectToAction("AdminActualizaTipoMascota");
+        }
+
+        public ActionResult AdminAgregaTipoVacuna()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoVacuna());
+        }
+
+        public ActionResult createTipoVacuna(int idTipoVacuna, string nombreTipoVacuna)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoVacunaModel tipoVacunaModel = new TipoVacunaModel();
+            tipoVacunaModel.TIPVAC_ID = idTipoVacuna;
+            tipoVacunaModel.TIPVAC_Nombre = nombreTipoVacuna;
+            admin.insertarTipoVacuna(tipoVacunaModel);
+            return RedirectToAction("AdminAgregaTipoVacuna");
+        }
+
+        public ActionResult AdminEliminaTipoVacuna()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoVacuna());
+        }
+
+        public ActionResult deleteTipoVacuna(int idTipoVacuna)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoVacunaModel tipoVacunaModel = new TipoVacunaModel();
+            tipoVacunaModel.TIPVAC_ID = idTipoVacuna;
+            admin.eliminarTipoVacuna(tipoVacunaModel);
+            return RedirectToAction("AdminEliminaTipoVacuna");
+        }
+
+        public ActionResult AdminActualizaTipoVacuna()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoVacuna());
+        }
+
+        public ActionResult updateTipoVacuna(int idTipoVacuna, string nombreTipoVacuna)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            TipoVacunaModel tipoVacunaModel = new TipoVacunaModel();
+            tipoVacunaModel.TIPVAC_ID = idTipoVacuna;
+            tipoVacunaModel.TIPVAC_Nombre = nombreTipoVacuna;
+            admin.actualizarTipoVacuna(tipoVacunaModel);
+            return RedirectToAction("AdminActualizaTipoVacuna");
+        }
     }
 }
