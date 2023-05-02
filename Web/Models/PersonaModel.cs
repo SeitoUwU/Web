@@ -17,5 +17,6 @@ namespace Web.Models
         public int FKROL_ID { get; set; } = 2;
         public int FKTIPODOC_ID { get; set; }
         public int FKBAR_ID { get; set; } = 1;
+        public int CantidadPublicacion { get; set; }
     }
 }
