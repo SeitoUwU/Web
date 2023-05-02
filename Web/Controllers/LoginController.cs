@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MySql.Data.MySqlClient;
+using NuGet.Protocol.Plugins;
 using Web.Datos;
 using Web.Models;
 
@@ -26,7 +27,13 @@ namespace Web.Controllers
         {
             return View();
         }
+        public ActionResult Restablecer(PersonaModel personaModel)
+        { 
+            LoginDatos loginDatos = new LoginDatos(connection);
+            loginDatos.ActualizarContrasenia(personaModel);
+            return RedirectToAction("RecuperacionContrasenia");
 
+        }
         [HttpGet]
         public IActionResult RegistroPersona()
         {

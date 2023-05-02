@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using NuGet.Protocol.Plugins;
 using Web.Models;
 
 namespace Web.Datos
@@ -28,6 +29,16 @@ namespace Web.Datos
             }
             connection.Close();
             return bandera;
+        }
+        public Boolean ActualizarContrasenia(PersonaModel personaModel) 
+        { 
+            connection.Open();
+             String sql = "update personas set PER_Contrasenia = ' " + personaModel.PER_Contrasenia +
+                " ' where PER_Correo = ' " + personaModel.PER_Correo + " ' ";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+            return true;
         }
 
         public string tomarRol (PersonaModel person)
