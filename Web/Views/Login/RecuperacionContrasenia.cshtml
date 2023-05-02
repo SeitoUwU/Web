@@ -21,22 +21,22 @@
                  style="border-radius: 50px;box-shadow: 0px 0px 20px;opacity: 1;filter: grayscale(0%) hue-rotate(0deg) invert(0%);backdrop-filter: opacity(1);-webkit-backdrop-filter: opacity(1);background: rgba(255,255,255,0.52);">
                 <div class="card-body d-flex flex-column align-items-center"
                      style="box-shadow: 0px 0px 0px 0px;backdrop-filter: opacity(0);-webkit-backdrop-filter: opacity(0);">
-                    <form class="text-center" method="post" asp-controller="Login" 
+                    <form class="text-center" method="post" asp-controller="Login" asp-action="RecuperacionContrasenia"
                           style="backdrop-filter: opacity(1);-webkit-backdrop-filter: opacity(1);">
                         <div class="mb-3">
-                            <input class="form-control" type="email" name="email" placeholder="Email" asp-for="PER_Correo">
+                            <input class="form-control" type="email" placeholder="Email" asp-for="PER_Correo"/>
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" type="password" name="password"
-                                   placeholder="Password" asp-for="PER_Contrasenia">
+                            <input class="form-control" type="password" asp-for="PER_Contrasenia"
+                                   placeholder="Password">
                         </div>
                         <div class="mb-3" style="margin-top: 20px;" >
-                            <button class="btn btn-primary d-block w-100" asp-action=""
+                            <button asp-action="RecuperacionContrasenia" class="btn btn-primary d-block w-100"
                                     type="submit">
                                 Restablecer  
                             </button>
                         </div>
-                        <p class="text-muted">Iniciar sesion</p>
+                        <p class="text-muted"><a asp-action="Login">Iniciar sesion</a></p>
                     </form>
                 </div>
             </div>

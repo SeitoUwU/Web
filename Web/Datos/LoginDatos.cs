@@ -33,8 +33,8 @@ namespace Web.Datos
         public Boolean ActualizarContrasenia(PersonaModel personaModel) 
         { 
             connection.Open();
-             String sql = "update personas set PER_Contrasenia = ' " + personaModel.PER_Contrasenia +
-                " ' where PER_Correo = ' " + personaModel.PER_Correo + " ' ";
+             String sql = "update persona set PER_Contrasenia = '" + personaModel.PER_Contrasenia +
+                "' where PER_Correo = '" + personaModel.PER_Correo + "'";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.ExecuteNonQuery();
             connection.Close();

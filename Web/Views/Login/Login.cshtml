@@ -33,7 +33,7 @@
                                 </path>
                             </svg>
                         </div>
-                        <form class="text-center" method="post" asp-controller="Login" asp-action="Log">
+                        <form class="text-center" method="post" asp-controller="Login">
                             <div class="mb-3">
                                 <input type="email" placeholder="Email" asp-for="PER_Correo">
                             </div>
@@ -43,7 +43,7 @@
                             <div class="mb-3">
                                 <button class="btn btn-primary d-block w-100" type="submit" asp-action="Login">Login</button>
                             </div>
-                            <p class="text-muted"><a href="/Login/RecuperacionContrasenia">Forgot your password?</a></p>
+                            <p class="text-muted"><a asp-action="RecuperacionContrasenia">Forgot your password?</a></p>
                             <p class="text-muted"><a href="/Login/RegistroPersona">Register</a></p>
                         </form>
                     </div>
