@@ -16,11 +16,14 @@ namespace Web.Controllers
         // GET: UsuarioController
         public ActionResult InicioUsuario()
         {
+            var modelo = new ContenidoModel();
+            modelo.persona = new PersonaModel();
+            modelo.persona.PER_Correo = Request.Cookies["CorreoPersona"];
+            AdministradorDatos admin = new AdministradorDatos(connection);
             UsuarioDatos usuario = new UsuarioDatos(connection);
-            PersonaModel persona = new PersonaModel();
-            persona.PER_Correo = Request.Cookies["CorreoPersona"];
-            usuario.listarDatosUsuario(persona);
-            return View(persona);
+            modelo.persona = usuario.listarDatosUsuario(modelo.persona);
+            modelo.publicaciones = admin.listarPublicaciones();
+            return View(modelo);
         }
     }
 }

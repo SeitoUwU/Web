@@ -30,7 +30,7 @@ namespace Web.Controllers
         { 
             LoginDatos loginDatos = new LoginDatos(connection);
             loginDatos.ActualizarContrasenia(personaModel);
-            return RedirectToAction("RecuperacionContrasenia");
+            return RedirectToAction("Login");
         }
         [HttpGet]
         public IActionResult RegistroPersona()

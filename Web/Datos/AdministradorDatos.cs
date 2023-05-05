@@ -941,5 +941,24 @@ namespace Web.Datos
             _connection.Close();
             return true;
         }
+
+        public List<PublicacionModel> listarPublicaciones()
+        {
+            _connection.Open();
+            String sql = "select PUBLI_Titulo,PUBLI_Descripcion from publicacion";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<PublicacionModel> listaPublicaciones = new List<PublicacionModel>();
+            while (reader.Read())
+            {
+                PublicacionModel publi = new PublicacionModel();
+                publi.PUBLI_Titulo = reader.GetString(0);
+                publi.PUBLI_Descripcion = reader.GetString(1);
+                listaPublicaciones.Add(publi);
+            }
+            _connection.Close();
+            return listaPublicaciones;
+
+        }
     }
 }
