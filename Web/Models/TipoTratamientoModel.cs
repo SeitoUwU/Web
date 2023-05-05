@@ -5,5 +5,6 @@ namespace Web.Models
     {
         public int TIPTRAT_ID { get; set; }
         public string TIPTRAT_Nombre { get; set; } = null!;
+        public Boolean TIPTRAT_Estado { get; set; }
     }
 }

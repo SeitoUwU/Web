@@ -14,9 +14,11 @@ namespace Web.Controllers
             this.connection = connection;
         }
         // GET: UsuarioController
-        public ActionResult InicioUsuario(PersonaModel persona)
+        public ActionResult InicioUsuario()
         {
             UsuarioDatos usuario = new UsuarioDatos(connection);
+            PersonaModel persona = new PersonaModel();
+            persona.PER_Correo = Request.Cookies["CorreoPersona"];
             usuario.listarDatosUsuario(persona);
             return View(persona);
         }

@@ -5,5 +5,6 @@ namespace Web.Models
     {
         public int TIPVAC_ID { get; set; }
         public string TIPVAC_Nombre { get; set; } = null!;
+        public Boolean TIPVAC_Estado { get; set; }
     }
 }

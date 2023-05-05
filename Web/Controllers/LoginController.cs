@@ -58,13 +58,12 @@ namespace Web.Controllers
             if (log.buscarUsuario(persona))
             {
                 string rol = log.tomarRol(persona);
+                Response.Cookies.Append("CorreoPersona", persona.PER_Correo);
                 if (rol == "Administrador")
                 {
                     return RedirectToAction("AdminHome", "Administrador");
                 } else if (rol == "Usuario")
                 {
-                    UsuarioController usuario = new UsuarioController(connection);
-                    usuario.InicioUsuario(persona);
                     return RedirectToAction("InicioUsuario", "Usuario");
                 }
             }

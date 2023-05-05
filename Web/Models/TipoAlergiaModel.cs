@@ -6,6 +6,7 @@ namespace Web.Models
     {
         public int TIPALER_ID { get; set; }
         public string? TIPALER_Nombre { get; set; }
+        public Boolean TIPALER_Estado { get; set; }
 
     }
 }
