@@ -5,6 +5,7 @@ namespace Web.Models
     {
         public int TIPRAZA_ID { get; set; }
         public string TIPRAZA_Nombre { get; set; } = null!;
+        public Boolean TIPRAZA_Estado { get; set; }
         public int FKTIPMASC_ID { get; set; }
 
     }

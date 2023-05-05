@@ -6,6 +6,7 @@ namespace Web.Models
     {
         public int ALER_ID { get; set; }
         public string ALER_NombreAlergia { get; set; } = null!;
+        public Boolean ALER_Estado { get; set; }
         public int FKTIPALER_ID { get; set; }
     }
 }

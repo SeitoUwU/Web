@@ -5,6 +5,7 @@ namespace Web.Models
     {
         public int DEP_ID { get; set; }
         public string DEP_Nombre { get; set; }
+        public Boolean DEP_Estado { get; set; }
         public int FKPAIS_ID { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Org.BouncyCastle.Asn1.Mozilla;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Web.Models
 {
@@ -8,6 +9,7 @@ namespace Web.Models
         public string? CARAC_Peso { get; set; }
         public string CARAC_Comportamiento { get; set; } = null!;
         public string CARAC_Alimentacion { get; set; } = null!;
+        public Boolean CARAC_Estado { get; set; }
         public string Carac_caracteristicas { get; set; } = null!;
     }
 }

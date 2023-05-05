@@ -63,8 +63,7 @@ namespace Web.Controllers
                     return RedirectToAction("AdminHome", "Administrador");
                 } else if (rol == "Usuario")
                 {
-                    UsuarioController usuario = new UsuarioController(connection);
-                    usuario.InicioUsuario(persona);
+                    
                     return RedirectToAction("InicioUsuario", "Usuario");
                 }
             }

@@ -5,6 +5,7 @@ namespace Web.Models
     public class RolModel
     {
         public int ROL_ID { get; set; }
-        public string ROL_Nombre { get; set; }
+        public string ROL_Nombre { get; set; } = null!;
+        public Boolean ROL_Estado { get; set; }
     }
 }
