@@ -5,6 +5,6 @@ namespace Web.Models
     {
         public int TIPGRUP_ID { get; set; }
         public string TIPGRUP_Nombre { get; set; } = null!;
-        public Boolean TIPGRUP_Estado { get; set; }
+        public int TIPGRUP_Estado { get; set; } = 1;
     }
 }

@@ -9,7 +9,7 @@ namespace Web.Models
         public string? CARAC_Peso { get; set; }
         public string CARAC_Comportamiento { get; set; } = null!;
         public string CARAC_Alimentacion { get; set; } = null!;
-        public Boolean CARAC_Estado { get; set; }
+        public int CARAC_Estado { get; set; } = 1;
         public string Carac_caracteristicas { get; set; } = null!;
     }
 }

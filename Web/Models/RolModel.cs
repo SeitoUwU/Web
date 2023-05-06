@@ -6,6 +6,6 @@ namespace Web.Models
     {
         public int ROL_ID { get; set; }
         public string ROL_Nombre { get; set; } = null!;
-        public Boolean ROL_Estado { get; set; }
+        public int ROL_Estado { get; set; } = 1;
     }
 }
