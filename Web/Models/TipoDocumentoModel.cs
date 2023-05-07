@@ -5,7 +5,7 @@ namespace Web.Models
     {
         public int TIPDOC_ID { get; set; }
         public string TIPDOC_Nombre { get; set; } = null!;
-        public Boolean TIPDOC_Estado { get; set; }
+        public int TIPDOC_Estado { get; set; } = 1;
     }
 
 }

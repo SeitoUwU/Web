@@ -659,7 +659,8 @@ namespace Web.Datos
         public List<TipoDocumentoModel> listarTipoDocumento ()
         {
             _connection.Open();
-            string sql = "select TIPDOC_ID, TIPDOC_Nombre from tipodocumento";
+            string sql = "select TIPDOC_ID, TIPDOC_Nombre from tipodocumento " +
+                "where TIPDOC_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<TipoDocumentoModel> tipos = new List<TipoDocumentoModel>();
@@ -677,9 +678,10 @@ namespace Web.Datos
         public Boolean insertarTipoDocumento(TipoDocumentoModel model)
         {
             _connection.Open();
-            string sql = "insert into tipodocumento(TIPDOC_ID, TIPDOC_Nombre) " +
+            string sql = "insert into tipodocumento(TIPDOC_ID, TIPDOC_Nombre, TIPDOC_Estado) " +
                 "values('" + model.TIPDOC_ID + "', '" +
-                model.TIPDOC_Nombre + "')";
+                model.TIPDOC_Nombre + "', '" + 
+                model.TIPDOC_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -689,7 +691,7 @@ namespace Web.Datos
         public Boolean eliminarTipoDocumento(TipoDocumentoModel model)
         {
             _connection.Open();
-            string sql = "delete from tipodocumento where TIPDOC_ID = '" + model.TIPDOC_ID + "'";
+            string sql = "update tipodocumento set TIPDOC_Estado = 0 where TIPDOC_ID = '" + model.TIPDOC_ID + "'";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -710,7 +712,8 @@ namespace Web.Datos
         public List<TipoViviendaModel> listarTipoVivienda()
         {
             _connection.Open();
-            string sql = "select TIPVIVI_ID, TIPVIVI_Vivienda from tipovivienda";
+            string sql = "select TIPVIVI_ID, TIPVIVI_Vivienda from tipovivienda " +
+                "where TIPVIVI_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<TipoViviendaModel> tipos = new List<TipoViviendaModel>();
@@ -728,9 +731,10 @@ namespace Web.Datos
         public Boolean insertarTipoVivienda(TipoViviendaModel model)
         {
             _connection.Open();
-            string sql = "insert into tipovivienda(TIPVIVI_ID, TIPVIVI_Vivienda) " +
+            string sql = "insert into tipovivienda(TIPVIVI_ID, TIPVIVI_Vivienda, TIPVIVI_Estado) " +
                 "values('" + model.TIPVIVI_ID + "', '" +
-                model.TIPVIVI_Vivienda + "')";
+                model.TIPVIVI_Vivienda + "', '" + 
+                model.TIPVIVI_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -740,7 +744,7 @@ namespace Web.Datos
         public Boolean eliminarTipoVivienda(TipoViviendaModel model)
         {
             _connection.Open();
-            string sql = "delete from tipovivienda where TIPVIVI_ID = '" + model.TIPVIVI_ID + "'";
+            string sql = "update tipovivienda set TIPVIVI_Estado = 0 where TIPVIVI_ID = '" + model.TIPVIVI_ID + "'";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -761,7 +765,8 @@ namespace Web.Datos
         public List<TipoTratamientoModel> listarTipoTratamiento()
         {
             _connection.Open();
-            string sql = "select TIPTRAT_ID, TIPTRAT_Nombre from tipotratamiento";
+            string sql = "select TIPTRAT_ID, TIPTRAT_Nombre from tipotratamiento " +
+                "where TIPTRAT_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<TipoTratamientoModel> tipos = new List<TipoTratamientoModel>();
@@ -779,9 +784,10 @@ namespace Web.Datos
         public Boolean insertarTipoTratamiento(TipoTratamientoModel model)
         {
             _connection.Open();
-            string sql = "insert into tipotratamiento(TIPTRAT_ID, TIPTRAT_Nombre) " +
+            string sql = "insert into tipotratamiento(TIPTRAT_ID, TIPTRAT_Nombre, TIPTRAT_Estado) " +
                 "values('" + model.TIPTRAT_ID + "', '" +
-                model.TIPTRAT_Nombre + "')";
+                model.TIPTRAT_Nombre + "', '" + 
+                model.TIPTRAT_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -791,7 +797,7 @@ namespace Web.Datos
         public Boolean eliminarTipoTratamiento(TipoTratamientoModel model)
         {
             _connection.Open();
-            string sql = "delete from tipotratamiento where TIPTRAT_ID = '" + model.TIPTRAT_ID + "'";
+            string sql = "update tipotratamiento set TIPTRAT_Estado = 0 where TIPTRAT_ID = '" + model.TIPTRAT_ID + "'";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -812,7 +818,8 @@ namespace Web.Datos
         public List<TipoAlergiaModel> listarTipoAlergia()
         {
             _connection.Open();
-            string sql = "select TIPALER_ID, TIPALER_Nombre from tipoalergia";
+            string sql = "select TIPALER_ID, TIPALER_Nombre from tipoalergia " +
+                "where TIPALER_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<TipoAlergiaModel> tipos = new List<TipoAlergiaModel>();
@@ -830,9 +837,10 @@ namespace Web.Datos
         public Boolean insertarTipoAlergia(TipoAlergiaModel model)
         {
             _connection.Open();
-            string sql = "insert into tipoalergia(TIPALER_ID, TIPALER_Nombre) " +
+            string sql = "insert into tipoalergia(TIPALER_ID, TIPALER_Nombre, TIPALER_Estado) " +
                 "values('" + model.TIPALER_ID + "', '" +
-                model.TIPALER_Nombre + "')";
+                model.TIPALER_Nombre + "', '" +
+                model.TIPALER_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -842,7 +850,7 @@ namespace Web.Datos
         public Boolean eliminarTipoAlergia(TipoAlergiaModel model)
         {
             _connection.Open();
-            string sql = "delete from tipoalergia where TIPALER_ID = '" + model.TIPALER_ID + "'";
+            string sql = "update tipoalergia set TIPALER_Estado = 0 where TIPALER_ID = '" + model.TIPALER_ID + "'";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -864,7 +872,8 @@ namespace Web.Datos
         public List<TipoMascotaModel> listarTipoMascota()
         {
             _connection.Open();
-            string sql = "select TIPMASC_ID, TIPMASC_Nombre from tipomascota";
+            string sql = "select TIPMASC_ID, TIPMASC_Nombre from tipomascota " +
+                "where TIPMASC_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<TipoMascotaModel> tipos = new List<TipoMascotaModel>();
@@ -882,9 +891,10 @@ namespace Web.Datos
         public Boolean insertarTipoMascota(TipoMascotaModel model)
         {
             _connection.Open();
-            string sql = "insert into tipomascota(TIPMASC_ID, TIPMAC_Nombre) " +
+            string sql = "insert into tipomascota(TIPMASC_ID, TIPMAC_Nombre, TIPMASC_Estado) " +
                 "values('" + model.TIPMASC_ID + "', '" +
-                model.TIPMASC_Nombre + "')";
+                model.TIPMASC_Nombre + "', '" +
+                model.TIPMASC_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -894,7 +904,7 @@ namespace Web.Datos
         public Boolean eliminarTipoMascota(TipoMascotaModel model)
         {
             _connection.Open();
-            string sql = "delete from tipomascota where TIPMASC_ID = '" + model.TIPMASC_ID + "'";
+            string sql = "update tipomascota set TIPMASC_Estado = 0 where TIPMASC_ID = '" + model.TIPMASC_ID + "'";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -915,7 +925,8 @@ namespace Web.Datos
         public List<TipoVacunaModel> listarTipoVacuna()
         {
             _connection.Open();
-            string sql = "select TIPVAC_ID, TIPVAC_Nombre from tipovacuna";
+            string sql = "select TIPVAC_ID, TIPVAC_Nombre from tipovacuna where" +
+                " TIPVAC_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<TipoVacunaModel> tipos = new List<TipoVacunaModel>();
@@ -933,9 +944,10 @@ namespace Web.Datos
         public Boolean insertarTipoVacuna(TipoVacunaModel model)
         {
             _connection.Open();
-            string sql = "insert into tipovacuna(TIPVAC_ID, TIPVAC_Nombre) " +
+            string sql = "insert into tipovacuna(TIPVAC_ID, TIPVAC_Nombre, TIPVAC_Estado) " +
                 "values('" + model.TIPVAC_ID + "', '" +
-                model.TIPVAC_Nombre + "')";
+                model.TIPVAC_Nombre + "', '" +
+                model.TIPVAC_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -945,7 +957,7 @@ namespace Web.Datos
         public Boolean eliminarTipoVacuna(TipoVacunaModel model)
         {
             _connection.Open();
-            string sql = "delete from tipovacuna where TIPVAC_ID = '" + model.TIPVAC_ID + "'";
+            string sql = "update tipovacuna set TIPVAC_Estado = 0 where TIPVAC_ID = '" + model.TIPVAC_ID + "'";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();

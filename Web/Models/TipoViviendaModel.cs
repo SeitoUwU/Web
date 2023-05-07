@@ -5,6 +5,6 @@ namespace Web.Models
     {
         public int TIPVIVI_ID { get; set; }
         public string TIPVIVI_Vivienda { get; set; } = null!;
-        public Boolean TIPVIVI_Estado { get; set; }
+        public int TIPVIVI_Estado { get; set; } = 1;
     }
 }

@@ -5,7 +5,7 @@ namespace Web.Models
     {
         public int TIPMASC_ID { get; set; }
         public string TIPMASC_Nombre { get; set; } = null!;
-        public Boolean TIPMASC_Estado { get; set; }
+        public int TIPMASC_Estado { get; set; } = 1;
     }
 
 }
