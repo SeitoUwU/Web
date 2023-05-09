@@ -118,6 +118,8 @@ namespace Web.Datos
 
                     transaction.Commit();
 
+                    sql = "insert into elemento()";
+
                     return true;
                 }
                 catch (Exception ex)
