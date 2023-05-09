@@ -6,7 +6,7 @@ namespace Web.Models
         public int GRUP_ID { get; set; }
         public string GRUP_Nombre { get; set; }
         public string GRUP_Descripcion { get; set; }
-        public Boolean GRUP_Estado { get; set; }
+        public int GRUP_Estado { get; set; } = 1;
         public int FKPER_Crea { get; set; }
         public int FKTIPGRUP_ID { get; set; }
     }

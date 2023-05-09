@@ -36,5 +36,12 @@ namespace Web.Controllers
             ViewBag.tipoElementos = new SelectList(tipoElemento, "TIPELEM_ID", "TIPELEM_Nombre");
             return View();
         }
+
+        public ActionResult CrearPublicacionElementos(ContenidoModel contenido)
+        {
+            UsuarioDatos usuario = new UsuarioDatos(connection);
+            usuario.InsertarPublicacionArticulo(contenido);
+            return RedirectToAction("CrearPublicacion");
+        }
     }
 }

@@ -23,6 +23,12 @@ namespace Web.Datos
             this.httpContextAccessor = httpContextAccessor;
         }
 
+        public UsuarioDatos(IHttpContextAccessor httpContextAccessor, MySqlConnection connection)
+        {
+            this.httpContextAccessor = httpContextAccessor;
+            this.connection = connection;
+        }
+
         public PersonaModel listarDatosUsuario(PersonaModel persona)
         {
             connection.Open();
@@ -90,7 +96,7 @@ namespace Web.Datos
 
         public Boolean InsertarPublicacionArticulo(ContenidoModel contenido)
         {
-
+            var correoPersona = httpContextAccessor.HttpContext.Request.Cookies["CorreoPersona"];
             connection.Open();
 
             using (MySqlTransaction transaction = connection.BeginTransaction())
@@ -98,27 +104,32 @@ namespace Web.Datos
                 try
                 {
                     string sql = "INSERT INTO publicacion " +
-                                 "(PUBLI_Titulo, PUBLI_Descripcion, PUBLI_Estado, FKPER_RealizaPublicacion, FKTIPUBLI_ID, FKFOR_ID, PUBLI_TOTAL, PUBLI_Cantidad) " +
+                                 "(PUBLI_Titulo, PUBLI_Descripcion, FKPER_RealizaPublicacion, FKTIPUBLI_ID, PUBLI_TOTAL, PUBLI_Cantidad) " +
                                  "VALUES " +
-                                 "(@titulo, @descripcion, @estado, @fkper, @fktipoubli, @fkfor, @total, @cantidad)";
+                                 "(@titulo, @descripcion, @fkper, @fktipoubli,)";
 
                     MySqlCommand command = new MySqlCommand(sql, connection);
                     command.Transaction = transaction;
 
                     command.Parameters.AddWithValue("@titulo", contenido.publicacion.PUBLI_Titulo);
                     command.Parameters.AddWithValue("@descripcion", contenido.publicacion.PUBLI_Descripcion);
-                    command.Parameters.AddWithValue("@estado", contenido.publicacion.PUBLI_Estado);
-                    command.Parameters.AddWithValue("@fkper", ObtenerIdPersonaPorCorreo(httpContextAccessor.HttpContext.Request.Cookies["CorreoPersona"]));
+                    command.Parameters.AddWithValue("@fkper", ObtenerIdPersonaPorCorreo(correoPersona));
                     command.Parameters.AddWithValue("@fktipoubli", contenido.publicacion.FKTIPUBLI_ID);
-                    command.Parameters.AddWithValue("@fkfor", contenido.publicacion.FKFOR_ID);
-                    command.Parameters.AddWithValue("@total", contenido.publicacion.PUBLI_Total);
-                    command.Parameters.AddWithValue("@cantidad", contenido.publicacion.PUBLI_Cantidad);
 
                     command.ExecuteNonQuery();
 
                     transaction.Commit();
 
-                    sql = "insert into elemento()";
+                    sql = "insert into elemento(ELEM_Nombre, ELEM_Descripcion, ELEM_Valor, FKTIPELEM_ID) " +
+                        "values (@nombre, @descripcion, @valor, @tipoElemento)";
+                    command.Parameters.AddWithValue("@nombre", contenido.elementos.ELEM_Nombre);
+                    command.Parameters.AddWithValue("@descripcion", contenido.elementos.ELEM_Descripcion);
+                    command.Parameters.AddWithValue("@valor", contenido.elementos.ELEM_Valor);
+                    command.Parameters.AddWithValue("@tipoElemento", contenido.elementos.FKTIPELEM_ID);
+
+                    command.ExecuteNonQuery();
+
+                    transaction.Commit();
 
                     return true;
                 }

@@ -8,7 +8,7 @@ namespace Web.Models
         public int FOR_Contacto { get; set; } 
         public string FOR_MotivoAdopcion { get; set; } = null!;
         public int FOR_CantidadPersonasVivienda { get; set; }
-        public Boolean FOR_Estado { get; set; } = false;
+        public int FOR_Estado { get; set; } = 1;
         public string FOR_MotivoRechazo { get; set; } = null!;
         public string FOR_CasaSegura { get; set; } = null!;
         public string FOR_AlergiaEnCasa { get; set; } = null!;

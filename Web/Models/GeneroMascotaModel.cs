@@ -5,6 +5,6 @@ namespace Web.Models
     {
         public int GENMASC_ID { get; set; }
         public string GENMASC_Nombre { get; set; } = null!;
-        public Boolean GENMASC_Estado { get; set; }
+        public int GENMASC_Estado { get; set; } = 1;
     }
 }
