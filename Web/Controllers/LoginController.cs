@@ -47,7 +47,7 @@ namespace Web.Controllers
         {
             LoginDatos login = new LoginDatos(connection);
             login.registrarPersona(persona);
-            return View();
+            return RedirectToActionPermanent("Login");
         }
 
         [HttpPost]

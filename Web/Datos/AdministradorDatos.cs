@@ -978,7 +978,7 @@ namespace Web.Datos
         public List<PublicacionModel> listarPublicaciones()
         {
             _connection.Open();
-            String sql = "select PUBLI_Titulo,PUBLI_Descripcion from publicacion";
+            String sql = "select PUBLI_Titulo,PUBLI_Descripcion from publicacion where PUBLI_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<PublicacionModel> listaPublicaciones = new List<PublicacionModel>();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MySql.Data.MySqlClient;
 using Web.Datos;
 using Web.Models;
@@ -24,6 +25,16 @@ namespace Web.Controllers
             modelo.persona = usuario.listarDatosUsuario(modelo.persona);
             modelo.publicaciones = admin.listarPublicaciones();
             return View(modelo);
+        }
+
+        public ActionResult CrearPublicacion()
+        {
+            UsuarioDatos usuario = new UsuarioDatos(connection);
+            List<TipoPublicacionModel> tipoPublicacion = usuario.listarTipoPublicacion();
+            List<TipoElementoModel> tipoElemento = usuario.listarTipoElementos();
+            ViewBag.tipoPublicaciones = new SelectList(tipoPublicacion, "TIPUBLI_ID", "TIPUBLI_Tipo");
+            ViewBag.tipoElementos = new SelectList(tipoElemento, "TIPELEM_ID", "TIPELEM_Nombre");
+            return View();
         }
     }
 }

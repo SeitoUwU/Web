@@ -63,7 +63,7 @@ namespace Web.Datos
         {
             connection.Open();
             string sql = "insert into persona (PER_NombreUno, PER_ApellidoUno, PER_NumeroDocumento, PER_DireccionVivienda, " +
-                "PER_Correo, PER_Contrasenia, FKROL_ID, FKTIPDOC_ID, FKBAR_ID)" +
+                "PER_Correo, PER_Contrasenia, FKROL_ID, FKTIPDOC_ID, FKBAR_ID, PER_Estado)" +
                 " values ('" + 
                 persona.PER_NombreUno + "', '" +
                 persona.PER_ApellidoUno + "', '" +
@@ -73,7 +73,8 @@ namespace Web.Datos
                 persona.PER_Contrasenia + "', '" +
                 persona.FKROL_ID + "', '" +
                 persona.FKTIPODOC_ID + "', '" +
-                persona.FKBAR_ID + "')";
+                persona.FKBAR_ID + "', '" + 
+                persona.PER_Estado + "')";
 
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.ExecuteNonQuery();

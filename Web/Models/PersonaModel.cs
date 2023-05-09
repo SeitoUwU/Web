@@ -14,7 +14,7 @@ namespace Web.Models
         public string PER_Correo { get; set; } = null!;
         public string PER_Contrasenia { get; set; } = null!;
         public string PER_DireccionVinda { get; set; } = null!;
-        public Boolean PER_Estado { get; set; }
+        public int PER_Estado { get; set; } = 1;
         public int FKROL_ID { get; set; } = 2;
         public int FKTIPODOC_ID { get; set; }
         public int FKBAR_ID { get; set; } = 1;

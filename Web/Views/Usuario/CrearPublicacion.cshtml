@@ -1,0 +1,235 @@
+﻿@model ContenidoModel
+@{
+    Layout = "_LayoutUsuario";
+}
+<form style="margin-top: 10px;margin-right: 20px;margin-bottom: 10px;margin-left: 20px;">
+    <div class="card" style="border-radius: 20px;">
+        <div class="card-body">
+            <h4 class="card-title text-center">Crear publicación</h4>
+        </div>
+        <div style="margin-top: 10px;margin-right: 20px;margin-bottom: 10px;margin-left: 20px;">
+            <div class="card" style="border-radius: 20px;border-style: solid;border-color: rgb(0,0,0);">
+                <div class="card-body">
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input class="form-control" type="text" placeholder="Titulo de la publicacion" /></div>
+                        <div class="col"><textarea class="form-control" placeholder="Descripcion"></textarea></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col">
+                            <select id="selecTipPubli" asp-for="tipoPublicacion.TIPUBLI_ID" asp-items="ViewBag.tipoPublicaciones"
+                                    class="form-select text-center">
+                                <option style="display:none;">Tipo publicacion</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="formularioMascota" class="row d-none" style="margin-bottom: 10px;">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive text-center">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="4">Ingrese la información necesaria </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input class="form-control" type="text" placeholder="Nombre" /></td>
+                                                    <td><input class="form-control" type="number" placeholder="Edad" min="0" /></td>
+                                                    <td>
+                                                        <select class="form-select text-center">
+                                                            <option value="12" selected>Tipo mascota</option>
+                                                            <option value="13">This is item 2</option>
+                                                            <option value="14">This is item 3</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select">
+                                                            <option value="12" selected>Tipo vacuna</option>
+                                                            <option value="13">This is item 2</option>
+                                                            <option value="14">This is item 3</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><textarea class="form-control" placeholder="Descripcion"></textarea></td>
+                                                    <td>
+                                                        <select class="form-select text-center">
+                                                            <option value="12" selected>Genero mascota</option>
+                                                            <option value="13">This is item 2</option>
+                                                            <option value="14">This is item 3</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select text-center">
+                                                            <option value="12" selected>Raza mascota</option>
+                                                            <option value="13">This is item 2</option>
+                                                            <option value="14">This is item 3</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select">
+                                                            <option value="12" selected>Vacuna</option>
+                                                            <option value="13">This is item 2</option>
+                                                            <option value="14">This is item 3</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-select text-center">
+                                                            <option value="12" selected>Caracteristicas</option>
+                                                            <option value="13">This is item 2</option>
+                                                            <option value="14">This is item 3</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select">
+                                                            <option value="12" selected>Tipo cirugia</option>
+                                                            <option value="13">This is item 2</option>
+                                                            <option value="14">This is item 3</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select">
+                                                            <option value="12" selected>cirugia</option>
+                                                            <option value="13">This is item 2</option>
+                                                            <option value="14">This is item 3</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><label class="form-label">Fecha de aplicaión vacuna</label><input class="form-control" type="date" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-select">
+                                                            <optgroup label="This is a group">
+                                                                <option value="12" selected>This is item 1</option>
+                                                                <option value="13">This is item 2</option>
+                                                                <option value="14">This is item 3</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select">
+                                                            <optgroup label="This is a group">
+                                                                <option value="12" selected>This is item 1</option>
+                                                                <option value="13">This is item 2</option>
+                                                                <option value="14">This is item 3</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select">
+                                                            <optgroup label="This is a group">
+                                                                <option value="12" selected>This is item 1</option>
+                                                                <option value="13">This is item 2</option>
+                                                                <option value="14">This is item 3</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </td>
+                                                    <td><textarea class="form-control"></textarea></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input class="form-control" type="date" /></td>
+                                                    <td><input class="form-control" type="date" /></td>
+                                                    <td><input id="input1" type="file" /></td>
+                                                    <td><img id="img1" style="width: 100%;height: 100%;" /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="text-end"><button class="btn btn-primary" type="button" style="border-radius: 20px;">Crear publicación</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="formularioArticulos" class="row d-none" style="margin-bottom: 10px;">
+                        <div class="col text-center">
+                            <div class="card" style="border-radius: 20px;">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2">Ingrese la información necesaria</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input asp-for="elementos.ELEM_Nombre" placeholder="Nombre del articulo" class="form-control" type="text" /></td>
+                                                    <td><textarea asp-for="elementos.ELEM_Descripcion" placeholder="Descripcion del articulo" class="form-control"></textarea></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input asp-for="elementos.ELEM_Valor" placeholder="valor" class="form-control" type="number" /></td>
+                                                    <td>
+                                                        <select asp-for="elementos.FKTIPELEM_ID" asp-items="ViewBag.tipoElementos" class="form-select">
+                                                            <option style="display:none;">Tipo elemento</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Foto del articulo</p>
+                                                        <input id="input2" type="file" />
+                                                    </td>
+                                                    <td>
+                                                        <img id="img2" style="width: 100%;height: 100%;" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="text-end"><button class="btn btn-primary" type="button" style="border-radius: 20px;">Crear publicación</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section scripts{
+    <script>
+        var selec = document.getElementById('selecTipPubli');
+        var formularioUno = document.getElementById('formularioMascota');
+        var formularioDos = document.getElementById('formularioArticulos');
+        selec.addEventListener('change', function () {
+            var valor = selec.value;
+            switch (valor) {
+                case '2':
+                    formularioUno.classList.toggle('d-none', false);
+                    formularioDos.classList.toggle('d-none', true);
+                    break;
+                case '3':
+                    formularioDos.classList.toggle('d-none', false);
+                    formularioUno.classList.toggle('d-none', true);
+                    break;
+            }
+        });
+        var input1 = document.getElementById('input1');
+        var img1 = document.getElementById('img1');
+
+        var input2 = document.getElementById('input2');
+        var img2 = document.getElementById('img2');
+
+        input1.addEventListener('change', function (event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                img1.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        });
+
+        input2.addEventListener('change', function (event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                img2.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        });
+    </script>
+}

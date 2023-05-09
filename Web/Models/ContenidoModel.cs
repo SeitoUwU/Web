@@ -10,5 +10,8 @@
         public List<TipoMascotaModel>? tiposMascota { get; set; }
         public PersonaModel persona { get; set; } = null!;
         public List<PublicacionModel>? publicaciones { get; set; }
+        public PublicacionModel? publicacion { get; set; }
+        public ElementosModel? elementos { get; set; }
+        public TipoPublicacionModel? tipoPublicacion { get; set; }
     }
 }

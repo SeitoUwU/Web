@@ -52,8 +52,8 @@
                 <div class="card" style="border-radius: 25px;">
                     <div class="card-body">
                         <div>
-                            <label class="form-label">Crear una publicación:&nbsp;</label><a class="btn btn-primary" role="button" style="border-radius: 20px;"
-                                                                                             href="CrearPublicaciones.html">Crear</a>
+                            <label class="form-label">Crear una publicación:&nbsp;</label>
+                            <a asp-controller="Usuario" asp-action="CrearPublicacion" class="btn btn-primary" role="button" style="border-radius: 20px;">Crear</a>
                         </div>
                         @foreach (var publicaciones in Model.publicaciones)
                         {
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                         }
-                        
+
                     </div>
                 </div>
             </div>
