@@ -20,10 +20,9 @@ namespace Web.Controllers
             var modelo = new ContenidoModel();
             modelo.persona = new PersonaModel();
             modelo.persona.PER_Correo = Request.Cookies["CorreoPersona"];
-            AdministradorDatos admin = new AdministradorDatos(connection);
             UsuarioDatos usuario = new UsuarioDatos(connection);
             modelo.persona = usuario.listarDatosUsuario(modelo.persona);
-            modelo.publicaciones = admin.listarPublicaciones();
+            modelo.publicaciones = usuario.listarPublicaciones();
             return View(modelo);
         }
 
@@ -34,11 +33,13 @@ namespace Web.Controllers
             List<TipoPublicacionModel> tipoPublicacion = usuario.listarTipoPublicacion();
             List<TipoElementoModel> tipoElemento = usuario.listarTipoElementos();
             List<TipoMascotaModel> tipoMascota = admin.listarTipoMascota();
+            List<TipoVacunaModel> tipoVacuna = admin.listarTipoVacuna();
 
 
             ViewBag.tipoPublicaciones = new SelectList(tipoPublicacion, "TIPUBLI_ID", "TIPUBLI_Tipo");
             ViewBag.tipoElementos = new SelectList(tipoElemento, "TIPELEM_ID", "TIPELEM_Nombre");
             ViewBag.tipoMascotas = new SelectList(tipoMascota, "TIPMASC_ID", "TIPMASC_Nombre");
+            ViewBag.tipoVacunas = new SelectList(tipoVacuna, "TIPVAC_ID", "TIPVAC_Nombre");
             return View();
         }
 
@@ -60,6 +61,14 @@ namespace Web.Controllers
             UsuarioDatos usuario = new UsuarioDatos(connection);
             List<TipoRazaModel> tipoRaza = usuario.listarTipoRazaPorId(id);
             ViewBag.tipoRazas = new SelectList(tipoRaza, "TIPRAZA_ID", "TIPRAZA_Nombre");
+            return PartialView("_selectsDinamicos");
+        }
+
+        public IActionResult cargarVacunas(int id)
+        {
+            UsuarioDatos usuario = new UsuarioDatos(connection);
+            List<VacunaModel> vacuna = usuario.listarVacunasPorId(id);
+            ViewBag.vacunas = new SelectList(vacuna, "TIPRAZA_ID", "TIPRAZA_Nombre");
             return PartialView("_selectsDinamicos");
         }
 

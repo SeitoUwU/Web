@@ -70,6 +70,25 @@ namespace Web.Datos
             return tipoPublicaciones;
         }
 
+        public List<PublicacionModel> listarPublicaciones()
+        {
+            connection.Open();
+            String sql = "select PUBLI_Titulo,PUBLI_Descripcion from publicacion where PUBLI_Estado = true";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<PublicacionModel> listaPublicaciones = new List<PublicacionModel>();
+            while (reader.Read())
+            {
+                PublicacionModel publi = new PublicacionModel();
+                publi.PUBLI_Titulo = reader.GetString(0);
+                publi.PUBLI_Descripcion = reader.GetString(1);
+                listaPublicaciones.Add(publi);
+            }
+            connection.Close();
+            return listaPublicaciones;
+
+        }
+
         public List<TipoElementoModel> listarTipoElementos()
         {
             connection.Open();
@@ -165,6 +184,26 @@ namespace Web.Datos
             }
             connection.Close();
             return tipoRazas;
+        }
+
+        public List<VacunaModel> listarVacunasPorId(int id)
+        {
+            connection.Open();
+            string sql = "select VAC_ID, VAC_Nombre from vacuna " +
+                "inner join tipovacuna on TIPVAC_ID = FKTIPVAC_ID and FKTIPVAC = ' " + id
+                + " ' where VAC_Estado = true";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<VacunaModel> vacunas = new List<VacunaModel>();
+            while (reader.Read())
+            {
+                VacunaModel vacuna = new VacunaModel();
+                vacuna.VAC_ID = reader.GetInt32(0);
+                vacuna.VAC_Nombre = reader.GetString(1);
+                vacunas.Add(vacuna);
+            }
+            connection.Close();
+            return vacunas;
         }
     }
 }

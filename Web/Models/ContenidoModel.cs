@@ -8,11 +8,12 @@
         public List<BarrioModel>? barrios { get; set; } 
         public List<TipoRazaModel>? tiposRaza { get; set; }
         public List<TipoMascotaModel>? tiposMascota { get; set; }
-        public PersonaModel persona { get; set; } = null!;
         public List<PublicacionModel>? publicaciones { get; set; }
+        public PersonaModel persona { get; set; } = null!;
         public PublicacionModel? publicacion { get; set; }
         public ElementosModel? elementos { get; set; }
         public TipoPublicacionModel? tipoPublicacion { get; set; }
         public MascotaModel? mascota { get; set; }
+        public MascTieneVacModel? mascTieneVac { get; set; }
     }
 }

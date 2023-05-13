@@ -2,7 +2,7 @@
 
 namespace Web.Models
 {
-    public class MascTieneVac
+    public class MascTieneVacModel
     {
         public int MASCTIENVAC_ID { get; set; }
         public DateOnly? MASCTIENVAC_FechaAplicacion { get; set; }

@@ -43,7 +43,7 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select">
+                                                        <select id="TipoVacunas" asp-items="ViewBag.tipoVacunas" class="form-select">
                                                             <option style="display: none;" selected>Tipo vacuna</option>
                                                         </select>
                                                     </td>
@@ -63,11 +63,9 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select">
-                                                            <option value="12" selected>Vacuna</option>
-                                                            <option value="13">This is item 2</option>
-                                                            <option value="14">This is item 3</option>
-                                                        </select>
+                                                        <div id="divVacunas">
+                                                            @*Aqui se muestra el select de vacunas*@
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -237,6 +235,20 @@
                     data: { id: valor },
                     success: function (result) {
                         $('#divRazas').html(result);
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $('#TipoVacunas').on('change', function () {
+                var valor = $(this).val();
+                $.ajax({
+                    url: '/Usuario/cargarVacunas',
+                    type: 'GET',
+                    data: { id: valor },
+                    success: function (result) {
+                        $('#divVacunas').html(result);
                     }
                 });
             });
