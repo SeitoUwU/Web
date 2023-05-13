@@ -978,7 +978,7 @@ namespace Web.Datos
         public List<PublicacionModel> listarPublicaciones()
         {
             _connection.Open();
-            String sql = "select PUBLI_Titulo,PUBLI_Descripcion from publicacion where PUBLI_Estado = true";
+            String sql = "select PUBLI_Titulo,PUBLI_Descripcion,PUBLI_Estado, PUBLI_ID,PUBLI_Cantidad from publicacion where  PUBLI_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<PublicacionModel> listaPublicaciones = new List<PublicacionModel>();
@@ -987,11 +987,25 @@ namespace Web.Datos
                 PublicacionModel publi = new PublicacionModel();
                 publi.PUBLI_Titulo = reader.GetString(0);
                 publi.PUBLI_Descripcion = reader.GetString(1);
+                publi.PUBLI_Estado = reader.GetInt32(2);
+                publi.PUBLI_ID = reader.GetInt32(3);
+                publi.PUBLI_Cantidad = reader.GetInt32(4);
+
                 listaPublicaciones.Add(publi);
             }
             _connection.Close();
             return listaPublicaciones;
 
         }
+        public Boolean DesactivarPublicacion(int id)
+        {
+            _connection.Open();
+            string sql = "update publicacion set PUBLI_Estado = false where PUBLI_ID = '" + id + "'";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+
     }
 }

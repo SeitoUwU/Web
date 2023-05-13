@@ -907,5 +907,23 @@ namespace Web.Controllers
             admin.actualizarTipoVacuna(tipoVacunaModel);
             return RedirectToAction("AdminActualizaTipoVacuna");
         }
+
+        public ActionResult AdminReportes()
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            List<PublicacionModel> publicaciones = admin.listarPublicaciones();
+            return View(publicaciones);
+        }
+        
+        [HttpPost]
+        public ActionResult DesactivarPublicacion(int id)
+        {
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            admin.DesactivarPublicacion(id);
+            return RedirectToAction("AdminReportes");
+        }
+
+
+
     }
 }
