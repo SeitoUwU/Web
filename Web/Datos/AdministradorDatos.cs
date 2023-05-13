@@ -891,7 +891,7 @@ namespace Web.Datos
         public Boolean insertarTipoMascota(TipoMascotaModel model)
         {
             _connection.Open();
-            string sql = "insert into tipomascota(TIPMASC_ID, TIPMAC_Nombre, TIPMASC_Estado) " +
+            string sql = "insert into tipomascota(TIPMASC_ID, TIPMASC_Nombre, TIPMASC_Estado) " +
                 "values('" + model.TIPMASC_ID + "', '" +
                 model.TIPMASC_Nombre + "', '" +
                 model.TIPMASC_Estado + "')";

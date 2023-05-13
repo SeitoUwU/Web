@@ -13,5 +13,6 @@
         public PublicacionModel? publicacion { get; set; }
         public ElementosModel? elementos { get; set; }
         public TipoPublicacionModel? tipoPublicacion { get; set; }
+        public MascotaModel? mascota { get; set; }
     }
 }

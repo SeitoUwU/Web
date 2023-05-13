@@ -11,22 +11,17 @@ namespace Web.Datos
     public class UsuarioDatos
     {
         private readonly MySqlConnection connection;
-        private readonly IHttpContextAccessor httpContextAccessor;
+        private string cookie;
 
         public UsuarioDatos(MySqlConnection connection)
         {
             this.connection = connection;
         }
 
-        public UsuarioDatos(IHttpContextAccessor httpContextAccessor)
+        public UsuarioDatos(String cookie, MySqlConnection connection)
         {
-            this.httpContextAccessor = httpContextAccessor;
-        }
-
-        public UsuarioDatos(IHttpContextAccessor httpContextAccessor, MySqlConnection connection)
-        {
-            this.httpContextAccessor = httpContextAccessor;
             this.connection = connection;
+            this.cookie = cookie;
         }
 
         public PersonaModel listarDatosUsuario(PersonaModel persona)
@@ -96,52 +91,36 @@ namespace Web.Datos
 
         public Boolean InsertarPublicacionArticulo(ContenidoModel contenido)
         {
-            var correoPersona = httpContextAccessor.HttpContext.Request.Cookies["CorreoPersona"];
+            var correoPersona = cookie;
             connection.Open();
+            string sql = "INSERT INTO publicacion " +
+                         "(PUBLI_Titulo, PUBLI_Descripcion, FKPER_RealizaPublicacion, FKTIPUBLI_ID) " +
+                         "VALUES " +
+                         "(@titulo, @descripcion, @fkper, @fktipoubli)";
 
-            using (MySqlTransaction transaction = connection.BeginTransaction())
-            {
-                try
-                {
-                    string sql = "INSERT INTO publicacion " +
-                                 "(PUBLI_Titulo, PUBLI_Descripcion, FKPER_RealizaPublicacion, FKTIPUBLI_ID, PUBLI_TOTAL, PUBLI_Cantidad) " +
-                                 "VALUES " +
-                                 "(@titulo, @descripcion, @fkper, @fktipoubli,)";
+            MySqlCommand command = new MySqlCommand(sql, connection);
 
-                    MySqlCommand command = new MySqlCommand(sql, connection);
-                    command.Transaction = transaction;
+            command.Parameters.AddWithValue("@titulo", contenido.publicacion.PUBLI_Titulo);
+            command.Parameters.AddWithValue("@descripcion", contenido.publicacion.PUBLI_Descripcion);
+            command.Parameters.AddWithValue("@fkper", ObtenerIdPersonaPorCorreo(correoPersona));
+            command.Parameters.AddWithValue("@fktipoubli", contenido.publicacion.FKTIPUBLI_ID);
 
-                    command.Parameters.AddWithValue("@titulo", contenido.publicacion.PUBLI_Titulo);
-                    command.Parameters.AddWithValue("@descripcion", contenido.publicacion.PUBLI_Descripcion);
-                    command.Parameters.AddWithValue("@fkper", ObtenerIdPersonaPorCorreo(correoPersona));
-                    command.Parameters.AddWithValue("@fktipoubli", contenido.publicacion.FKTIPUBLI_ID);
+            command.ExecuteNonQuery();
 
-                    command.ExecuteNonQuery();
+            sql = "insert into elementos (ELEM_Nombre, ELEM_Descripcion, ELEM_Valor, FKTIPELEM_ID) " +
+                "values (@nombre, @descripcion, @valor, @tipoElemento)";
 
-                    transaction.Commit();
+            MySqlCommand command1 = new MySqlCommand(sql, connection);
 
-                    sql = "insert into elemento(ELEM_Nombre, ELEM_Descripcion, ELEM_Valor, FKTIPELEM_ID) " +
-                        "values (@nombre, @descripcion, @valor, @tipoElemento)";
-                    command.Parameters.AddWithValue("@nombre", contenido.elementos.ELEM_Nombre);
-                    command.Parameters.AddWithValue("@descripcion", contenido.elementos.ELEM_Descripcion);
-                    command.Parameters.AddWithValue("@valor", contenido.elementos.ELEM_Valor);
-                    command.Parameters.AddWithValue("@tipoElemento", contenido.elementos.FKTIPELEM_ID);
+            command1.Parameters.AddWithValue("@nombre", contenido.elementos.ELEM_Nombre);
+            command1.Parameters.AddWithValue("@descripcion", contenido.elementos.ELEM_Descripcion);
+            command1.Parameters.AddWithValue("@valor", contenido.elementos.ELEM_Valor);
+            command1.Parameters.AddWithValue("@tipoElemento", contenido.elementos.FKTIPELEM_ID);
 
-                    command.ExecuteNonQuery();
+            command1.ExecuteNonQuery();
 
-                    transaction.Commit();
-
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    // Manejar la excepción
-                    return false;
-                }
-
-
-            }
+            connection.Close();
+            return true;
         }
         private int ObtenerIdPersonaPorCorreo(string correo)
         {
@@ -153,19 +132,39 @@ namespace Web.Datos
                 string sql = "SELECT PER_ID FROM persona WHERE PER_Correo = @correo";
 
                 MySqlCommand command = new MySqlCommand(sql, connection);
+
                 command.Parameters.AddWithValue("@correo", correo);
 
-                object result = command.ExecuteScalar();
-                if (result != null)
+                MySqlDataReader reader = command.ExecuteReader();
+                int id = 0;
+                while(reader.Read())
                 {
-                    return Convert.ToInt32(result);
+                    id = (int)reader.GetUInt32(0);
                 }
-                else
-                {
-                    // Manejar el caso en que no se encuentra el correo
-                    return -1;
-                }
+
+                connection.Close();
+                return id;
             }
+        }
+
+        public List<TipoRazaModel> listarTipoRazaPorId(int id)
+        {
+            connection.Open();
+            string sql = "select TIPRAZA_ID, TIPRAZA_Nombre from tiporaza " +
+                "inner join tipomascota on  TIPMASC_ID = FKTIPMASC_ID and FKTIPMASC_ID = '" + id + "' " +
+                "where TIPRAZA_estado = true";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<TipoRazaModel> tipoRazas = new List<TipoRazaModel>();
+            while (reader.Read())
+            {
+                TipoRazaModel tipoRaza = new TipoRazaModel();
+                tipoRaza.TIPRAZA_ID = reader.GetInt32(0);
+                tipoRaza.TIPRAZA_Nombre = reader.GetString(1);
+                tipoRazas.Add(tipoRaza);
+            }
+            connection.Close();
+            return tipoRazas;
         }
     }
 }

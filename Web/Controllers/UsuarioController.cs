@@ -30,18 +30,39 @@ namespace Web.Controllers
         public ActionResult CrearPublicacion()
         {
             UsuarioDatos usuario = new UsuarioDatos(connection);
+            AdministradorDatos admin = new AdministradorDatos(connection);
             List<TipoPublicacionModel> tipoPublicacion = usuario.listarTipoPublicacion();
             List<TipoElementoModel> tipoElemento = usuario.listarTipoElementos();
+            List<TipoMascotaModel> tipoMascota = admin.listarTipoMascota();
+
+
             ViewBag.tipoPublicaciones = new SelectList(tipoPublicacion, "TIPUBLI_ID", "TIPUBLI_Tipo");
             ViewBag.tipoElementos = new SelectList(tipoElemento, "TIPELEM_ID", "TIPELEM_Nombre");
+            ViewBag.tipoMascotas = new SelectList(tipoMascota, "TIPMASC_ID", "TIPMASC_Nombre");
             return View();
         }
 
         public ActionResult CrearPublicacionElementos(ContenidoModel contenido)
         {
-            UsuarioDatos usuario = new UsuarioDatos(connection);
+            string correo = Request.Cookies["CorreoPersona"];
+            UsuarioDatos usuario = new UsuarioDatos(correo, connection);
             usuario.InsertarPublicacionArticulo(contenido);
-            return RedirectToAction("CrearPublicacion");
+            return RedirectToAction("InicioUsuario");
         }
+
+        public ActionResult CrearPublicacionMascota(ContenidoModel contenido)
+        {
+            return RedirectToAction("InicioUsuario");
+        }
+
+        public IActionResult cargarTipoRazas(int id)
+        {
+            UsuarioDatos usuario = new UsuarioDatos(connection);
+            List<TipoRazaModel> tipoRaza = usuario.listarTipoRazaPorId(id);
+            ViewBag.tipoRazas = new SelectList(tipoRaza, "TIPRAZA_ID", "TIPRAZA_Nombre");
+            return PartialView("_selectsDinamicos");
+        }
+
+
     }
 }
