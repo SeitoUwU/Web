@@ -5,7 +5,7 @@ namespace Web.Models
     {
         public int VAC_ID { get; set; }
         public string VAC_Nombre { get; set; } = null!;
-        public Boolean VAC_Estado { get; set; }
+        public int VAC_Estado { get; set; }
         public int FKTIPVAC_ID { get; set; }
     }
 }

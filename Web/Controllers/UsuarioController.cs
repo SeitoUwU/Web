@@ -68,7 +68,7 @@ namespace Web.Controllers
         {
             UsuarioDatos usuario = new UsuarioDatos(connection);
             List<VacunaModel> vacuna = usuario.listarVacunasPorId(id);
-            ViewBag.vacunas = new SelectList(vacuna, "TIPRAZA_ID", "TIPRAZA_Nombre");
+            ViewBag.vacunas = new SelectList(vacuna, "VAC_ID", "VAC_Nombre");
             return PartialView("_selectsDinamicos");
         }
 

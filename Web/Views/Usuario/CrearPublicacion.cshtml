@@ -234,7 +234,7 @@
                     type: 'GET',
                     data: { id: valor },
                     success: function (result) {
-                        $('#divRazas').html(result);
+                        $('#divRazas').html($(result).first());
                     }
                 });
             });
@@ -248,7 +248,13 @@
                     type: 'GET',
                     data: { id: valor },
                     success: function (result) {
-                        $('#divVacunas').html(result);
+                        console.log(result); // Agregar esta línea para ver el resultado del AJAX en la consola
+                        var segundoSelect = $(result).find('#vacunas');
+                        console.log(segundoSelect); // Agregar esta línea para ver si se encontró el segundo select
+                        $('#divVacunas').html(segundoSelect);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(xhr.responseText); // Agregar esta línea para ver el mensaje de error en la consola
                     }
                 });
             });

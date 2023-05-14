@@ -190,8 +190,8 @@ namespace Web.Datos
         {
             connection.Open();
             string sql = "select VAC_ID, VAC_Nombre from vacuna " +
-                "inner join tipovacuna on TIPVAC_ID = FKTIPVAC_ID and FKTIPVAC = ' " + id
-                + " ' where VAC_Estado = true";
+                "inner join tipovacuna on TIPVAC_ID = FKTIPVAC_ID and FKTIPVAC_ID = '" + id
+                + "' where VAC_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<VacunaModel> vacunas = new List<VacunaModel>();
