@@ -156,7 +156,7 @@ namespace Web.Datos
 
                 MySqlDataReader reader = command.ExecuteReader();
                 int id = 0;
-                while(reader.Read())
+                while (reader.Read())
                 {
                     id = (int)reader.GetUInt32(0);
                 }
@@ -204,6 +204,26 @@ namespace Web.Datos
             }
             connection.Close();
             return vacunas;
+        }
+
+        public List<AlergiaModel> listarAlergiasPorId(int id)
+        {
+            connection.Open();
+            string sql = "select ALER_ID, ALER_NombreAlergia from alergia " +
+                "inner join tipoalergia on TIPALER_ID = FKTIPALER_ID and FKTIPALER_ID = '" + id
+                + "' where ALER_Estado = true";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<AlergiaModel> alergias = new List<AlergiaModel>();
+            while (reader.Read())
+            {
+                AlergiaModel alergia = new AlergiaModel();
+                alergia.ALER_ID = reader.GetInt32(0);
+                alergia.ALER_NombreAlergia = reader.GetString(1);
+                alergias.Add(alergia);
+            }
+            connection.Close();
+            return alergias;
         }
     }
 }

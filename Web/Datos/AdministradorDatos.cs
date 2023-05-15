@@ -107,7 +107,7 @@ namespace Web.Datos
             command.ExecuteNonQuery();
             _connection.Close();
             return true;
-        } 
+        }
 
         public Boolean EliminarDepartamento(DepartamentoModel departamento)
         {
@@ -147,7 +147,7 @@ namespace Web.Datos
                 municipio.MUN_Nombre + "', '" +
                 municipio.FKDEP_ID + "', '" +
                 municipio.MUN_Estado + "')";
-            MySqlCommand command = new MySqlCommand( sql, _connection);
+            MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
             return true;
@@ -163,7 +163,7 @@ namespace Web.Datos
             return true;
         }
 
-        public Boolean ActualizarMunicipio (MunicipioModel municipio)
+        public Boolean ActualizarMunicipio(MunicipioModel municipio)
         {
             _connection.Open();
             string sql = "update municipio set MUN_Nombre = '" + municipio.MUN_Nombre +
@@ -179,7 +179,7 @@ namespace Web.Datos
             _connection.Open();
             string sql = "select BAR_ID, BAR_Nombre, MUN_Nombre from barrio " +
                 "inner join municipio on FKMUN_ID = MUN_ID where BAR_Estado = true";
-            MySqlCommand command = new MySqlCommand( sql, _connection);
+            MySqlCommand command = new MySqlCommand(sql, _connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<BarrioModel> barrios = new List<BarrioModel>();
             while (reader.Read())
@@ -197,10 +197,10 @@ namespace Web.Datos
         public Boolean insertarBarrio(BarrioModel barrio)
         {
             _connection.Open();
-            string sql = "insert into barrio (BAR_ID, BAR_Nombre, FKMUN_ID, BAR_Estado) values ('"+
+            string sql = "insert into barrio (BAR_ID, BAR_Nombre, FKMUN_ID, BAR_Estado) values ('" +
                 barrio.BAR_ID + "', '" +
                 barrio.BAR_Nombre + "','" +
-                barrio.FKMUN_ID + "', '" + 
+                barrio.FKMUN_ID + "', '" +
                 barrio.BAR_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
@@ -212,7 +212,7 @@ namespace Web.Datos
         {
             _connection.Open();
             string sql = "update barrio set BAR_Estado = 0 where BAR_ID = '" + barrio.BAR_ID + "'";
-            MySqlCommand command = new MySqlCommand( sql, _connection);
+            MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
             return true;
@@ -254,7 +254,7 @@ namespace Web.Datos
                 "values(' " + rol.ROL_ID + "', '" +
                 rol.ROL_Nombre + "', '" +
                 rol.ROL_Estado + "')";
-            MySqlCommand command = new MySqlCommand( sql, _connection);
+            MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
             return true;
@@ -273,7 +273,7 @@ namespace Web.Datos
         public Boolean actualizarRol(RolModel rol)
         {
             _connection.Open();
-            string sql = "update rol set ROL_Nombre = '" + rol.ROL_Nombre +"' " +
+            string sql = "update rol set ROL_Nombre = '" + rol.ROL_Nombre + "' " +
                 "where ROL_ID = '" + rol.ROL_ID + "'";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
@@ -325,9 +325,9 @@ namespace Web.Datos
         public Boolean actualizarMotivo(MotivoReporteModel motivo)
         {
             _connection.Open();
-            string sql = "update motivoreporte set MOT_MotivoReporte = '" + motivo.MOT_MotivoReporte +"' " +
+            string sql = "update motivoreporte set MOT_MotivoReporte = '" + motivo.MOT_MotivoReporte + "' " +
                 "where MOT_ID = '" + motivo.MOT_ID + "'";
-            MySqlCommand command = new MySqlCommand( sql, _connection);
+            MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
             _connection.Close();
             return true;
@@ -515,7 +515,7 @@ namespace Web.Datos
             string sql = "insert into tiporaza(TIPRAZA_ID, TIPRAZA_Nombre, FKTIPMASC_ID, TIPRAZA_Estado) " +
                 "values('" + model.TIPRAZA_ID + "', '" +
                 model.TIPRAZA_Nombre + "', '" +
-                model.FKTIPMASC_ID + "', '" + 
+                model.FKTIPMASC_ID + "', '" +
                 model.TIPRAZA_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
@@ -559,6 +559,7 @@ namespace Web.Datos
                 caracteristica.CARAC_Peso = reader.GetString(1);
                 caracteristica.CARAC_Comportamiento = reader.GetString(2);
                 caracteristica.CARAC_Alimentacion = reader.GetString(3);
+                caracteristica.Carac_caracteristicas = $"{reader.GetString(1)}, {reader.GetString(2)}, {reader.GetString(3)}";
                 caracteristicas.Add(caracteristica);
             }
             _connection.Close();
@@ -572,7 +573,7 @@ namespace Web.Datos
                 "values('" + model.CARAC_ID + "', '" +
                 model.CARAC_Peso + "', '" +
                 model.CARAC_Comportamiento + "', '" +
-                model.CARAC_Alimentacion + "', '" + 
+                model.CARAC_Alimentacion + "', '" +
                 model.CARAC_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
@@ -656,7 +657,7 @@ namespace Web.Datos
             return true;
         }
 
-        public List<TipoDocumentoModel> listarTipoDocumento ()
+        public List<TipoDocumentoModel> listarTipoDocumento()
         {
             _connection.Open();
             string sql = "select TIPDOC_ID, TIPDOC_Nombre from tipodocumento " +
@@ -680,7 +681,7 @@ namespace Web.Datos
             _connection.Open();
             string sql = "insert into tipodocumento(TIPDOC_ID, TIPDOC_Nombre, TIPDOC_Estado) " +
                 "values('" + model.TIPDOC_ID + "', '" +
-                model.TIPDOC_Nombre + "', '" + 
+                model.TIPDOC_Nombre + "', '" +
                 model.TIPDOC_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
@@ -733,7 +734,7 @@ namespace Web.Datos
             _connection.Open();
             string sql = "insert into tipovivienda(TIPVIVI_ID, TIPVIVI_Vivienda, TIPVIVI_Estado) " +
                 "values('" + model.TIPVIVI_ID + "', '" +
-                model.TIPVIVI_Vivienda + "', '" + 
+                model.TIPVIVI_Vivienda + "', '" +
                 model.TIPVIVI_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
@@ -786,7 +787,7 @@ namespace Web.Datos
             _connection.Open();
             string sql = "insert into tipotratamiento(TIPTRAT_ID, TIPTRAT_Nombre, TIPTRAT_Estado) " +
                 "values('" + model.TIPTRAT_ID + "', '" +
-                model.TIPTRAT_Nombre + "', '" + 
+                model.TIPTRAT_Nombre + "', '" +
                 model.TIPTRAT_Estado + "')";
             MySqlCommand command = new MySqlCommand(sql, _connection);
             command.ExecuteNonQuery();
@@ -973,8 +974,26 @@ namespace Web.Datos
             command.ExecuteNonQuery();
             _connection.Close();
             return true;
-        }
+        } 
 
+        public List<GeneroMascotaModel> listarGeneroMascotas()
+        {
+            _connection.Open();
+            string sql = "select GENMASC_ID, GENMASC_Nombre from generomascota where GENMASC_Estado = true";
+            MySqlCommand command = new MySqlCommand(sql, _connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<GeneroMascotaModel> generos = new List<GeneroMascotaModel>();
+            while (reader.Read())
+            {
+                GeneroMascotaModel genero = new GeneroMascotaModel();
+                genero.GENMASC_ID = reader.GetInt32(0);
+                genero.GENMASC_Nombre = reader.GetString(1);
+                generos.Add(genero);
+            }
+            _connection.Close();
+            return generos;
+        }
+             
         public List<PublicacionModel> listarPublicaciones()
         {
             _connection.Open();

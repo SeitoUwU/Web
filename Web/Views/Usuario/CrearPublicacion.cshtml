@@ -51,10 +51,8 @@
                                                 <tr>
                                                     <td><textarea class="form-control" placeholder="Descripcion"></textarea></td>
                                                     <td>
-                                                        <select class="form-select text-center">
-                                                            <option value="12" selected>Genero mascota</option>
-                                                            <option value="13">This is item 2</option>
-                                                            <option value="14">This is item 3</option>
+                                                        <select asp-for="mascota.FKGENMASC_ID" asp-items="ViewBag.generoMascotas" class="form-select text-center">
+                                                            <option style="display: none;" selected>Genero mascota</option>
                                                         </select>
                                                     </td>
                                                     <td>
@@ -70,61 +68,51 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <select class="form-select text-center">
-                                                            <option value="12" selected>Caracteristicas</option>
-                                                            <option value="13">This is item 2</option>
-                                                            <option value="14">This is item 3</option>
+                                                        <select asp-for="mascota.FKCARAC_ID" asp-items="ViewBag.caracteristicas" class="form-select text-center">
+                                                            <option style="display: none;" selected>Caracteristicas</option>
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select">
-                                                            <option value="12" selected>Tipo cirugia</option>
-                                                            <option value="13">This is item 2</option>
-                                                            <option value="14">This is item 3</option>
+                                                        <select asp-items="ViewBag.tipoCirugias" class="form-select">
+                                                            <option style="display: none;" selected>Tipo cirugia</option>
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select">
-                                                            <option value="12" selected>cirugia</option>
-                                                            <option value="13">This is item 2</option>
-                                                            <option value="14">This is item 3</option>
-                                                        </select>
+                                                        <label class="form-label">Fecha de cirugia</label>
+                                                        <input class="form-control" type="date" />
                                                     </td>
-                                                    <td><label class="form-label">Fecha de aplicaión vacuna</label><input class="form-control" type="date" /></td>
+                                                    <td>
+                                                        <label class="form-label">Fecha de aplicaión vacuna</label>
+                                                        <input class="form-control" type="date" />
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <select class="form-select">
-                                                            <optgroup label="This is a group">
-                                                                <option value="12" selected>This is item 1</option>
-                                                                <option value="13">This is item 2</option>
-                                                                <option value="14">This is item 3</option>
-                                                            </optgroup>
+                                                        <select id="tipoAlergia" asp-items="ViewBag.tipoAlergias" class="form-select">
+                                                            <option style="display: none;" selected>Tipo alergia</option>
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select">
-                                                            <optgroup label="This is a group">
-                                                                <option value="12" selected>This is item 1</option>
-                                                                <option value="13">This is item 2</option>
-                                                                <option value="14">This is item 3</option>
-                                                            </optgroup>
-                                                        </select>
+                                                        <div id="divAlergias">
+                                                            @*Aqui va el select de alergias*@
+                                                        </div>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select">
-                                                            <optgroup label="This is a group">
-                                                                <option value="12" selected>This is item 1</option>
-                                                                <option value="13">This is item 2</option>
-                                                                <option value="14">This is item 3</option>
-                                                            </optgroup>
+                                                        <select asp-for="MascTieneAler.FKTIPTRAT_ID" asp-items="ViewBag.tipoTratamientos" class="form-select">
+                                                            <option style="display: none" selected>Tipo tratamiento</option>
                                                         </select>
                                                     </td>
-                                                    <td><textarea class="form-control"></textarea></td>
+                                                    <td><textarea asp-for="MascTieneAler.MASCTIENALER_Tratamiento" placeholder="Tratamiento" class="form-control"></textarea></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input class="form-control" type="date" /></td>
-                                                    <td><input class="form-control" type="date" /></td>
+                                                    <td>
+                                                        <label class="form-label">Fecha inicio tratamiento</label>
+                                                        <input asp-for="MascTieneAler.MASCTIENALER_FechaInicioTratamiento" class="form-control" type="date" />
+                                                    </td>
+                                                    <td>
+                                                        <label class="form-label">Fecha fin tratamiento</label>
+                                                        <input asp-for="MascTieneAler.MASCTIENALER_FechaFinTratamiento" class="form-control" type="date" />
+                                                    </td>
                                                     <td><input id="input1" type="file" /></td>
                                                     <td><img id="img1" style="width: 100%;height: 100%;" /></td>
                                                 </tr>
@@ -185,6 +173,7 @@
     </div>
 </form>
 @section scripts{
+
     <script>
         var selec = document.getElementById('selecTipPubli');
         var formularioUno = document.getElementById('formularioMascota');
@@ -234,7 +223,8 @@
                     type: 'GET',
                     data: { id: valor },
                     success: function (result) {
-                        $('#divRazas').html($(result).first());
+                        var selectRazas = $(result).find('#razaMascota');
+                        $('#divRazas').html(selectRazas);
                     }
                 });
             });
@@ -248,19 +238,26 @@
                     type: 'GET',
                     data: { id: valor },
                     success: function (result) {
-                        console.log(result); // Agregar esta línea para ver el resultado del AJAX en la consola
                         var segundoSelect = $(result).find('#vacunas');
-                        console.log(segundoSelect); // Agregar esta línea para ver si se encontró el segundo select
                         $('#divVacunas').html(segundoSelect);
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(xhr.responseText); // Agregar esta línea para ver el mensaje de error en la consola
                     }
                 });
             });
         });
 
-
-
+        $(document).ready(function () {
+            $('#tipoAlergia').on('change', function () {
+                var valor = $(this).val();
+                $.ajax({
+                    url: '/Usuario/cargarAlergias',
+                    type: 'GET',
+                    data: { id: valor },
+                    success: function (result) {
+                        var selectAlergias = $(result).find('#alergiasMascota');
+                        $('#divAlergias').html(selectAlergias);
+                    }
+                });
+            });
+        });
     </script>
 }
