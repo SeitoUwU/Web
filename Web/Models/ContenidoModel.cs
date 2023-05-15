@@ -16,5 +16,6 @@
         public MascotaModel? mascota { get; set; }
         public MascTieneVacModel? mascTieneVac { get; set; }
         public MascTieneAlerModel MascTieneAler { get; set; } = null!;
+
     }
 }
