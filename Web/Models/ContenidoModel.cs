@@ -14,8 +14,9 @@
         public ElementosModel? elementos { get; set; }
         public TipoPublicacionModel? tipoPublicacion { get; set; }
         public MascotaModel? mascota { get; set; }
-        public MascTieneVacModel? mascTieneVac { get; set; }
+        public MascTieneVacModel mascTieneVac { get; set; } = null!;
         public MascTieneAlerModel MascTieneAler { get; set; } = null!;
+        public CirugiaModel cirugia { get; set; } = null!;
 
     }
 }

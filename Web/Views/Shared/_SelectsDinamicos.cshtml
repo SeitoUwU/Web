@@ -1,19 +1,19 @@
 ﻿@model ContenidoModel
 
 <div id="divRazas">
-    <select id="razaMascota" asp-for="mascota.FKTIPRAZA_ID" asp-items="ViewBag.tipoRazas" class="form-select text-center">
+    <select required id="razaMascota" asp-for="mascota.FKTIPRAZA_ID" asp-items="ViewBag.tipoRazas" class="form-select text-center">
         <option style="display: none;" selected>Raza mascota</option>
     </select>
 </div>
 
 <div id="divSelectVacunas">
-    <select id="vacunas" asp-for="mascTieneVac.FKVAC_ID" asp-items="ViewBag.vacunas" class="form-select">
+    <select required id="vacunas" asp-for="mascTieneVac.FKVAC_ID" asp-items="ViewBag.vacunas" class="form-select">
         <option style="display: none;" selected>Vacuna</option>
     </select>
 </div>
 
 <div id="divAlergias">
-    <select id="alergiasMascota" asp-for="MascTieneAler.FKALER_ID" asp-items="ViewBag.alergias" class="form-select">
+    <select required id="alergiasMascota" asp-for="MascTieneAler.FKALER_ID" asp-items="ViewBag.alergias" class="form-select">
         <option style="display: none;" selected>Alergia</option>
     </select>
 </div>

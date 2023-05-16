@@ -63,6 +63,9 @@ namespace Web.Controllers
 
         public ActionResult CrearPublicacionMascota(ContenidoModel contenido)
         {
+            string correo = Request.Cookies["CorreoPersona"];
+            UsuarioDatos usuario = new UsuarioDatos(correo, connection);
+            usuario.InsertarPublicacionMascota(contenido);
             return RedirectToAction("InicioUsuario");
         }
 

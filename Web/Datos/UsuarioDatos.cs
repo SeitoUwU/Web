@@ -1,10 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.Ocsp;
-using System.ComponentModel;
-using System.Configuration;
 using Web.Models;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http;
+using System.Data;
 
 namespace Web.Datos
 {
@@ -141,6 +137,39 @@ namespace Web.Datos
             connection.Close();
             return true;
         }
+
+        public Boolean InsertarPublicacionMascota(ContenidoModel contenido)
+        {
+            var correoPersona = cookie;
+            connection.Open();
+            using (MySqlCommand command = new MySqlCommand("insertarPublicacionMascota", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@titulo", contenido.publicacion.PUBLI_Titulo);
+                command.Parameters.AddWithValue("@descripcion", contenido.publicacion.PUBLI_Descripcion);
+                command.Parameters.AddWithValue("@persona", ObtenerIdPersonaPorCorreo(correoPersona));
+                command.Parameters.AddWithValue("@tipoPubli", contenido.publicacion.FKTIPUBLI_ID);
+                command.Parameters.AddWithValue("@nombreMasc", contenido.mascota.MASC_Nombre);
+                command.Parameters.AddWithValue("@edadMasc", contenido.mascota.MASC_Edad);
+                command.Parameters.AddWithValue("@descripcionMasc", contenido.mascota.MASC_Descripcion);
+                command.Parameters.AddWithValue("@generoMascota", contenido.mascota.FKGENMASC_ID);
+                command.Parameters.AddWithValue("@caracteristicaMascota", contenido.mascota.FKCARAC_ID);
+                command.Parameters.AddWithValue("@razaMascota", contenido.mascota.FKTIPRAZA_ID);
+                command.Parameters.AddWithValue("@fechaCirugia", contenido.cirugia.CIRU_FechaCirugia);
+                command.Parameters.AddWithValue("@tipoCirugia", contenido.cirugia.FKTIPCIRU_ID);
+                command.Parameters.AddWithValue("@fechaVacuna", contenido.mascTieneVac.MASCTIENVAC_FechaAplicacion);
+                command.Parameters.AddWithValue("@fkvacuna", contenido.mascTieneVac.FKVAC_ID);
+                command.Parameters.AddWithValue("@tratamientoAler", contenido.MascTieneAler.MASCTIENALER_Tratamiento);
+                command.Parameters.AddWithValue("@fechaInicioTratamiento", contenido.MascTieneAler.MASCTIENALER_FechaInicioTratamiento);
+                command.Parameters.AddWithValue("@fechaFinTratamiento", contenido.MascTieneAler.MASCTIENALER_FechaFinTratamiento);
+                command.Parameters.AddWithValue("@fkAlergiaTratamiento", contenido.MascTieneAler.FKALER_ID);
+                command.Parameters.AddWithValue("@fkTipoTratamiento", contenido.MascTieneAler.FKTIPTRAT_ID);
+
+                command.ExecuteNonQuery();
+            }
+            connection.Close();
+            return true;
+        }
         private int ObtenerIdPersonaPorCorreo(string correo)
         {
             var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
@@ -225,5 +254,7 @@ namespace Web.Datos
             connection.Close();
             return alergias;
         }
+
+
     }
 }
