@@ -72,7 +72,8 @@ namespace Web.Datos
         public List<PublicacionModel> listarPublicaciones()
         {
             connection.Open();
-            String sql = "select PUBLI_Titulo,PUBLI_Descripcion, FKPER_RealizaPublicacion from publicacion where PUBLI_Estado = true";
+            String sql = "select PUBLI_Titulo,PUBLI_Descripcion, FKPER_RealizaPublicacion, FKTIPUBLI_ID" +
+                " from publicacion where PUBLI_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<PublicacionModel> listaPublicaciones = new List<PublicacionModel>();
@@ -82,6 +83,7 @@ namespace Web.Datos
                 publi.PUBLI_Titulo = reader.GetString(0);
                 publi.PUBLI_Descripcion = reader.GetString(1);
                 publi.FKPER_RealizaPublicacion = reader.GetInt32(2);
+                publi.FKTIPUBLI_ID = reader.GetInt32(3);
                 listaPublicaciones.Add(publi);
             }
             connection.Close();

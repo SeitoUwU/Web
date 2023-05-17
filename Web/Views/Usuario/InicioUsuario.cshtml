@@ -45,9 +45,6 @@
                                 <div class="row">
                                     <div class="col"><label class="col-form-label">Publicaciones: @Model.persona.CantidadPublicacion</label></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col"><label class="col-form-label">Mascotas: 0</label></div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -76,13 +73,23 @@
                                     <div class="text-end">
                                         @if (publicaciones.FKPER_RealizaPublicacion != usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
                                         {
-                                            <a class="btn btn-primary" role="button"
+                                            <a asp-controller="Organizacion" asp-action="Formulario" class="btn btn-primary" role="button"
                                                style="border-radius: 20px;">Adoptar</a>
                                         }
-                                        else
+                                        else if(publicaciones.FKPER_RealizaPublicacion == usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
                                         {
                                             <a class="btn btn-secondary" role="button"
                                                style="border-radius: 20px;" disabled>Adoptar</a>
+                                        }
+                                        else if (publicaciones.FKTIPUBLI_ID != usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
+                                        {
+                                            <a class="btn btn-primary" role="button"
+                                               style="border-radius: 20px;">pedir</a>
+                                        }
+                                        else if (publicaciones.FKTIPUBLI_ID == usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
+                                        {
+                                            <a class="btn btn-secondary" role="button"
+                                               style="border-radius: 20px;" disabled>Pedir</a>
                                         }
                                     </div>
                                 </div>

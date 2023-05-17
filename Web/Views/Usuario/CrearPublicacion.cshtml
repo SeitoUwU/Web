@@ -35,23 +35,23 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><input required asp-for="mascota.MASC_Nombre" class="form-control" type="text" placeholder="Nombre" /></td>
-                                                    <td><input required asp-for="mascota.MASC_Edad" class="form-control" type="number" placeholder="Edad" min="0" /></td>
+                                                    <td><input  asp-for="mascota.MASC_Nombre" class="form-control" type="text" placeholder="Nombre" /></td>
+                                                    <td><input  asp-for="mascota.MASC_Edad" class="form-control" type="number" placeholder="Edad" min="0" /></td>
                                                     <td>
-                                                        <select required id="tipoMascota" asp-items="ViewBag.tipoMascotas" class="form-select text-center">
+                                                        <select  id="tipoMascota" asp-items="ViewBag.tipoMascotas" class="form-select text-center">
                                                             <option style="display: none;" selected>Tipo mascota</option>
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select required id="TipoVacunas" asp-items="ViewBag.tipoVacunas" class="form-select">
+                                                        <select  id="TipoVacunas" asp-items="ViewBag.tipoVacunas" class="form-select">
                                                             <option style="display: none;" selected>Tipo vacuna</option>
                                                         </select>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><textarea required asp-for="mascota.MASC_Descripcion" class="form-control" placeholder="Descripcion"></textarea></td>
+                                                    <td><textarea  asp-for="mascota.MASC_Descripcion" class="form-control" placeholder="Descripcion"></textarea></td>
                                                     <td>
-                                                        <select required asp-for="mascota.FKGENMASC_ID" asp-items="ViewBag.generoMascotas" class="form-select text-center">
+                                                        <select  asp-for="mascota.FKGENMASC_ID" asp-items="ViewBag.generoMascotas" class="form-select text-center">
                                                             <option style="display: none;" selected>Genero mascota</option>
                                                         </select>
                                                     </td>
@@ -68,27 +68,27 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <select required asp-for="mascota.FKCARAC_ID" asp-items="ViewBag.caracteristicas" class="form-select text-center">
+                                                        <select  asp-for="mascota.FKCARAC_ID" asp-items="ViewBag.caracteristicas" class="form-select text-center">
                                                             <option style="display: none;" selected>Caracteristicas</option>
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select required asp-for="cirugia.FKTIPCIRU_ID" asp-items="ViewBag.tipoCirugias" class="form-select">
+                                                        <select  asp-for="cirugia.FKTIPCIRU_ID" asp-items="ViewBag.tipoCirugias" class="form-select">
                                                             <option style="display: none;" selected>Tipo cirugia</option>
                                                         </select>
                                                     </td>
                                                     <td>
                                                         <label class="form-label">Fecha de cirugia</label>
-                                                        <input required asp-for="cirugia.CIRU_FechaCirugia" class="form-control" type="date" />
+                                                        <input  asp-for="cirugia.CIRU_FechaCirugia" class="form-control" type="date" />
                                                     </td>
                                                     <td>
                                                         <label class="form-label">Fecha de aplicaión vacuna</label>
-                                                        <input required asp-for="mascTieneVac.MASCTIENVAC_FechaAplicacion" class="form-control" type="date" />
+                                                        <input  asp-for="mascTieneVac.MASCTIENVAC_FechaAplicacion" class="form-control" type="date" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <select required id="tipoAlergia" asp-items="ViewBag.tipoAlergias" class="form-select">
+                                                        <select  id="tipoAlergia" asp-items="ViewBag.tipoAlergias" class="form-select">
                                                             <option style="display: none;" selected>Tipo alergia</option>
                                                         </select>
                                                     </td>
@@ -98,20 +98,20 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <select required asp-for="MascTieneAler.FKTIPTRAT_ID" asp-items="ViewBag.tipoTratamientos" class="form-select">
+                                                        <select  asp-for="MascTieneAler.FKTIPTRAT_ID" asp-items="ViewBag.tipoTratamientos" class="form-select">
                                                             <option style="display: none" selected>Tipo tratamiento</option>
                                                         </select>
                                                     </td>
-                                                    <td><textarea required asp-for="MascTieneAler.MASCTIENALER_Tratamiento" placeholder="Tratamiento" class="form-control"></textarea></td>
+                                                    <td><textarea  asp-for="MascTieneAler.MASCTIENALER_Tratamiento" placeholder="Tratamiento" class="form-control"></textarea></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
                                                         <label class="form-label">Fecha inicio tratamiento</label>
-                                                        <input required asp-for="MascTieneAler.MASCTIENALER_FechaInicioTratamiento" class="form-control" type="date" />
+                                                        <input  asp-for="MascTieneAler.MASCTIENALER_FechaInicioTratamiento" class="form-control" type="date" />
                                                     </td>
                                                     <td>
                                                         <label class="form-label">Fecha fin tratamiento</label>
-                                                        <input required asp-for="MascTieneAler.MASCTIENALER_FechaFinTratamiento" class="form-control" type="date" />
+                                                        <input  asp-for="MascTieneAler.MASCTIENALER_FechaFinTratamiento" class="form-control" type="date" />
                                                     </td>
                                                     <td><input  id="input1" type="file" /></td>
                                                     <td><img id="img1" style="width: 100%;height: 100%;" /></td>
@@ -137,13 +137,13 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><input required asp-for="elementos.ELEM_Nombre" placeholder="Nombre del articulo" class="form-control" type="text" /></td>
-                                                    <td><textarea required asp-for="elementos.ELEM_Descripcion" placeholder="Descripcion del articulo" class="form-control"></textarea></td>
+                                                    <td><input  asp-for="elementos.ELEM_Nombre" placeholder="Nombre del articulo" class="form-control" type="text" /></td>
+                                                    <td><textarea  asp-for="elementos.ELEM_Descripcion" placeholder="Descripcion del articulo" class="form-control"></textarea></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input required asp-for="elementos.ELEM_Valor" placeholder="valor" class="form-control" type="number" /></td>
+                                                    <td><input  asp-for="elementos.ELEM_Valor" placeholder="valor" class="form-control" type="number" /></td>
                                                     <td>
-                                                        <select required asp-for="elementos.FKTIPELEM_ID" asp-items="ViewBag.tipoElementos" class="form-select">
+                                                        <select  asp-for="elementos.FKTIPELEM_ID" asp-items="ViewBag.tipoElementos" class="form-select">
                                                             <option style="display:none;">Tipo elemento</option>
                                                         </select>
                                                     </td>
@@ -181,11 +181,11 @@
         selec.addEventListener('change', function () {
             var valor = selec.value;
             switch (valor) {
-                case '2':
+                case '1':
                     formularioUno.classList.toggle('d-none', false);
                     formularioDos.classList.toggle('d-none', true);
                     break;
-                case '3':
+                case '2':
                     formularioDos.classList.toggle('d-none', false);
                     formularioUno.classList.toggle('d-none', true);
                     break;
