@@ -9,6 +9,9 @@ namespace Web.Datos
         private readonly MySqlConnection connection;
         private string cookie;
 
+        public UsuarioDatos()
+        {}
+
         public UsuarioDatos(MySqlConnection connection)
         {
             this.connection = connection;
@@ -69,7 +72,7 @@ namespace Web.Datos
         public List<PublicacionModel> listarPublicaciones()
         {
             connection.Open();
-            String sql = "select PUBLI_Titulo,PUBLI_Descripcion from publicacion where PUBLI_Estado = true";
+            String sql = "select PUBLI_Titulo,PUBLI_Descripcion, FKPER_RealizaPublicacion from publicacion where PUBLI_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, connection);
             MySqlDataReader reader = command.ExecuteReader();
             List<PublicacionModel> listaPublicaciones = new List<PublicacionModel>();
@@ -78,6 +81,7 @@ namespace Web.Datos
                 PublicacionModel publi = new PublicacionModel();
                 publi.PUBLI_Titulo = reader.GetString(0);
                 publi.PUBLI_Descripcion = reader.GetString(1);
+                publi.FKPER_RealizaPublicacion = reader.GetInt32(2);
                 listaPublicaciones.Add(publi);
             }
             connection.Close();
@@ -170,7 +174,7 @@ namespace Web.Datos
             connection.Close();
             return true;
         }
-        private int ObtenerIdPersonaPorCorreo(string correo)
+        public int ObtenerIdPersonaPorCorreo(string correo)
         {
             var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
             var configuration = builder.Build();
