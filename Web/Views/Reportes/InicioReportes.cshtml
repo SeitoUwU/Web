@@ -1,0 +1,74 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Linq
+@using System.Web
+@using System.Text.RegularExpressions
+@using System.Net
+@using System.IO
+@using iTextSharp.text
+@using iTextSharp.text.pdf
+@using iTextSharp.text.html
+@using iTextSharp.text.html.simpleparser
+@using System.IO
+@using iTextSharp.text
+@using iTextSharp.text.pdf
+@using iTextSharp.tool.xml
+
+<div class="container py-4 py-xl-5">
+    <div class="row mb-5">
+        <div class="col-md-8 col-xl-6 text
+-center mx-auto">
+            <h2>Reportes</h2>
+            <p></p>
+        </div>
+    </div>
+    <form asp-action="GenerarPDF" asp-controller="Reportes" method="post">
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <p class="text-primary card-text mb-0">Article</p>
+                        <h4 class="card-title">Reportes de cantidad por fechas </h4>
+                        <p class="card-text"></p>
+                        <div class="d-flex">
+                            <button type="submit" onclick="generarPDF()">Generar PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="contenido"></div>
+<script>
+    var vista;
+
+    function generarPDF() {
+        // Obtener el contenido HTML del formulario en una cadena
+        fetch('/Plantillas/formUno.html')     
+            .then(response => response.text())
+            .then(html => {
+                vista = html;
+                mostrarVista();
+            })
+            .catch(error => {
+                console.error('Error al cargar la vista:', error);
+            });
+    }
+
+    function mostrarVista() {
+        // Resto del código...
+
+        // Crear una solicitud AJAX para enviar el contenido HTML al código C#
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/GenerarPDF', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+            // Resto del código...
+        };
+
+        // Enviar el contenido HTML como datos de la solicitud AJAX
+        xhr.send('html=' + encodeURIComponent(vista));
+    }
+</script>
