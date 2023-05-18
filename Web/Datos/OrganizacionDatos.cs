@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Web.Models;
 
 namespace Web.Datos
 {
@@ -9,6 +10,12 @@ namespace Web.Datos
         public OrganizacionDatos(MySqlConnection connection)
         {
             this.connection = connection;
+        }
+
+        public Boolean insertarFormulario(FormularioModel formulario)
+        {
+
+            return false;
         }
     }
 }

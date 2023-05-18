@@ -1,3 +1,4 @@
+using Microsoft.Extensions.FileProviders;
 using MySql.Data.MySqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,13 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Plantillas")),
+    RequestPath = "/Plantillas"
+});
+
 
 app.MapControllerRoute(
     name: "default",

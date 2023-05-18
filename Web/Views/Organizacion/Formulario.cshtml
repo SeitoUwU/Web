@@ -1,4 +1,5 @@
-﻿@{
+﻿@model FormularioModel
+@{
     Layout = "_LayoutUsuario";
 }
 <section class="text-center" style="margin-top: 10px;margin-right: 50px;margin-bottom: 10px;margin-left: 50px;">
@@ -7,53 +8,56 @@
             <div>
                 <h1>Formulario</h1>
                 <div>
-                    <div class="container" style="margin-bottom: 10px;">
-                        <div class="row">
-                            <div class="col-md-3"><input type="tel" placeholder="Numero telefonico" style="margin-bottom: 10px;" /></div>
-                            <div class="col-md-3"><textarea placeholder="Motivo adpcion" style="margin-bottom: 10px;"></textarea></div>
-                            <div class="col-md-3"><label class="form-label" style="margin-bottom: 10px;">¿Cuántas personas viven en su casa?</label><input type="number" min="0" placeholder="Ingrese cantidad" style="margin-bottom: 10px;" /></div>
-                            <div class="col-md-3">
-                                <label class="form-label" style="margin-bottom: 10px;">¿Su casa es segura?</label>
-                                <div>
-                                    <select style="margin-bottom: 10px;">
-                                        <option selected>si</option>
-                                        <option value="13">This is item 2</option>
+                    <form asp-controller="Organizacion">
+                        <div class="container" style="margin-bottom: 10px;">
+                            <div class="row">
+                                <div class="col-md-3"><input asp-for="FOR_Contacto" type="tel" placeholder="Numero telefonico" style="margin-bottom: 10px;" /></div>
+                                <div class="col-md-3"><textarea asp-for="FOR_MotivoAdopcion" placeholder="Motivo adpcion" style="margin-bottom: 10px;"></textarea></div>
+                                <div class="col-md-3"><label class="form-label" style="margin-bottom: 10px;">¿Cuántas personas viven en su casa?</label><input asp-for="FOR_CantidadPersonasVivienda" type="number" min="0" placeholder="Ingrese cantidad" style="margin-bottom: 10px;" /></div>
+                                <div class="col-md-3">
+                                    <label class="form-label" style="margin-bottom: 10px;">¿Su casa es segura?</label>
+                                    <div>
+                                        <select asp-for="FOR_CasaSegura" style="margin-bottom: 10px;">
+                                            <option style="display:none" selected>---</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" style="margin-bottom: 10px;">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="form-label" style="margin-bottom: 10px;">¿En su casa alguien sufre de alergias?</label>
+                                    <div>
+                                        <select asp-for="FOR_AlergiaEnCasa" style="margin-bottom: 10px;">
+                                            <option style="display:none" selected>---</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" style="margin-bottom: 10px;">¿Alguien sufre de alguna enfermedad respiratoria en su casa?</label>
+                                    <div>
+                                        <select asp-for="FOR_EnfermedadesRespiratoriasEnCasa" style="margin-bottom: 10px;">
+                                            <option style="display:none" selected>---</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3"><input asp-for="FOR_UbicacionCasa" type="text" placeholder="Ubicacion vivienda" style="margin-bottom: 10px;" /></div>
+                                <div class="col-md-3">
+                                    <select asp-for="FKTIPVIVI_ID" asp-items="ViewBag.tipoVivienda" style="margin-bottom: 10px;">
+                                        <option style="display: none;" selected>Tipo vivienda</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="container" style="margin-bottom: 10px;">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label class="form-label" style="margin-bottom: 10px;">¿En su casa alguien sufre de alergias?</label>
-                                <div>
-                                    <select style="margin-bottom: 10px;">
-                                        <option selected>si</option>
-                                        <option value="13">This is item 2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label" style="margin-bottom: 10px;">¿Alguien sufre de alguna enfermedad respiratoria en su casa?</label>
-                                <div>
-                                    <select style="margin-bottom: 10px;">
-                                        <option selected>si</option>
-                                        <option value="13">This is item 2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3"><input type="text" placeholder="Ubicacion vivienda" style="margin-bottom: 10px;" /></div>
-                            <div class="col-md-3">
-                                <select style="margin-bottom: 10px;">
-                                    <option value="12" selected>Tipo vivienda</option>
-                                    <option value="13">This is item 2</option>
-                                    <option value="14">This is item 3</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-end"><button class="btn btn-success" type="button" style="border-radius: 20px;">Postular</button></div>
+                        <div class="text-end"><button class="btn btn-success" type="button" style="border-radius: 20px;">Postular</button></div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -17,5 +17,6 @@ namespace Web.Models
         public int FKPER_Llena { get; set; }
         public int FKMASC_ID { get; set; }
         public int FKTIPVIVI_ID { get; set; }
+        public int FKPUBLI_ID { get; set; }
     }
 }
