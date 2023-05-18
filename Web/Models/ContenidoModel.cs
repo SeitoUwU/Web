@@ -17,6 +17,7 @@
         public MascTieneVacModel mascTieneVac { get; set; } = null!;
         public MascTieneAlerModel MascTieneAler { get; set; } = null!;
         public CirugiaModel cirugia { get; set; } = null!;
+        public List<PerRegistraMascModel>? perregistraMasc { get; set; }
 
     }
 }

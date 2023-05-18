@@ -20,11 +20,9 @@ namespace Web.Controllers
 
         public ActionResult InicioReportes()
         {
-            List<ContenidoModel> contenidoModel = new List<ContenidoModel>();
+            ContenidoModel contenidoModel = new ContenidoModel();
             ReportesDatos reportesDatos = new ReportesDatos(connection);
-            PerRegistraMascModel perRegistraMascModel = new PerRegistraMascModel();
-            MascotaModel mascotaModel = new MascotaModel();
-            contenidoModel = reportesDatos.ReportesMascotasporFecha(perRegistraMascModel, mascotaModel);
+            contenidoModel.perregistraMasc= reportesDatos.ReportesMascotasporFecha();
             return View(contenidoModel);
         }
 

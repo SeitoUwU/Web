@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.AspNetCore.Identity;
+using MySql.Data.MySqlClient;
 using NuGet.Protocol.Plugins;
 using System.Data;
 using Web.Models;
@@ -13,9 +14,10 @@ namespace Web.Datos
         {
             this.connection = connection;
         }
-        public ContenidoModel ReportesMascotasporFecha(PerRegistraMascModel persona, MascotaModel mascota)
+        public List<PerRegistraMascModel> ReportesMascotasporFecha()
         {
-        
+            List<PerRegistraMascModel> list = new List<PerRegistraMascModel>();
+
             try
             {
                 using (connection)
@@ -26,30 +28,19 @@ namespace Web.Datos
                         command.CommandType = CommandType.StoredProcedure;
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
+                           
                             while (reader.Read())
                             {
+                                PerRegistraMascModel  persona = new PerRegistraMascModel();
+                                persona.PERREGISMASC_ID = reader.GetInt32(reader.GetOrdinal("PERREGISMASC_ID"));
+                                persona.PERREGISMASC_FechaRegistro = reader.GetString(reader.GetOrdinal("PERREGISMASC_FechaRegistro"));
+                                persona.FKMASC_ID = reader.GetInt32(reader.GetOrdinal("FKMASC_ID"));
+                                persona.cantidad_mascotas = reader.GetInt32(3);
+                                list.Add(persona);  
+                          
+                            }
+                            
 
-                                list.Add(new ContenidoModel
-                                {
-                                    PerRegistraMasc = new List<PerRegistraMascModel>
-                            {
-                                new PerRegistraMascModel
-                                {
-                                    PERREGISMASC_ID = Convert.ToInt32(reader["PERREGISTRAMASC_ID"]),
-                                  PERREGISMASC_FechaRegistro = (DateOnly)reader["PERREGISMASC_FechaRegistro"],
-                                  FKMASC_ID=Convert.ToInt32(reader["FKMASC_ID"])
-
-                            }
-                            },
-                                    mascotas = new List<MascotaModel>
-                            {
-                                new MascotaModel
-                                {
-                                    MASC_ID = Convert.ToInt32(reader["MASC_ID"])
-                                }
-                            }
-                                });
-                            }
                         }
                     }
                 }
