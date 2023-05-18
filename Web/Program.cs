@@ -38,4 +38,13 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=Login}/{id?}");
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "GenerarPDF",
+        pattern: "GenerarPDF",
+        defaults: new { controller = "Reportes", action = "GenerarPDF" }); // Actualiza con el nombre de tu controlador y acción correspondientes
+});
+
+
 app.Run();
