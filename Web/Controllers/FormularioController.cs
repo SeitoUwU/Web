@@ -26,11 +26,12 @@ namespace Web.Controllers
         public ActionResult insertarFormulario(FormularioModel formulario)
         {
             OrganizacionDatos organizacion = new OrganizacionDatos(connection);
+
             UsuarioDatos usuario = new UsuarioDatos(connection);
             string correo = Request.Cookies["CorreoPersona"];
             int id = usuario.ObtenerIdPersonaPorCorreo(correo);
             int.TryParse(Request.Cookies["idPublicacion"], out int idPublicacion);
-            organizacion.insertarFormulario(formulario, id, idPublicacion);
+           organizacion.insertarFormulario(formulario, id, idPublicacion);
             return RedirectToAction("InicioUsuario", "Usuario");
         }
     }

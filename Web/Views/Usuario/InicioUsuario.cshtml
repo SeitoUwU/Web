@@ -7,6 +7,13 @@
 @{
     Layout = "_LayoutUsuario";
 }
+@section stiloAdminHome{
+    <style>
+        body {
+            background-image: url("/Img/gatos.jpg");
+        }
+    </style>
+}
 <section>
     <div class="container" style="margin-top: 15px;margin-left: 1px;">
         <div class="row">
@@ -73,7 +80,7 @@
                                     <div class="text-end">
                                         @if (publicaciones.FKPER_RealizaPublicacion != usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
                                         {
-                                            <a href="/Organizacion/Formulario/@publicaciones.PUBLI_ID" class="btn btn-primary" role="button"
+                                            <a href="/Formulario/Formulario/@publicaciones.PUBLI_ID" class="btn btn-primary" role="button"
                                                style="border-radius: 20px;">Adoptar2</a>
                                         }
                                         else if (publicaciones.FKPER_RealizaPublicacion == usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
