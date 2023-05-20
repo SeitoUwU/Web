@@ -55,15 +55,14 @@ namespace Web.Controllers
             string correo = Request.Cookies["CorreoPersona"];
             UsuarioDatos usuario = new UsuarioDatos(correo, connection);
             usuario.InsertarPublicacionArticulo(contenido);
-
-            return RedirectToAction("InicioUsuario");
+            return RedirectToAction("InicioUsuario", "Usuario");
         }
         public ActionResult CrearPublicacionMascota(ContenidoModel contenido)
         {
             string correo = Request.Cookies["CorreoPersona"];
             UsuarioDatos usuario = new UsuarioDatos(correo, connection);
             usuario.InsertarPublicacionMascota(contenido);
-            return RedirectToAction("InicioUsuario");
+            return RedirectToAction("InicioUsuario", "Usuario");
         }
 
     }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.FileProviders;
 using MySql.Data.MySqlClient;
 
@@ -10,6 +11,20 @@ builder.Services.AddSingleton<MySqlConnection>(new MySqlConnection(builder.Confi
 
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+     .AddCookie(options =>
+     {
+         options.Cookie.Name = "CorreoPersona";
+         options.Cookie.HttpOnly = true;
+         options.ExpireTimeSpan = TimeSpan.FromMinutes(90); // Tiempo de expiración de la cookie
+         options.LoginPath = "/Login/Login"; // Ruta de login si no está autenticado
+     });
+
+builder.Services.AddAuthorization();
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,10 +36,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
+app.UseAuthorization();
 app.UseAuthorization();
 
 app.UseStaticFiles(new StaticFileOptions

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MySql.Data.MySqlClient;
 using Web.Datos;
@@ -15,6 +16,7 @@ namespace Web.Controllers
             this.connection = connection;
         }
         // GET: UsuarioController
+        //[Authorize]
         public ActionResult InicioUsuario()
         {
             var modelo = new ContenidoModel();
