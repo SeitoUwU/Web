@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using Web.Datos;
+using Web.Models;
 
 namespace Web.Controllers
 {

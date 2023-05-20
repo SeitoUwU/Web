@@ -10,7 +10,7 @@ namespace Web.Controllers
     {
         private readonly MySqlConnection connection;
 
-        public AdministradorController(MySqlConnection connection)
+        public TipoElementoController(MySqlConnection connection)
         {
             this.connection = connection;
         }
