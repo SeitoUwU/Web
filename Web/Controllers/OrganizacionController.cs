@@ -13,19 +13,24 @@ namespace Web.Controllers
         {
             this.connection = connection;
         }
-        public ActionResult Formulario()
+        public IActionResult Formulario(int id)
         {
             AdministradorDatos admin = new AdministradorDatos(connection);
             List<TipoViviendaModel> tipoVivienda = new List<TipoViviendaModel>();
             tipoVivienda = admin.listarTipoVivienda();
             ViewBag.tipoVivienda = new SelectList(tipoVivienda, "TIPVIVI_ID", "TIPVIVI_Vivienda");
+            Response.Cookies.Append("idPublicacion", (id + ""));
             return View();
         }
 
         public ActionResult insertarFormulario(FormularioModel formulario)
         {
             OrganizacionDatos organizacion = new OrganizacionDatos(connection);
-            organizacion.insertarFormulario(formulario);
+            UsuarioDatos usuario = new UsuarioDatos(connection);
+            string correo = Request.Cookies["CorreoPersona"];
+            int id = usuario.ObtenerIdPersonaPorCorreo(correo);
+            int.TryParse(Request.Cookies["idPublicacion"], out int idPublicacion);
+            organizacion.insertarFormulario(formulario, id, idPublicacion);
             return RedirectToAction("InicioUsuario", "Usuario");
         }
     }

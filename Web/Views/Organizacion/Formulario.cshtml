@@ -11,7 +11,7 @@
                     <form asp-controller="Organizacion">
                         <div class="container" style="margin-bottom: 10px;">
                             <div class="row">
-                                <div class="col-md-3"><input asp-for="FOR_Contacto" type="tel" placeholder="Numero telefonico" style="margin-bottom: 10px;" /></div>
+                                <div class="col-md-3"><input asp-for="FOR_Contacto" type="number" placeholder="Numero telefonico" style="margin-bottom: 10px;" /></div>
                                 <div class="col-md-3"><textarea asp-for="FOR_MotivoAdopcion" placeholder="Motivo adpcion" style="margin-bottom: 10px;"></textarea></div>
                                 <div class="col-md-3"><label class="form-label" style="margin-bottom: 10px;">¿Cuántas personas viven en su casa?</label><input asp-for="FOR_CantidadPersonasVivienda" type="number" min="0" placeholder="Ingrese cantidad" style="margin-bottom: 10px;" /></div>
                                 <div class="col-md-3">
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-end"><button class="btn btn-success" type="button" style="border-radius: 20px;">Postular</button></div>
+                        <div class="text-end"><button asp-action="insertarFormulario" class="btn btn-success" type="submit" style="border-radius: 20px;">Postular</button></div>
                     </form>
                 </div>
             </div>

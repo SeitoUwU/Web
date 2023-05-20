@@ -22,7 +22,7 @@ namespace Web.Controllers
         {
             ContenidoModel contenidoModel = new ContenidoModel();
             ReportesDatos reportesDatos = new ReportesDatos(connection);
-            contenidoModel.perregistraMasc= reportesDatos.ReportesMascotasporFecha();
+            contenidoModel.perregistraMasc = reportesDatos.ReportesMascotasporFecha();
             return View(contenidoModel);
         }
 

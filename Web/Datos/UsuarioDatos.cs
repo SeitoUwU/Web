@@ -72,7 +72,7 @@ namespace Web.Datos
         public List<PublicacionModel> listarPublicaciones()
         {
             connection.Open();
-            String sql = "select PUBLI_Titulo,PUBLI_Descripcion, FKPER_RealizaPublicacion, FKTIPUBLI_ID" +
+            String sql = "select PUBLI_ID, PUBLI_Titulo,PUBLI_Descripcion, FKPER_RealizaPublicacion, FKTIPUBLI_ID" +
                 " from publicacion where PUBLI_Estado = true";
             MySqlCommand command = new MySqlCommand(sql, connection);
             MySqlDataReader reader = command.ExecuteReader();
@@ -80,10 +80,11 @@ namespace Web.Datos
             while (reader.Read())
             {
                 PublicacionModel publi = new PublicacionModel();
-                publi.PUBLI_Titulo = reader.GetString(0);
-                publi.PUBLI_Descripcion = reader.GetString(1);
-                publi.FKPER_RealizaPublicacion = reader.GetInt32(2);
-                publi.FKTIPUBLI_ID = reader.GetInt32(3);
+                publi.PUBLI_ID = reader.GetInt32(0);
+                publi.PUBLI_Titulo = reader.GetString(1);
+                publi.PUBLI_Descripcion = reader.GetString(2);
+                publi.FKPER_RealizaPublicacion = reader.GetInt32(3);
+                publi.FKTIPUBLI_ID = reader.GetInt32(4);
                 listaPublicaciones.Add(publi);
             }
             connection.Close();

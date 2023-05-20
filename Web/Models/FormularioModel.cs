@@ -5,7 +5,7 @@ namespace Web.Models
     public class FormularioModel
     {
         public int FOR_ID { get; set; }
-        public int FOR_Contacto { get; set; } 
+        public long FOR_Contacto { get; set; } 
         public string FOR_MotivoAdopcion { get; set; } = null!;
         public int FOR_CantidadPersonasVivienda { get; set; }
         public int FOR_Estado { get; set; } = 1;

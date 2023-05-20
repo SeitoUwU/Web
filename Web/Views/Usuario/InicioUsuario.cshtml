@@ -73,23 +73,13 @@
                                     <div class="text-end">
                                         @if (publicaciones.FKPER_RealizaPublicacion != usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
                                         {
-                                            <a asp-controller="Organizacion" asp-action="Formulario" class="btn btn-primary" role="button"
-                                               style="border-radius: 20px;">Adoptar</a>
+                                            <a href="/Organizacion/Formulario/@publicaciones.PUBLI_ID" class="btn btn-primary" role="button"
+                                               style="border-radius: 20px;">Adoptar2</a>
                                         }
-                                        else if(publicaciones.FKPER_RealizaPublicacion == usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
+                                        else if (publicaciones.FKPER_RealizaPublicacion == usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
                                         {
                                             <a class="btn btn-secondary" role="button"
                                                style="border-radius: 20px;" disabled>Adoptar</a>
-                                        }
-                                        else if (publicaciones.FKTIPUBLI_ID != usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
-                                        {
-                                            <a class="btn btn-primary" role="button"
-                                               style="border-radius: 20px;">pedir</a>
-                                        }
-                                        else if (publicaciones.FKTIPUBLI_ID == usuarioDatos.ObtenerIdPersonaPorCorreo(cookie))
-                                        {
-                                            <a class="btn btn-secondary" role="button"
-                                               style="border-radius: 20px;" disabled>Pedir</a>
                                         }
                                     </div>
                                 </div>
