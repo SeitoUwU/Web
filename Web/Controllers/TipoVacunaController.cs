@@ -6,11 +6,11 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class TipoVacuna : Controller
+    public class TipoVacunaController : Controller
     {
         private readonly MySqlConnection connection;
 
-        public TipoVacuna(MySqlConnection connection)
+        public TipoVacunaController(MySqlConnection connection)
         {
             this.connection = connection;
         }
