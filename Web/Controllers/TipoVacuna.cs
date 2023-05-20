@@ -1,23 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using MySql.Data.MySqlClient;
+using NuGet.Protocol.Plugins;
 using Web.Datos;
 using Web.Models;
 
 namespace Web.Controllers
 {
-    public class AdministradorController : Controller
+    public class TipoVacuna : Controller
     {
         private readonly MySqlConnection connection;
 
-        public AdministradorController(MySqlConnection connection)
+        public TipoVacuna(MySqlConnection connection)
         {
             this.connection = connection;
         }
-        public ActionResult AdminHome()
+        public ActionResult AdminAgregaTipoVacuna()
         {
-            return View();
+            AdministradorDatos admin = new AdministradorDatos(connection);
+            return View(admin.listarTipoVacuna());
         }
+
         public ActionResult createTipoVacuna(int idTipoVacuna, string nombreTipoVacuna)
         {
             AdministradorDatos admin = new AdministradorDatos(connection);
@@ -58,23 +60,5 @@ namespace Web.Controllers
             admin.actualizarTipoVacuna(tipoVacunaModel);
             return RedirectToAction("AdminActualizaTipoVacuna");
         }
-
-        public ActionResult AdminReportes()
-        {
-            AdministradorDatos admin = new AdministradorDatos(connection);
-            List<PublicacionModel> publicaciones = admin.listarPublicaciones();
-            return View(publicaciones);
-        }
-        
-        [HttpPost]
-        public ActionResult DesactivarPublicacion(int id)
-        {
-            AdministradorDatos admin = new AdministradorDatos(connection);
-            admin.DesactivarPublicacion(id);
-            return RedirectToAction("AdminReportes");
-        }
-
-
-
     }
 }
