@@ -6,10 +6,10 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class OrganizacionController : Controller
+    public class FormularioController : Controller
     {
         private readonly MySqlConnection connection;
-        public OrganizacionController(MySqlConnection connection)
+        public FormularioController(MySqlConnection connection)
         {
             this.connection = connection;
         }
