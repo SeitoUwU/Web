@@ -11,5 +11,6 @@ namespace Web.Models
         public int? PUBLI_Total { get; set; } = null;
         public int FKPER_RealizaPublicacion { get; set; }
         public int FKTIPUBLI_ID { get; set; }
+        public byte[] Imagen_publicacion { get; set; }
     }
 }

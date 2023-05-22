@@ -18,7 +18,6 @@
         public MascTieneAlerModel MascTieneAler { get; set; } = null!;
         public CirugiaModel cirugia { get; set; } = null!;
         public List<PerRegistraMascModel>? perregistraMasc { get; set; }
-
         public byte[] Imagen { get; set; }
 
     }

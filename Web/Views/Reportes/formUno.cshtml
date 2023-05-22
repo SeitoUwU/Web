@@ -1,0 +1,40 @@
+﻿@model List<PerRegistraMascModel>
+
+
+<form method="post" asp-controller="Reportes" enctype="multipart/form-data" style="margin-top: 10px;margin-right: 20px;margin-bottom: 10px;margin-left: 20px;">
+<div style="margin-top: 10px;margin-right: 100px;margin-bottom: 10px;margin-left: 100px;">
+    <div class="table-responsive" style="border-style: solid;">
+        <table class="table">
+            <thead>
+                <tr style="border-style: solid;">
+                    <th class="text-center" colspan="4" style="border: 1px solid var(--bs-table-striped-color);width: 542px;height: 52px;">Reportes</th>
+                </tr>
+                <tr style="border: 1px solid var(--bs-table-striped-color);">
+                    <th>IDENTIFICACION DEPERSONA RESGITRO  </th>
+                    <th>FECHA DE REGISTRO MASCOTAS</th>
+                        <th>IDENTIFICACION DE MASCOTAS</th>
+                    <th>CANTIDAD MASCOTAS</th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach (var perRegistraMascModel in Model)
+                {
+                    <tr style="border: 1px solid var(--bs-black);">
+                        <td>@perRegistraMascModel.FKPER_Registra</td>
+                        <td>@perRegistraMascModel.PERREGISMASC_FechaRegistro</td>
+                        <td>@perRegistraMascModel.FKMASC_ID</td>
+                        <td>@perRegistraMascModel.cantidad_mascotas</td>
+                    </tr>
+                }
+               
+            </tbody>
+        </table>
+    </div>
+</div>
+</form>
+
+
+
+
+
+

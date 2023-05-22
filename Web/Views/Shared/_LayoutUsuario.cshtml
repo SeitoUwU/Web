@@ -30,30 +30,24 @@
                     navigation
                 </span><span class="navbar-toggler-icon"></span>
             </button>
+@*
+                    @if (true)
+            {
+                @await Component.InvokeAsync("MenuD")
+
+            }
+            else
+          {*@
             <div class="collapse navbar-collapse" id="navcol-5">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Datos personales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Datos personales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Datos personales</a>
+                        <a class="nav-link">Inicio</a>
                     </li>
                 </ul>
                 <a class="btn btn-primary ms-md-2"
                    style="border-radius: 20px;background: rgb(255,255,255);color: rgb(0,0,0);">Log Out</a>
             </div>
+           @* }*@
         </div>
     </nav>
     <div class="container">

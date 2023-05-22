@@ -32,6 +32,7 @@ namespace Web
             services.AddControllers();
             
         }
+
     
     }
 }

@@ -1,10 +1,9 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Web.Datos;
 using Web.Models;
+using Rotativa.AspNetCore;
+using NuGet.Protocol.Plugins;
 
 
 namespace Web.Controllers
@@ -23,46 +22,34 @@ namespace Web.Controllers
             ContenidoModel contenidoModel = new ContenidoModel();
             ReportesDatos reportesDatos = new ReportesDatos(connection);
             contenidoModel.perregistraMasc = reportesDatos.ReportesMascotasporFecha();
-            return View(contenidoModel);
+            return View(contenidoModel.perregistraMasc);
         }
-
-        [HttpPost]
-        public ActionResult GenerarPDF(string html)
+        public ActionResult formUno() { 
+            return View(); }
+        public IActionResult GenerarPDF()
         {
-            // Ruta de salida del archivo PDF
-            string outputDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "C:\\ArchivosPDF");
-            string outputFilePath = Path.Combine(outputDirectory, "reportes.pdf");
-
-            // Crear un documento PDF
-            Document document = new Document();
-
-            try
+            ContenidoModel contenidoModel = new ContenidoModel();
+            ReportesDatos reportesDatos = new ReportesDatos(connection);
+            contenidoModel.perregistraMasc = reportesDatos.ReportesMascotasporFecha();
+            return new ViewAsPdf("formUno", contenidoModel.perregistraMasc)
             {
-                // Inicializar el escritor PDF
-                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(outputFilePath, FileMode.Create));
+                FileName = "ReporteMascotas" + DateTime.Now.ToString("dd/MM/yyyy") + ".pdf",
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageSize = Rotativa.AspNetCore.Options.Size.A4
 
-                // Abrir el documento
-                document.Open();
 
-                // Convertir el contenido HTML a PDF
-                using (var htmlStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(html)))
-                {
-                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlStream, null, System.Text.Encoding.UTF8, FontFactory.FontImp);
-                }
-            }
-            finally
-            {
-                // Cerrar el documento
-                document.Close();
-            }
+            };
 
-            // Devolver el archivo PDF generado
-            return File(outputFilePath, "application/pdf", "formulario.pdf");
+
+
         }
-
-
-
 
 
     }
+
+
+
+
 }
+
+

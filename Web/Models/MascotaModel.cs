@@ -13,7 +13,8 @@ namespace Web.Models
         public int FKPUBLI_ID { get; set; }
         public int FKCARAC_ID { get; set; }
         public int FKTIPRAZA_ID { get; set; }
+        public byte[] Imagen_mascota { get; set; }
 
-      
+
     }
 }

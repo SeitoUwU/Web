@@ -1,7 +1,7 @@
 ﻿@model ContenidoModel
-@{
+@*@{
     Layout = "_LayoutUsuario";
-}
+}*@
 <form method="post" asp-controller="Publicacion" enctype="multipart/form-data" style="margin-top: 10px;margin-right: 20px;margin-bottom: 10px;margin-left: 20px;">
     <div class="card" style="border-radius: 20px;">
         <div class="card-body">
@@ -35,23 +35,23 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><input  asp-for="mascota.MASC_Nombre" class="form-control" type="text" placeholder="Nombre" /></td>
-                                                    <td><input  asp-for="mascota.MASC_Edad" class="form-control" type="number" placeholder="Edad" min="0" /></td>
+                                                    <td><input asp-for="mascota.MASC_Nombre" class="form-control" type="text" placeholder="Nombre" /></td>
+                                                    <td><input asp-for="mascota.MASC_Edad" class="form-control" type="number" placeholder="Edad" min="0" /></td>
                                                     <td>
-                                                        <select  id="tipoMascota" asp-items="ViewBag.tipoMascotas" class="form-select text-center">
+                                                        <select id="tipoMascota" asp-items="ViewBag.tipoMascotas" class="form-select text-center">
                                                             <option style="display: none;" selected>Tipo mascota</option>
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select  id="TipoVacunas" asp-items="ViewBag.tipoVacunas" class="form-select">
+                                                        <select id="TipoVacunas" asp-items="ViewBag.tipoVacunas" class="form-select">
                                                             <option style="display: none;" selected>Tipo vacuna</option>
                                                         </select>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><textarea  asp-for="mascota.MASC_Descripcion" class="form-control" placeholder="Descripcion"></textarea></td>
+                                                    <td><textarea asp-for="mascota.MASC_Descripcion" class="form-control" placeholder="Descripcion"></textarea></td>
                                                     <td>
-                                                        <select  asp-for="mascota.FKGENMASC_ID" asp-items="ViewBag.generoMascotas" class="form-select text-center">
+                                                        <select asp-for="mascota.FKGENMASC_ID" asp-items="ViewBag.generoMascotas" class="form-select text-center">
                                                             <option style="display: none;" selected>Genero mascota</option>
                                                         </select>
                                                     </td>
@@ -68,27 +68,27 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <select  asp-for="mascota.FKCARAC_ID" asp-items="ViewBag.caracteristicas" class="form-select text-center">
+                                                        <select asp-for="mascota.FKCARAC_ID" asp-items="ViewBag.caracteristicas" class="form-select text-center">
                                                             <option style="display: none;" selected>Caracteristicas</option>
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select  asp-for="cirugia.FKTIPCIRU_ID" asp-items="ViewBag.tipoCirugias" class="form-select">
+                                                        <select asp-for="cirugia.FKTIPCIRU_ID" asp-items="ViewBag.tipoCirugias" class="form-select">
                                                             <option style="display: none;" selected>Tipo cirugia</option>
                                                         </select>
                                                     </td>
                                                     <td>
                                                         <label class="form-label">Fecha de cirugia</label>
-                                                        <input  asp-for="cirugia.CIRU_FechaCirugia" class="form-control" type="date" />
+                                                        <input asp-for="cirugia.CIRU_FechaCirugia" class="form-control" type="date" />
                                                     </td>
                                                     <td>
                                                         <label class="form-label">Fecha de aplicaión vacuna</label>
-                                                        <input  asp-for="mascTieneVac.MASCTIENVAC_FechaAplicacion" class="form-control" type="date" />
+                                                        <input asp-for="mascTieneVac.MASCTIENVAC_FechaAplicacion" class="form-control" type="date" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <select  id="tipoAlergia" asp-items="ViewBag.tipoAlergias" class="form-select">
+                                                        <select id="tipoAlergia" asp-items="ViewBag.tipoAlergias" class="form-select">
                                                             <option style="display: none;" selected>Tipo alergia</option>
                                                         </select>
                                                     </td>
@@ -98,23 +98,37 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <select  asp-for="MascTieneAler.FKTIPTRAT_ID" asp-items="ViewBag.tipoTratamientos" class="form-select">
+                                                        <select asp-for="MascTieneAler.FKTIPTRAT_ID" asp-items="ViewBag.tipoTratamientos" class="form-select">
                                                             <option style="display: none" selected>Tipo tratamiento</option>
                                                         </select>
                                                     </td>
-                                                    <td><textarea  asp-for="MascTieneAler.MASCTIENALER_Tratamiento" placeholder="Tratamiento" class="form-control"></textarea></td>
+                                                    <td><textarea asp-for="MascTieneAler.MASCTIENALER_Tratamiento" placeholder="Tratamiento" class="form-control"></textarea></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
                                                         <label class="form-label">Fecha inicio tratamiento</label>
-                                                        <input  asp-for="MascTieneAler.MASCTIENALER_FechaInicioTratamiento" class="form-control" type="date" />
+                                                        <input asp-for="MascTieneAler.MASCTIENALER_FechaInicioTratamiento" class="form-control" type="date" />
                                                     </td>
                                                     <td>
                                                         <label class="form-label">Fecha fin tratamiento</label>
-                                                        <input  asp-for="MascTieneAler.MASCTIENALER_FechaFinTratamiento" class="form-control" type="date" />
+                                                        <input asp-for="MascTieneAler.MASCTIENALER_FechaFinTratamiento" class="form-control" type="date" />
                                                     </td>
-                                                    <td><input  id="input1" type="file" /></td>
-                                                    <td><img id="img1" style="width: 100%;height: 100%;" /></td>
+
+                                            
+                                                    <td><input type="file" width="200" height="200" name="fotoMasc"></td>
+                                                    <td><img style="object-fit: cover; width: 100%;height: 100%;"></td>
+                                                    <script>
+                                                        var input = document.querySelector('input[type=file]');
+                                                        var preview = document.querySelector('img');
+                                                        input.addEventListener('change', function (event) {
+                                                            var file = event.target.files[0];
+                                                            var reader = new FileReader();
+                                                            reader.onload = function (event) {
+                                                                preview.src = event.target.result;
+                                                            };
+                                                            reader.readAsDataURL(file);
+                                                        });
+                                                    </script>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -137,13 +151,13 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><input  asp-for="elementos.ELEM_Nombre" placeholder="Nombre del articulo" class="form-control" type="text" /></td>
-                                                    <td><textarea  asp-for="elementos.ELEM_Descripcion" placeholder="Descripcion del articulo" class="form-control"></textarea></td>
+                                                    <td><input asp-for="elementos.ELEM_Nombre" placeholder="Nombre del articulo" class="form-control" type="text" /></td>
+                                                    <td><textarea asp-for="elementos.ELEM_Descripcion" placeholder="Descripcion del articulo" class="form-control"></textarea></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input  asp-for="elementos.ELEM_Valor" placeholder="valor" class="form-control" type="number" /></td>
+                                                    <td><input asp-for="elementos.ELEM_Valor" placeholder="valor" class="form-control" type="number" /></td>
                                                     <td>
-                                                        <select  asp-for="elementos.FKTIPELEM_ID" asp-items="ViewBag.tipoElementos" class="form-select">
+                                                        <select asp-for="elementos.FKTIPELEM_ID" asp-items="ViewBag.tipoElementos" class="form-select">
                                                             <option style="display:none;">Tipo elemento</option>
                                                         </select>
                                                     </td>
@@ -152,11 +166,20 @@
                                                 <tr>
                                                     <td>
                                                         <label class="form-label">Foto del artículo</label>
-                                                        <input id="input2" type="file" name="imagen" class="form-control-file" accept="image/*" />
-                                                    </td>
-                                                    <td>
-                                                        <img id="img2" style="width: 100%; height: 100%;" />
-                                                    </td>
+                                                    <td><input type="file" width="200" height="200" name="fotoEleme"></td>
+                                                    <td><img style="object-fit: cover; width: 100%;height: 100%;"></td>
+                                                    <script>
+                                                        var input = document.querySelector('input [type=file]');
+                                                        var preview = document.querySelector('img ');
+                                                        input.addEventListener('change', function (event) {
+                                                            var file = event.target.files[0];
+                                                            var reader = new FileReader();
+                                                            reader.onload = function (event) {
+                                                                preview.src = event.target.result;
+                                                            };
+                                                            reader.readAsDataURL(file);
+                                                        });
+                                                    </script>
                                                 </tr>
 
                                                 </tr>
@@ -175,92 +198,67 @@
         </div>
     </div>
 </form>
-@section scripts{
+<script>
+    var selec = document.getElementById('selecTipPubli');
+    var formularioUno = document.getElementById('formularioMascota');
+    var formularioDos = document.getElementById('formularioArticulos');
+    selec.addEventListener('change', function () {
+        var valor = selec.value;
+        switch (valor) {
+            case '1': //Aca debes verificar el id del tipo publicacion y modificarlo a corde a lo que quieres mostrar
+                formularioUno.classList.toggle('d-none', false);
+                formularioDos.classList.toggle('d-none', true);
+                break;
+            case '2': //Lo mismo que arriba
+                formularioDos.classList.toggle('d-none', false);
+                formularioUno.classList.toggle('d-none', true);
+                break;
+        }
+    });
+   
 
-    <script>
-        var selec = document.getElementById('selecTipPubli');
-        var formularioUno = document.getElementById('formularioMascota');
-        var formularioDos = document.getElementById('formularioArticulos');
-        selec.addEventListener('change', function () {
-            var valor = selec.value;
-            switch (valor) {
-                case '1':
-                    formularioUno.classList.toggle('d-none', false);
-                    formularioDos.classList.toggle('d-none', true);
-                    break;
-                case '2':
-                    formularioDos.classList.toggle('d-none', false);
-                    formularioUno.classList.toggle('d-none', true);
-                    break;
-            }
-        });
-        var input1 = document.getElementById('input1');
-        var img1 = document.getElementById('img1');
-
-        var input2 = document.getElementById('input2');
-        var img2 = document.getElementById('img2');
-
-        input1.addEventListener('change', function (event) {
-            var file = event.target.files[0];
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                img1.src = event.target.result;
-            }
-            reader.readAsDataURL(file);
-        });
-
-        input2.addEventListener('change', function (event) {
-            var file = event.target.files[0];
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                img2.src = event.target.result;
-            }
-            reader.readAsDataURL(file);
-        });
-
-        $(document).ready(function () {
-            $('#tipoMascota').on('change', function () {
-                var valor = $(this).val();
-                $.ajax({
-                    url: '/Usuario/cargarTipoRazas',
-                    type: 'GET',
-                    data: { id: valor },
-                    success: function (result) {
-                        var selectRazas = $(result).find('#razaMascota');
-                        $('#divRazas').html(selectRazas);
-                    }
-                });
+    $(document).ready(function () {
+        $('#tipoMascota').on('change', function () {
+            var valor = $(this).val();
+            $.ajax({
+                url: '/Usuario/cargarTipoRazas',
+                type: 'GET',
+                data: { id: valor },
+                success: function (result) {
+                    var selectRazas = $(result).find('#razaMascota');
+                    $('#divRazas').html(selectRazas);
+                }
             });
         });
+    });
 
-        $(document).ready(function () {
-            $('#TipoVacunas').on('change', function () {
-                var valor = $(this).val();
-                $.ajax({
-                    url: '/Usuario/cargarVacunas',
-                    type: 'GET',
-                    data: { id: valor },
-                    success: function (result) {
-                        var segundoSelect = $(result).find('#vacunas');
-                        $('#divVacunas').html(segundoSelect);
-                    }
-                });
+    $(document).ready(function () {
+        $('#TipoVacunas').on('change', function () {
+            var valor = $(this).val();
+            $.ajax({
+                url: '/Usuario/cargarVacunas',
+                type: 'GET',
+                data: { id: valor },
+                success: function (result) {
+                    var segundoSelect = $(result).find('#vacunas');
+                    $('#divVacunas').html(segundoSelect);
+                }
             });
         });
+    });
 
-        $(document).ready(function () {
-            $('#tipoAlergia').on('change', function () {
-                var valor = $(this).val();
-                $.ajax({
-                    url: '/Usuario/cargarAlergias',
-                    type: 'GET',
-                    data: { id: valor },
-                    success: function (result) {
-                        var selectAlergias = $(result).find('#alergiasMascota');
-                        $('#divAlergias').html(selectAlergias);
-                    }
-                });
+    $(document).ready(function () {
+        $('#tipoAlergia').on('change', function () {
+            var valor = $(this).val();
+            $.ajax({
+                url: '/Usuario/cargarAlergias',
+                type: 'GET',
+                data: { id: valor },
+                success: function (result) {
+                    var selectAlergias = $(result).find('#alergiasMascota');
+                    $('#divAlergias').html(selectAlergias);
+                }
             });
         });
-    </script>
-}
+    });
+</script>

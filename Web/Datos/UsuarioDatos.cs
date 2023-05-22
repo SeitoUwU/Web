@@ -138,6 +138,7 @@ namespace Web.Datos
             command1.Parameters.AddWithValue("@descripcion", contenido.elementos.ELEM_Descripcion);
             command1.Parameters.AddWithValue("@valor", contenido.elementos.ELEM_Valor);
             command1.Parameters.AddWithValue("@tipoElemento", contenido.elementos.FKTIPELEM_ID);
+            command1.Parameters.AddWithValue("@fotoelemento", contenido.elementos.Imagen_elemento);
 
             command1.ExecuteNonQuery();
 
@@ -171,6 +172,9 @@ namespace Web.Datos
                 command.Parameters.AddWithValue("@fechaFinTratamiento", contenido.MascTieneAler.MASCTIENALER_FechaFinTratamiento);
                 command.Parameters.AddWithValue("@fkAlergiaTratamiento", contenido.MascTieneAler.FKALER_ID);
                 command.Parameters.AddWithValue("@fkTipoTratamiento", contenido.MascTieneAler.FKTIPTRAT_ID);
+               command.Parameters.AddWithValue("@fotomascota", contenido.mascota.Imagen_mascota);
+              
+
 
                 command.ExecuteNonQuery();
             }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Web.Data;
 
+
 namespace Web.Componets
 {
     public class MenuD : ViewComponent

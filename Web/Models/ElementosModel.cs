@@ -11,5 +11,6 @@ namespace Web.Models
         public int ELEM_Estado { get; set; } = 1;
         public int FKPUBLI_ID { get; set; }
         public int FKTIPELEM_ID { get; set; }
+        public byte[] Imagen_elemento { get; set; }
     }
 }

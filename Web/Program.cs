@@ -35,6 +35,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
+
+app.UseStaticFiles();
+
+
+
 app.UseHttpsRedirection();
 
 app.UseRouting();
@@ -44,24 +51,16 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseAuthorization();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Plantillas")),
-    RequestPath = "/Plantillas"
-});
-
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=Login}/{id?}");
+IWebHostEnvironment env = app.Environment;
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "GenerarPDF",
-        pattern: "GenerarPDF",
-        defaults: new { controller = "Reportes", action = "GenerarPDF" }); // Actualiza con el nombre de tu controlador y acción correspondientes
-});
+Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath, "../Rotativa/Windows");
+
+
+
+
 
 
 app.Run();

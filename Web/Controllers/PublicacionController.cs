@@ -15,8 +15,16 @@ namespace Web.Controllers
         {
             this.connection = connection;
         }
-        public ActionResult CrearPublicacion()
+        public ActionResult CrearPublicacion(ContenidoModel contenido, IFormFile imagen)
         {
+            if (imagen != null && imagen.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    imagen.CopyTo(ms);
+                    contenido.Imagen = ms.ToArray();
+                }
+            }
             UsuarioDatos usuario = new UsuarioDatos(connection);
             AdministradorDatos admin = new AdministradorDatos(connection);
             List<TipoPublicacionModel> tipoPublicacion = usuario.listarTipoPublicacion();
@@ -29,6 +37,7 @@ namespace Web.Controllers
             List<TipoAlergiaModel> tipoAlergia = admin.listarTipoAlergia();
             List<TipoTratamientoModel> tipoTratamiento = admin.listarTipoTratamiento();
 
+            
 
             ViewBag.tipoPublicaciones = new SelectList(tipoPublicacion, "TIPUBLI_ID", "TIPUBLI_Tipo");
             ViewBag.tipoElementos = new SelectList(tipoElemento, "TIPELEM_ID", "TIPELEM_Nombre");
@@ -39,26 +48,23 @@ namespace Web.Controllers
             ViewBag.tipoCirugias = new SelectList(tipoCirugia, "TIPCIRU_ID", "TIPCIRU_Nombre");
             ViewBag.tipoAlergias = new SelectList(tipoAlergia, "TIPALER_ID", "TIPALER_Nombre");
             ViewBag.tipoTratamientos = new SelectList(tipoTratamiento, "TIPTRAT_ID", "TIPTRAT_Nombre");
+            
+          
             return View();
         }
 
-        public ActionResult CrearPublicacionElementos(ContenidoModel contenido, IFormFile imagen)
+        public ActionResult CrearPublicacionElementos(ContenidoModel contenido)
         {
-            if (imagen != null && imagen.Length > 0)
-            {
-                using (var ms = new MemoryStream())
-                {
-                    imagen.CopyTo(ms);
-                    contenido.Imagen = ms.ToArray();
-                }
-            }
+           
             string correo = Request.Cookies["CorreoPersona"];
             UsuarioDatos usuario = new UsuarioDatos(correo, connection);
             usuario.InsertarPublicacionArticulo(contenido);
             return RedirectToAction("InicioUsuario", "Usuario");
         }
         public ActionResult CrearPublicacionMascota(ContenidoModel contenido)
+
         {
+           
             string correo = Request.Cookies["CorreoPersona"];
             UsuarioDatos usuario = new UsuarioDatos(correo, connection);
             usuario.InsertarPublicacionMascota(contenido);
