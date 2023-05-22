@@ -1,10 +1,10 @@
 ﻿@model List<Vistas>
 
 
-@foreach (var item in Model)
+@foreach (var Vistas in Model)
 {
     <div class="text-center">
-        <a class="nav-link text-dark" asp-area="" asp-controller="@item.Controlador" asp-action="@item.Accion">@item.nombrevista</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="@Vistas.Controlador" asp-action="@Vistas.Accion">@Vistas.nombrevista</a>
     </div>
 
 }

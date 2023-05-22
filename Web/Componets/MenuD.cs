@@ -29,10 +29,10 @@ namespace Web.Componets
                 using (MySqlConnection cone = new(contexto.Conexion))
                 {
                     cone.Open();
-                    using (MySqlCommand cmd = new("VistaUsuario ", cone))
+                    using (MySqlCommand cmd = new("menu dinamico", cone))
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@identificador", identidi);
+                        cmd.Parameters.AddWithValue("@d_ingresado", identidi);
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {

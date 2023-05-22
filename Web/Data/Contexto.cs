@@ -1,4 +1,6 @@
-﻿namespace Web.Data
+﻿using MySql.Data.MySqlClient;
+
+namespace Web.Data
 {
     public class Contexto
     {
@@ -10,3 +12,10 @@
         }
     }
 }
+
+
+
+
+
+
+
