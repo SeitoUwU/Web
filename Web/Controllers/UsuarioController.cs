@@ -16,7 +16,7 @@ namespace Web.Controllers
             this.connection = connection;
         }
         // GET: UsuarioController
-        //[Authorize]
+        [Authorize]
         public ActionResult InicioUsuario()
         {
             var modelo = new ContenidoModel();

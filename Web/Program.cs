@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.FileProviders;
 using MySql.Data.MySqlClient;
+using Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,17 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<MySqlConnection>(new MySqlConnection(builder.Configuration.GetConnectionString("ConexionMySql")));
+builder.Services.AddSingleton(new Contexto(builder.Configuration.GetConnectionString("ConexionMySql")));
 
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-     .AddCookie(options =>
-     {
-         options.Cookie.Name = "CorreoPersona";
-         options.Cookie.HttpOnly = true;
-         options.ExpireTimeSpan = TimeSpan.FromMinutes(90); // Tiempo de expiración de la cookie
-         options.LoginPath = "/Login/Login"; // Ruta de login si no está autenticado
-     });
+    .AddCookie(o =>
+    {
+        o.LoginPath = "/Usuario/Login";
+    });
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthorization();
 
