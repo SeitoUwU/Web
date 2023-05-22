@@ -138,7 +138,7 @@ namespace Web.Datos
             command1.Parameters.AddWithValue("@descripcion", contenido.elementos.ELEM_Descripcion);
             command1.Parameters.AddWithValue("@valor", contenido.elementos.ELEM_Valor);
             command1.Parameters.AddWithValue("@tipoElemento", contenido.elementos.FKTIPELEM_ID);
-            command1.Parameters.AddWithValue("@fotoelemento", contenido.elementos.Imagen_elemento);
+            //command1.Parameters.AddWithValue("@fotoelemento", contenido.elementos.Imagen_elemento);
 
             command1.ExecuteNonQuery();
 
