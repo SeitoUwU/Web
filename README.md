@@ -1,4 +1,4 @@
-# Web\n
+# Web
 Proyecto de web
 Para ejecutar el proyecto WEB, lo que se necesita usar para su correcto funcionamiento es lo siguiente:
 1: Tener instalada la version Microsoft Visual Studio 2022
