@@ -11,6 +11,12 @@ namespace Web.Componets
         private readonly Contexto contexto;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
+        public MenuD(Contexto contexto, IHttpContextAccessor httpContextAccessor)
+        {
+            this.contexto = contexto;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
 
