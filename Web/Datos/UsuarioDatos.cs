@@ -172,7 +172,7 @@ namespace Web.Datos
                 command.Parameters.AddWithValue("@fechaFinTratamiento", contenido.MascTieneAler.MASCTIENALER_FechaFinTratamiento);
                 command.Parameters.AddWithValue("@fkAlergiaTratamiento", contenido.MascTieneAler.FKALER_ID);
                 command.Parameters.AddWithValue("@fkTipoTratamiento", contenido.MascTieneAler.FKTIPTRAT_ID);
-               command.Parameters.AddWithValue("@fotomascota", contenido.mascota.Imagen_mascota);
+               //command.Parameters.AddWithValue("@fotomascota", contenido.mascota.Imagen_mascota);
               
 
 

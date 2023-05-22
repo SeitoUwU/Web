@@ -115,20 +115,8 @@
                                                     </td>
 
                                             
-                                                    <td><input type="file" width="200" height="200" name="fotoMasc"></td>
+                                                    <td><input type="file" id="fotoMasc width="200" height="200" name="fotoMasc"></td>
                                                     <td><img style="object-fit: cover; width: 100%;height: 100%;"></td>
-                                                    <script>
-                                                        var input = document.querySelector('input[type=file]');
-                                                        var preview = document.querySelector('img');
-                                                        input.addEventListener('change', function (event) {
-                                                            var file = event.target.files[0];
-                                                            var reader = new FileReader();
-                                                            reader.onload = function (event) {
-                                                                preview.src = event.target.result;
-                                                            };
-                                                            reader.readAsDataURL(file);
-                                                        });
-                                                    </script>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -166,20 +154,10 @@
                                                 <tr>
                                                     <td>
                                                         <label class="form-label">Foto del artículo</label>
-                                                    <td><input type="file" width="200" height="200" name="fotoEleme"></td>
+                                                    <td><input type="file" id="fotoEleme" width="200" height="200" name="fotoEleme"></td>
                                                     <td><img style="object-fit: cover; width: 100%;height: 100%;"></td>
-                                                    <script>
-                                                        var input = document.querySelector('input [type=file]');
-                                                        var preview = document.querySelector('img ');
-                                                        input.addEventListener('change', function (event) {
-                                                            var file = event.target.files[0];
-                                                            var reader = new FileReader();
-                                                            reader.onload = function (event) {
-                                                                preview.src = event.target.result;
-                                                            };
-                                                            reader.readAsDataURL(file);
-                                                        });
-                                                    </script>
+                                                   
+
                                                 </tr>
 
                                                 </tr>
@@ -216,6 +194,49 @@
         }
     });
    
+    var input = document.querySelector('#fotoMasc');
+    var preview = document.querySelector('img');
+
+    input.addEventListener('change', function (event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+            preview.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+
+    var input = document.querySelector('#fotoEleme');
+    var preview = document.querySelector('img');
+
+    input.addEventListener('change', function (event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+            preview.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     $(document).ready(function () {
         $('#tipoMascota').on('change', function () {

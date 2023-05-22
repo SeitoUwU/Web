@@ -15,16 +15,9 @@ namespace Web.Controllers
         {
             this.connection = connection;
         }
-        public ActionResult CrearPublicacion(ContenidoModel contenido, IFormFile imagen)
+        public ActionResult CrearPublicacion(ContenidoModel contenido)
         {
-            if (imagen != null && imagen.Length > 0)
-            {
-                using (var ms = new MemoryStream())
-                {
-                    imagen.CopyTo(ms);
-                    contenido.Imagen = ms.ToArray();
-                }
-            }
+           
             UsuarioDatos usuario = new UsuarioDatos(connection);
             AdministradorDatos admin = new AdministradorDatos(connection);
             List<TipoPublicacionModel> tipoPublicacion = usuario.listarTipoPublicacion();
@@ -53,18 +46,34 @@ namespace Web.Controllers
             return View();
         }
 
-        public ActionResult CrearPublicacionElementos(ContenidoModel contenido)
+        public ActionResult CrearPublicacionElementos(ContenidoModel contenido, IFormFile imagen)
         {
-           
+            if (imagen != null && imagen.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    imagen.CopyTo(ms);
+                    contenido.Imagen = ms.ToArray();
+                }
+            }
+
             string correo = Request.Cookies["CorreoPersona"];
             UsuarioDatos usuario = new UsuarioDatos(correo, connection);
             usuario.InsertarPublicacionArticulo(contenido);
             return RedirectToAction("InicioUsuario", "Usuario");
         }
-        public ActionResult CrearPublicacionMascota(ContenidoModel contenido)
+        public ActionResult CrearPublicacionMascota(ContenidoModel contenido, IFormFile imagen)
 
         {
-           
+            if (imagen != null && imagen.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    imagen.CopyTo(ms);
+                    contenido.Imagen = ms.ToArray();
+                }
+            }
+
             string correo = Request.Cookies["CorreoPersona"];
             UsuarioDatos usuario = new UsuarioDatos(correo, connection);
             usuario.InsertarPublicacionMascota(contenido);
