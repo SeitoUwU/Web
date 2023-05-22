@@ -223,26 +223,11 @@
         reader.readAsDataURL(file);
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $(document).ready(function () {
         $('#tipoMascota').on('change', function () {
             var valor = $(this).val();
             $.ajax({
-                url: '/Usuario/cargarTipoRazas',
+                url: '/Publicacion/cargarTipoRazas',
                 type: 'GET',
                 data: { id: valor },
                 success: function (result) {
@@ -257,7 +242,7 @@
         $('#TipoVacunas').on('change', function () {
             var valor = $(this).val();
             $.ajax({
-                url: '/Usuario/cargarVacunas',
+                url: '/Publicacion/cargarVacunas',
                 type: 'GET',
                 data: { id: valor },
                 success: function (result) {
@@ -272,7 +257,7 @@
         $('#tipoAlergia').on('change', function () {
             var valor = $(this).val();
             $.ajax({
-                url: '/Usuario/cargarAlergias',
+                url: '/Publicacion/cargarAlergias',
                 type: 'GET',
                 data: { id: valor },
                 success: function (result) {

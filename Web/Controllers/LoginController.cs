@@ -81,7 +81,7 @@ namespace Web.Controllers
                                 int fkrol = reader.GetInt32(1);
                                 string correo = reader.GetString(2);
 
-
+                                Response.Cookies.Append("CorreoPersona", correo);
 
                                 if (correo != null)
                                 {
