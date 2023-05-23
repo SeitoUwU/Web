@@ -4,6 +4,13 @@
 @{
     Layout = "_Layout";
 }
+@section stiloAdminHome{
+    <style>
+        body {
+            background-image: url("/Img/gatitos_animados.jpg");
+        }
+    </style>
+}
 @{
     var cookie = Context.Request.Cookies["CorreoPersona"];
     UsuarioDatos usuarioDatos = new UsuarioDatos();
