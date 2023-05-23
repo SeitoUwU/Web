@@ -4,12 +4,12 @@ Para ejecutar el proyecto WEB, lo que se necesita usar para su correcto funciona
 1: Tener instalada la version Microsoft Visual Studio 2022
 2: Tener en el visual studio las herramientas .Net Core para que pueda ejecutar prouyectos ASP.NET Core
 3: Tener el sgbd (sistema gestor de base de datos) MySQL instalado
-4: Ejecutar el script.sql en el sgbd para crear la base de datos que se puede encotrar en la siguiente ruta:
-
-5: descargar el comprimido del siguiente proyecto
-6: Descomprimir el comprimido
-7: Abrir Microsoft Visual Studio 2022
-8: Dar click en abrir un proyecto o una solucion
-9: Buscar el archivo que se descomprimió del proyecto
-10: Entrar a la carpeta WEB
-11: Dar click en WEB.sln y dar abrir
+4: Descomprimir el archivo .zip llamado base de datos alojado en los archivos 
+5: Importar la base de datos dentro del sistema gestor de base de datos MySQL
+6: descargar el comprimido del siguiente proyecto
+7: Descomprimir el comprimido
+8: Abrir Microsoft Visual Studio 2022
+9: Dar click en abrir un proyecto o una solucion
+10: Buscar el archivo que se descomprimió del proyecto
+11: Entrar a la carpeta WEB
+12: Dar click en WEB.sln y dar abrir
