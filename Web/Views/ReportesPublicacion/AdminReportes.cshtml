@@ -1,14 +1,8 @@
 ﻿@model List<PublicacionModel>
+
 @{
-    Layout = "_LayoutAdministracion";
+    Layout = "_Layout";
 }
-@*@section stiloLogin{
-    <style>
-        body {
-            background-image: url("/Img/gatitos_animados.jpg");
-        }
-    </style>
-  }*@
 <div>
     <div class="container py-4 py-xl-5">
         <div class="row mb-5">
@@ -16,7 +10,7 @@
                 <h2>Reportes</h2>
             </div>
         </div>
-        <form asp-controller="ReportesPublicacion/listarPublicacionesEliminar">
+        <form asp-action="AdminReportes" asp-controller="ReportesPublicacion" method="post">
 
             <div class="p-4" style="border-style: solid;">
                 <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
@@ -67,7 +61,7 @@
             if (checkbox.checked) {
                 var publiID = checkbox.value;
                 $.ajax({
-                    url: '@Url.Action("DesactivarPublicacion", "Administrador")' + '?id=' + publiID,
+                    url: '@Url.Action("DesactivarPublicacion", "ReportesPublicacion")' + '?id=' + publiID,
                     type: 'POST',
                     success: function (result) {
                         console.log(result);
