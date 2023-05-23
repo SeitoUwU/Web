@@ -43,7 +43,8 @@ namespace Web.Controllers
         public ActionResult InformacionUsuario()
         {
             ContenidoModel contenido = new ContenidoModel();
-            contenido.persona.PER_Correo = Request.Cookies["CorreoPersona"];
+            String correo = Request.Cookies["CorreoPersona"];
+            contenido.persona.PER_Correo = correo;
             try
             {
                 using (MySqlConnection  connection = new MySqlConnection(contexto.Conexion))
@@ -72,13 +73,33 @@ namespace Web.Controllers
                             }
                         }
                     }
-
+                    connection.Close();
                 }
             }catch (Exception ex)
             {
-
+                return View(ex);
             }
-            return View();
+
+            AdministradorDatos admin = new AdministradorDatos(connection);
+
+            List<TipoDocumentoModel> tipoDocumentos = new List<TipoDocumentoModel>();
+            List<PaisModel> paises = new List<PaisModel>();
+            List<DepartamentoModel> departamentos = new List<DepartamentoModel>();
+            List<MunicipioModel> municipios = new List<MunicipioModel>();
+            List<BarrioModel> barrios = new List<BarrioModel>();
+
+            tipoDocumentos = admin.listarTipoDocumento();
+            paises = admin.listaPaises();
+            departamentos = admin.listarDepartamentos();
+            municipios = admin.listarmunicipios();
+            barrios = admin.listarBarrios();
+
+            ViewBag.tipoDocumentos = new SelectList(tipoDocumentos, "TIPDOC_ID", "TIPDOC_Nombre");
+            ViewBag.paises = new SelectList(paises, "PAIS_ID", "PAIS_Nombre");
+            ViewBag.departamentos = new SelectList(departamentos, "DEP_ID", "DEP_Nombre");
+            ViewBag.municipios = new SelectList(municipios, "MUN_ID", "MUN_Nombre");
+            ViewBag.barrios = new SelectList(barrios, "BAR_ID", "BAR_Nombre");
+            return View(contenido);
         }
     }
 }
