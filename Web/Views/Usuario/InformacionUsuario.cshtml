@@ -29,21 +29,27 @@
                 <tbody>
                     <tr>
                         <td>
-                            Primer nombre: <input type="text" asp-for="@Model.persona.PER_NombreUno" placeholder="@Model.persona.PER_NombreUno" disabled /><button class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
+                            Primer nombre: 
+                            <input id="nombreUsuario" type="text" asp-for="@Model.persona.PER_NombreUno" placeholder="@Model.persona.PER_NombreUno" disabled />
+                            <button id="botonNombreUsuario" onclick="habilitarCampos('nombreUsuario')" class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0px;">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
                             </button>
                         </td>
                         <td style="margin-right: 0px;">
-                            Primer apellido: <input type="text" asp-for="@Model.persona.PER_ApellidoUno" placeholder="@Model.persona.PER_ApellidoUno" disabled /><button class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
+                            Primer apellido: 
+                            <input id="apUnoUsuario" type="text" asp-for="@Model.persona.PER_ApellidoUno" placeholder="@Model.persona.PER_ApellidoUno" disabled />
+                            <button id="botonApUnoUsuario" onclick="habilitarCampos('apUnoUsuario')" class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0px;">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
                             </button>
                         </td>
                         <td>
-                            Correo: <input type="text" asp-for="@Model.persona.PER_Correo" placeholder="@Model.persona.PER_Correo" disabled /><button class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
+                            Correo: 
+                            <input id="correoUsuario" type="email" asp-for="@Model.persona.PER_Correo" placeholder="@Model.persona.PER_Correo" disabled />
+                            <button id="botonCorreoUsuario" onclick="habilitarCampos('correoUsuario')" class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0px;">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
@@ -52,21 +58,27 @@
                     </tr>
                     <tr>
                         <td style="margin-right: 0px;">
-                            Segundo nombre: <input type="text" asp-for="@Model.persona.PER_NombreDos" placeholder="@Model.persona.PER_NombreDos" disabled /><button class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
+                            Segundo nombre: 
+                            <input id="segundoNomUsuario" type="text" asp-for="@Model.persona.PER_NombreDos" placeholder="@Model.persona.PER_NombreDos" disabled />
+                            <button id="botonSegunNomUsuario" onclick="habilitarCampos('segundoNomUsuario')" class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0px;">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
                             </button>
                         </td>
                         <td>
-                            Segundo apellido: <input type="text" asp-for="@Model.persona.PER_ApellidoDos" placeholder="@Model.persona.PER_ApellidoDos" disabled /><button class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
+                            Segundo apellido: 
+                            <input id="segApeUsuario" type="text" asp-for="@Model.persona.PER_ApellidoDos" placeholder="@Model.persona.PER_ApellidoDos" disabled />
+                            <button id="botonSegApeUsuario" onclick="habilitarCampos('segApeUsuario')" class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
                             </button>
                         </td>
                         <td>
-                            Dirección vivienda: <input type="text" asp-for="@Model.persona.PER_DireccionVinda" placeholder="@Model.persona.PER_DireccionVinda" disabled /><button class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
+                            Dirección vivienda: 
+                            <input id="direcUsuario" type="text" asp-for="@Model.persona.PER_DireccionVinda" placeholder="@Model.persona.PER_DireccionVinda" disabled />
+                            <button id="botonDirecUsuario" onclick="habilitarCampos('direcUsuario')" class="btn btn-primary btn-sm" type="button" style="border-radius: 50%;margin-left: 4px;margin-bottom: 5px;margin-right: 0px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0px;">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
@@ -74,12 +86,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Numero de documento <input type="text" asp-for="@Model.persona.PER_NumeroDocumento" placeholder="@Model.persona.PER_NumeroDocumento" disabled /></td>
+                        <td>Numero de documento 
+                            <input type="text" asp-for="@Model.persona.PER_NumeroDocumento" placeholder="@Model.persona.PER_NumeroDocumento" disabled /></td>
                         <td>
                             Tipo de documento 
-                            <select asp-for="@Model.persona.FKTIPODOC_ID" asp-items="@ViewBag.tipoDocumentos" disabled>
+                            <select id="tipDocUsuario" asp-for="@Model.persona.FKTIPODOC_ID" asp-items="@ViewBag.tipoDocumentos" disabled>
                                 <option style="display: none;" selected>@Model.tipoDocumento.TIPDOC_Nombre</option>
-                            </select><button class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
+                            </select>
+                            <button id="botonTipDocUsuario" onclick="habilitarCampos('tipDocUsuario')" class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
@@ -87,9 +101,10 @@
                         </td>
                         <td>
                             País    
-                            <select asp-items="@ViewBag.paises" disabled>
+                            <select id="pais" asp-items="@ViewBag.paises" disabled>
                                 <option style="display: none;" selected>@Model.pais.PAIS_Nombre</option>
-                            </select><button class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
+                            </select>
+                            <button onclick="habilitarCampos('pais')" class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
@@ -99,9 +114,10 @@
                     <tr>
                         <td>
                             Departamento 
-                            <select asp-items="@ViewBag.departamentos" disabled>
+                            <select id="departamento" asp-items="@ViewBag.departamentos" disabled>
                                 <option style="display: none;" selected>@Model.departamento.DEP_Nombre</option>
-                            </select><button class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
+                            </select>
+                            <button onclick="habilitarCampos('departamento')" class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
@@ -109,9 +125,10 @@
                         </td>
                         <td>
                             Municipio 
-                            <select asp-items="@ViewBag.municipios" disabled>
+                            <select id="municipio" asp-items="@ViewBag.municipios" disabled>
                                 <option style="display: none;" selected>@Model.municipio.MUN_Nombre</option>
-                            </select><button class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
+                            </select>
+                            <button onclick="habilitarCampos('municipio')" class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
@@ -119,9 +136,10 @@
                         </td>
                         <td>
                             Barrio 
-                            <select asp-for="@Model.persona.FKBAR_ID" asp-items="@ViewBag.barrios" disabled>
+                            <select id="barrio" asp-for="@Model.persona.FKBAR_ID" asp-items="@ViewBag.barrios" disabled>
                                 <option style="display: none;" selected>@Model.barrio.BAR_Nombre</option>
-                            </select><button class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
+                            </select>
+                            <button onclick="habilitarCampos('barrio')" class="btn btn-primary btn-sm" type="button" style="margin-bottom: 5px;border-radius: 50%;margin-left: 4px;">
                                 <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
                                 </svg>
@@ -132,6 +150,23 @@
             </table>
         </div>
     </section>
-    <div class="text-end" style="margin-right: 10px;"><button class="btn btn-primary disabled" type="button" style="border-radius: 20px;" disabled>Actualizar</button></div>
+    <div class="text-end" style="margin-right: 10px;">
+        <button id="botonActualizar" class="btn btn-primary disabled" type="button" style="border-radius: 20px;" disabled>Actualizar</button>
+    </div>
 </section>
+<script>
+    function habilitarCampos(campoId) {
+        var campos = ["pais", "departamento", "municipio", "barrio"];
+        var indice = campos.indexOf(campoId);
+
+        for (var i = 0; i <= indice; i++) {
+            var campo = document.getElementById(campos[i]);
+            campo.disabled = false;
+            campo.nextElementSibling.disabled = false;
+        }
+
+        document.getElementById("botonActualizar").disabled = false;
+        document.getElementById("botonActualizar").classList.remove("disabled");
+    }
+</script>
 
