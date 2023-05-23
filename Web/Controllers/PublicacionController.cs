@@ -78,6 +78,7 @@ namespace Web.Controllers
             usuario.InsertarPublicacionMascota(contenido);
             return RedirectToAction("InicioUsuario", "Usuario");
         }
+        [HttpGet]
         public IActionResult cargarTipoRazas(int id)
         {
             UsuarioDatos usuario = new UsuarioDatos(connection);
@@ -86,6 +87,7 @@ namespace Web.Controllers
             return PartialView("_selectsDinamicos");
         }
 
+        [HttpGet]
         public IActionResult cargarVacunas(int id)
         {
             UsuarioDatos usuario = new UsuarioDatos(connection);
@@ -94,6 +96,7 @@ namespace Web.Controllers
             return PartialView("_selectsDinamicos");
         }
 
+        [HttpGet]
         public IActionResult cargarAlergias(int id)
         {
             UsuarioDatos usuario = new UsuarioDatos(connection);

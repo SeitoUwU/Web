@@ -115,8 +115,8 @@
                                                     </td>
 
                                             
-                                                    <td><input type="file" id="fotoMasc width="200" height="200" name="fotoMasc"></td>
-                                                    <td><img style="object-fit: cover; width: 100%;height: 100%;"></td>
+                                                    <td><input type="file" id="input1"></td>
+                                                    <td><img id="img1" style="object-fit: cover; width: 100%;height: 100%;"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -153,13 +153,12 @@
                                                 <tr>
                                                 <tr>
                                                     <td>
-                                                        <label class="form-label">Foto del artículo</label>
-                                                    <td><input type="file" id="fotoEleme" width="200" height="200" name="fotoEleme"></td>
-                                                    <td><img style="object-fit: cover; width: 100%;height: 100%;"></td>
-                                                   
-
-                                                </tr>
-
+                                                        <p>Foto del articulo</p>
+                                                        <input id="input2" type="file" />
+                                                    </td>
+                                                    <td>
+                                                        <img id="img2" style="width: 100%;height: 100%;" />
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -176,95 +175,92 @@
         </div>
     </div>
 </form>
-<script>
-    var selec = document.getElementById('selecTipPubli');
-    var formularioUno = document.getElementById('formularioMascota');
-    var formularioDos = document.getElementById('formularioArticulos');
-    selec.addEventListener('change', function () {
-        var valor = selec.value;
-        switch (valor) {
-            case '1': //Aca debes verificar el id del tipo publicacion y modificarlo a corde a lo que quieres mostrar
-                formularioUno.classList.toggle('d-none', false);
-                formularioDos.classList.toggle('d-none', true);
-                break;
-            case '2': //Lo mismo que arriba
-                formularioDos.classList.toggle('d-none', false);
-                formularioUno.classList.toggle('d-none', true);
-                break;
-        }
-    });
-   
-    var input = document.querySelector('#fotoMasc');
-    var preview = document.querySelector('img');
+@section scripts{
 
-    input.addEventListener('change', function (event) {
-        var file = event.target.files[0];
-        var reader = new FileReader();
+    <script>
+        var selec = document.getElementById('selecTipPubli');
+        var formularioUno = document.getElementById('formularioMascota');
+        var formularioDos = document.getElementById('formularioArticulos');
+        selec.addEventListener('change', function () {
+            var valor = selec.value;
+            switch (valor) {
+                case '1':
+                    formularioUno.classList.toggle('d-none', false);
+                    formularioDos.classList.toggle('d-none', true);
+                    break;
+                case '2':
+                    formularioDos.classList.toggle('d-none', false);
+                    formularioUno.classList.toggle('d-none', true);
+                    break;
+            }
+        });
+        var input1 = document.getElementById('input1');
+        var img1 = document.getElementById('img1');
 
-        reader.onload = function (event) {
-            preview.src = event.target.result;
-        };
+        var input2 = document.getElementById('input2');
+        var img2 = document.getElementById('img2');
 
-        reader.readAsDataURL(file);
-    });
+        input1.addEventListener('change', function (event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                img1.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        });
 
+        input2.addEventListener('change', function (event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                img2.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        });
 
-    var input = document.querySelector('#fotoEleme');
-    var preview = document.querySelector('img');
-
-    input.addEventListener('change', function (event) {
-        var file = event.target.files[0];
-        var reader = new FileReader();
-
-        reader.onload = function (event) {
-            preview.src = event.target.result;
-        };
-
-        reader.readAsDataURL(file);
-    });
-
-    $(document).ready(function () {
-        $('#tipoMascota').on('change', function () {
-            var valor = $(this).val();
-            $.ajax({
-                url: '/Publicacion/cargarTipoRazas',
-                type: 'GET',
-                data: { id: valor },
-                success: function (result) {
-                    var selectRazas = $(result).find('#razaMascota');
-                    $('#divRazas').html(selectRazas);
-                }
+        $(document).ready(function () {
+            $('#tipoMascota').on('change', function () {
+                var valor = $(this).val();
+                $.ajax({
+                    url: '/Publicacion/cargarTipoRazas',
+                    type: 'GET',
+                    data: { id: valor },
+                    success: function (result) {
+                        var selectRazas = $(result).find('#razaMascota');
+                        $('#divRazas').html(selectRazas);
+                    }
+                });
             });
         });
-    });
 
-    $(document).ready(function () {
-        $('#TipoVacunas').on('change', function () {
-            var valor = $(this).val();
-            $.ajax({
-                url: '/Publicacion/cargarVacunas',
-                type: 'GET',
-                data: { id: valor },
-                success: function (result) {
-                    var segundoSelect = $(result).find('#vacunas');
-                    $('#divVacunas').html(segundoSelect);
-                }
+        $(document).ready(function () {
+            $('#TipoVacunas').on('change', function () {
+                var valor = $(this).val();
+                $.ajax({
+                    url: '/Publicacion/cargarVacunas',
+                    type: 'GET',
+                    data: { id: valor },
+                    success: function (result) {
+                        var segundoSelect = $(result).find('#vacunas');
+                        $('#divVacunas').html(segundoSelect);
+                    }
+                });
             });
         });
-    });
 
-    $(document).ready(function () {
-        $('#tipoAlergia').on('change', function () {
-            var valor = $(this).val();
-            $.ajax({
-                url: '/Publicacion/cargarAlergias',
-                type: 'GET',
-                data: { id: valor },
-                success: function (result) {
-                    var selectAlergias = $(result).find('#alergiasMascota');
-                    $('#divAlergias').html(selectAlergias);
-                }
+        $(document).ready(function () {
+            $('#tipoAlergia').on('change', function () {
+                var valor = $(this).val();
+                $.ajax({
+                    url: '/Publicacion/cargarAlergias',
+                    type: 'GET',
+                    data: { id: valor },
+                    success: function (result) {
+                        var selectAlergias = $(result).find('#alergiasMascota');
+                        $('#divAlergias').html(selectAlergias);
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+}
