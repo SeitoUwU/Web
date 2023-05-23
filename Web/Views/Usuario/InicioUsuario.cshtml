@@ -1,10 +1,20 @@
 ﻿@using Web.Datos;
+
+@model ContenidoModel
+@{
+    Layout = "_Layout";
+}
+@section stiloAdminHome{
+    <style>
+        body {
+            background-image: url("/Img/gatitos_animados.jpg");
+        }
+    </style>
+}
 @{
     var cookie = Context.Request.Cookies["CorreoPersona"];
     UsuarioDatos usuarioDatos = new UsuarioDatos();
 }
-@model ContenidoModel
-
 <section>
     <div class="container" style="margin-top: 15px;margin-left: 1px;">
         <div class="row">

@@ -6,12 +6,12 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class ReportesPublicacion : Controller
+    public class ReportesPublicacionController : Controller
     {
 
         private readonly MySqlConnection connection;
 
-        public ReportesPublicacion(MySqlConnection connection)
+        public ReportesPublicacionController(MySqlConnection connection)
         {
             this.connection = connection;
         }
