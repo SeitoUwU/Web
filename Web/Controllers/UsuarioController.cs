@@ -42,20 +42,28 @@ namespace Web.Controllers
 
         public ActionResult InformacionUsuario()
         {
-            ContenidoModel contenido = new ContenidoModel();
             String correo = Request.Cookies["CorreoPersona"];
-            contenido.persona.PER_Correo = correo;
+            ContenidoModel contenido = new ContenidoModel();
             try
             {
-                using (MySqlConnection  connection = new MySqlConnection(contexto.Conexion))
+                using (MySqlConnection connection = new MySqlConnection(contexto.Conexion))
                 {
                     connection.Open();
-                    using (MySqlCommand command = new("mostrarDatosUsuario", connection)) {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@correo", contenido.persona.PER_Correo);
+                    using (MySqlCommand command = new("mostrarDatosUsuario", connection))
+                    {
 
-                        using(MySqlDataReader reader = command.ExecuteReader())
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@correo", correo);
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
+                            contenido.persona = new PersonaModel();
+                            contenido.tipoDocumento = new TipoDocumentoModel();
+                            contenido.pais = new PaisModel();
+                            contenido.departamento = new DepartamentoModel();
+                            contenido.municipio = new MunicipioModel();
+                            contenido.barrio = new BarrioModel();
+
                             while (reader.Read())
                             {
                                 contenido.persona.PER_NombreUno = reader.GetString(0);
@@ -74,8 +82,10 @@ namespace Web.Controllers
                         }
                     }
                     connection.Close();
+
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return View(ex);
             }

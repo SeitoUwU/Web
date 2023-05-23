@@ -102,7 +102,7 @@ namespace Web.Controllers
                                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authentication);
                                     if (fkrol == 1) // ID del rol para administrador
                                     {
-                                        return RedirectToAction("AdminHome", "Administrador");
+                                        return RedirectToAction("InformacionUsuario", "Usuario");
                                     }
                                     else if (fkrol == 2)// Otros roles
                                     {
@@ -112,6 +112,7 @@ namespace Web.Controllers
                             }
                         }
                     }
+                    connection.Close();
                 }
             }catch (Exception ex)
             {

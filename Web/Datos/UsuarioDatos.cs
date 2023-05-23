@@ -266,6 +266,31 @@ namespace Web.Datos
             return alergias;
         }
 
-
+        public ContenidoModel CargarDatosUsuario(string correo)
+        {
+            ContenidoModel contenido = new ContenidoModel();
+            connection.Open();
+            MySqlCommand command = new MySqlCommand("mostrarDatosUsuario", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@correo", correo);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                contenido.persona.PER_NombreUno = reader.GetString(0);
+                contenido.persona.PER_NombreDos = reader.GetString(1);
+                contenido.persona.PER_ApellidoUno = reader.GetString(2);
+                contenido.persona.PER_ApellidoDos = reader.GetString(3);
+                contenido.persona.PER_Correo = reader.GetString(4);
+                contenido.persona.PER_DireccionVinda = reader.GetString(5);
+                contenido.persona.PER_NumeroDocumento = reader.GetInt32(6);
+                contenido.tipoDocumento.TIPDOC_Nombre = reader.GetString(7);
+                contenido.pais.PAIS_Nombre = reader.GetString(8);
+                contenido.departamento.DEP_Nombre = reader.GetString(9);
+                contenido.municipio.MUN_Nombre = reader.GetString(10);
+                contenido.barrio.BAR_Nombre = reader.GetString(11);
+            }
+            connection.Close();
+            return contenido;
+        }
     }
 }
