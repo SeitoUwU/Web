@@ -31,17 +31,6 @@
                         navigation
                     </span><span class="navbar-toggler-icon"></span>
                 </button>
-
-                @if (User.Identity.IsAuthenticated)
-                {
-                    @await Component.InvokeAsync("MenuD")
-                    <div>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="InicioUsuario">INICIO</a>
-                    </div>
-
-                }
-                else
-                {
                     <div class="collapse navbar-collapse" id="navcol-5">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
